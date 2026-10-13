@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leadership Mavericks — Design system</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1446C2}a:hover{color:#0D3393}
+@media (max-width: 1439px){.ds{width:100%!important;min-height:0!important}}
+@media (max-width: 760px){
+  .ds-hero{padding:28px 20px 56px!important;gap:64px!important}
+  .ds-hero-top{flex-wrap:wrap;gap:12px}
+  .ds-logo{height:36px!important}
+  .ds-hero-row{flex-direction:column!important;align-items:flex-start!important;gap:40px!important}
+  .ds-h1{font-size:48px!important;line-height:50px!important}
+  .ds-hero-row p{font-size:17px!important;line-height:27px!important}
+  .ds-principles{width:auto!important;grid-template-columns:1fr!important;gap:20px!important}
+  .ds-sec{padding:72px 20px 0!important;gap:32px!important}
+  .ds-sec-last{padding-bottom:72px!important}
+  .ds-h2{font-size:34px!important;line-height:38px!important}
+  .ds-colors{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .ds-colors>div{height:150px!important;padding:18px!important}
+  .ds-colors>div:first-child{grid-column:1/-1;height:180px!important}
+  .ds-neutrals{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px 12px!important}
+  .ds-neutrals>div>div{height:64px!important}
+  .ds-stack{grid-template-columns:1fr!important;gap:32px!important}
+  .ds-typehead-row{flex-direction:column!important;align-items:flex-start!important;gap:32px!important}
+  .ds-aa-row{flex-wrap:wrap;gap:20px 28px!important}
+  .ds-aa-row>div>span:first-child{font-size:48px!important}
+  .ds-typerow{grid-template-columns:1fr!important;gap:8px!important;padding:24px 0!important}
+  .ds-typerow>span:nth-child(3){margin-top:6px}
+  .ds-spec-display{font-size:44px!important;line-height:46px!important}
+  .ds-spec-h2{font-size:34px!important;line-height:38px!important}
+  .ds-wrap{flex-wrap:wrap!important;gap:16px!important}
+  .ds-card{padding:24px!important}
+  .ds-cardrow{flex-direction:column!important;gap:20px!important}
+  .ds-cardrow>div:first-child{width:auto!important}
+  .ds-cardrow>div:last-child{width:100%!important;max-width:320px}
+  .ds-card a{min-height:48px!important}
+  .ds-illus{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px 12px!important}
+  .ds-illus>div>div:first-child{height:150px!important}
+  .ds-illus svg{max-width:80%;height:auto}
+}
+</style>
+</helmet>
+<div class="ds" style="width: 1440px; min-height: 4500px; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-optical-sizing: auto; color: #1C1C1E; background: #F8F4EE; -webkit-font-smoothing: antialiased">
+
+<!-- COVER -->
+<div class="ds-hero" style="background: #1446C2; color: #FFFFFF; padding: 56px 120px 88px; display: flex; flex-direction: column; gap: 120px">
+  <div class="ds-hero-top" style="display: flex; justify-content: space-between; align-items: center">
+    <img class="ds-logo" src="./assets/logo.png" alt="Leadership Mavericks" style="height: 48px; width: auto">
+    <span style="font-size: 14px; font-weight: 500; color: #C9D6F7">Brand system, version 1.1</span>
+  </div>
+  <div class="ds-hero-row" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 80px">
+    <div style="display: flex; flex-direction: column; gap: 24px; max-width: 640px">
+      <h1 class="ds-h1" style="margin: 0; font-size: 80px; line-height: 82px; font-weight: 450; letter-spacing: -0.035em">Design System</h1>
+      <p style="margin: 0; font-size: 19px; line-height: 30px; color: #DCE5FB">One confident blue, a warm paper ground and ink-drawn illustration. Quiet, editorial and a little unexpected, like the leaders we find.</p>
+    </div>
+    <ol class="ds-principles" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; width: 560px">
+      <li style="border-top: 1px solid rgba(255,255,255,.4); padding-top: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 600">One bold thing</span><span style="font-size: 14px; line-height: 21px; color: #DCE5FB">The illustration carries personality. Everything else stays calm.</span></li>
+      <li style="border-top: 1px solid rgba(255,255,255,.4); padding-top: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 600">Flat, not floating</span><span style="font-size: 14px; line-height: 21px; color: #DCE5FB">No shadows. Tint and hairlines separate surfaces.</span></li>
+      <li style="border-top: 1px solid rgba(255,255,255,.4); padding-top: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 600">Few sizes</span><span style="font-size: 14px; line-height: 21px; color: #DCE5FB">Large type set light and tight; generous space between.</span></li>
+    </ol>
+  </div>
+</div>
+
+<!-- 01 COLOUR -->
+<section class="ds-sec" style="padding: 120px 120px 0; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">01</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Colour</p>
+    <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">Blue leads. Paper grounds. Ink speaks.</h2>
+  </div>
+
+  <div class="ds-colors" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 16px">
+    <div style="height: 280px; border-radius: 8px; background: #1446C2; color: #FFFFFF; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 15px; font-weight: 600">Maverick Blue</span>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end"><span style="font-size: 14px; line-height: 21px; color: #DCE5FB">#1446C2<br>Hero, bands, CTAs, headings on paper</span><span style="font-size: 40px; font-weight: 400; letter-spacing: -0.03em">7.8:1</span></div>
+    </div>
+    <div style="height: 280px; border-radius: 8px; background: #0D3393; color: #FFFFFF; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 15px; font-weight: 600">Deep Blue</span><span style="font-size: 14px; line-height: 21px; color: #DCE5FB">#0D3393<br>Hover, pressed</span>
+    </div>
+    <div style="height: 280px; border-radius: 8px; background: #C9D6F7; color: #0D3393; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 15px; font-weight: 600">Sky</span><span style="font-size: 14px; line-height: 21px">#C9D6F7<br>Secondary text on blue, 5.4:1</span>
+    </div>
+    <div style="height: 280px; border-radius: 8px; background: #D9E3FA; color: #1446C2; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 15px; font-weight: 600">Tint</span><span style="font-size: 14px; line-height: 21px">#D9E3FA<br>Card surfaces, 6.1:1 with blue</span>
+    </div>
+    <div style="height: 280px; border-radius: 8px; background: #EEF3FD; color: #1446C2; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="font-size: 15px; font-weight: 600">Wash</span><span style="font-size: 14px; line-height: 21px">#EEF3FD<br>Quiet highlights</span>
+    </div>
+  </div>
+
+  <div class="ds-neutrals" style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 16px">
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #1C1C1E"></div><span style="font-size: 14px; font-weight: 600">Ink</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#1C1C1E<br>Headings, body, line art</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #3A3A3F"></div><span style="font-size: 14px; font-weight: 600">Graphite</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#3A3A3F<br>Secondary text</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #6B6B70"></div><span style="font-size: 14px; font-weight: 600">Slate</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#6B6B70<br>Captions, 4.9:1</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #BDB6AB"></div><span style="font-size: 14px; font-weight: 600">Pebble</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#BDB6AB<br>Inactive marks, never text</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #D9D3C9"></div><span style="font-size: 14px; font-weight: 600">Line</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#D9D3C9<br>Hairlines on paper</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #E6E1D8"></div><span style="font-size: 14px; font-weight: 600">Sand</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#E6E1D8<br>Image placeholders</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #ECE8E2"></div><span style="font-size: 14px; font-weight: 600">Stone</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#ECE8E2<br>Alternate section</span></div>
+    <div style="display: flex; flex-direction: column; gap: 12px"><div style="height: 88px; border-radius: 8px; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><span style="font-size: 14px; font-weight: 600">Paper</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F">#F8F4EE<br>Page ground</span></div>
+  </div>
+
+  <div class="ds-stack" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; border-top: 1px solid #D9D3C9; padding-top: 32px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <span style="font-size: 15px; font-weight: 600">Section rhythm down the page</span>
+      <div style="display: flex; height: 36px; border-radius: 4px; overflow: hidden">
+        <div style="flex: 5; background: #1446C2"></div><div style="flex: 5; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 6; background: #1446C2"></div><div style="flex: 5; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 6; background: #ECE8E2"></div><div style="flex: 3; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 1; background: #1446C2"></div><div style="flex: 4; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 3; background: #1446C2"></div>
+      </div>
+      <span style="font-size: 13px; color: #6B6B70">Hero, services, process, story, team, CTA, stats, clients, footer</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 24px; color: #3A3A3F">Alternate paper and blue to pace the scroll; Stone appears once, for the team. Blue is the only hue: no second accent, no gradients. Ink is reserved for text and illustration.</p>
+  </div>
+</section>
+
+<!-- 02 TYPOGRAPHY -->
+<section class="ds-sec" style="padding: 136px 120px 0; display: flex; flex-direction: column; gap: 48px">
+  <div class="ds-typehead-row" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">02</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Typography</p>
+      <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">Inter, set light and tight at scale.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 28px; color: #3A3A3F; max-width: 620px">Optical sizing switches on automatically, so large headlines draw from Inter’s display cut. Headlines use weight 450; UI labels 500; emphasis 600.</p>
+    </div>
+    <div class="ds-aa-row" style="display: flex; gap: 40px; align-items: flex-end">
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 72px; line-height: 1; font-weight: 400; letter-spacing: -0.03em">Aa</span><span style="font-size: 13px; color: #6B6B70">400 Body</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 72px; line-height: 1; font-weight: 450; letter-spacing: -0.03em">Aa</span><span style="font-size: 13px; color: #6B6B70">450 Headline</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 72px; line-height: 1; font-weight: 500; letter-spacing: -0.03em">Aa</span><span style="font-size: 13px; color: #6B6B70">500 Label</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 72px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; color: #1446C2">Aa</span><span style="font-size: 13px; color: #6B6B70">600 Emphasis</span></div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid #D9D3C9">
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Display</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">80 / 82, 450, −3.5%<br>Hero and closing CTA</span>
+      <span class="ds-spec-display" style="font-size: 80px; line-height: 82px; font-weight: 450; letter-spacing: -0.035em">Don’t Fit a Template</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Heading 2</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">52 / 56, 450, −3%<br>Every section title</span>
+      <span class="ds-spec-h2" style="font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">The Right People Change Everything</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Heading 3</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">24–26 / 30, 450, −2%<br>Story titles, process steps</span>
+      <span style="font-size: 26px; line-height: 32px; font-weight: 450; letter-spacing: -0.02em; color: #1446C2">It started long before the name</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Card title</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">20–22 / 28, 500, −1.5%<br>Service and team cards</span>
+      <span style="font-size: 22px; line-height: 28px; font-weight: 500; letter-spacing: -0.015em; color: #1446C2">Executive Search</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Lead</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">19 / 30, 400<br>Intros and sublines</span>
+      <span style="font-size: 19px; line-height: 30px; max-width: 600px">Finding exceptional leaders with curiosity, conviction, and courage to look beyond the obvious.</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Body</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">17 / 28, 400<br>Paragraphs, under 70 characters</span>
+      <span style="font-size: 17px; line-height: 28px; max-width: 600px; color: #3A3A3F">Designed around your business, rather than a standard playbook. We bring independent thinking backed by experience and discipline.</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Label</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">15 / 22, 500<br>Navigation, buttons, roles</span>
+      <span style="font-size: 15px; line-height: 22px; font-weight: 500">Find Your Next Mavericks</span>
+    </div>
+    <div class="ds-typerow" style="display: grid; grid-template-columns: 180px 240px minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="font-size: 15px; font-weight: 600">Section marker</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">14 / 20, 500, sentence case<br>Numeral, 32px rule, name</span>
+      <span style="display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">01</span><span style="width: 32px; height: 1px; background: #1446C2"></span>What we do</span>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SPACE, GRID, SHAPE -->
+<section class="ds-sec" style="padding: 136px 120px 0; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">03</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Space, grid and shape</p>
+    <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">An 8-point rhythm with room to breathe.</h2>
+  </div>
+  <div class="ds-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <span style="font-size: 15px; font-weight: 600; margin-bottom: 6px">Spacing scale</span>
+      <div style="display: grid; grid-template-columns: 40px 140px 1fr; align-items: center; gap: 16px"><span style="font-size: 14px; font-variant-numeric: tabular-nums">8</span><div style="width: 8px; height: 12px; background: #1446C2"></div><span style="font-size: 14px; color: #3A3A3F">Icon to label</span></div>
+      <div style="display: grid; grid-template-columns: 40px 140px 1fr; align-items: center; gap: 16px"><span style="font-size: 14px; font-variant-numeric: tabular-nums">16</span><div style="width: 16px; height: 12px; background: #1446C2"></div><span style="font-size: 14px; color: #3A3A3F">Inside components</span></div>
+      <div style="display: grid; grid-template-columns: 40px 140px 1fr; align-items: center; gap: 16px"><span style="font-size: 14px; font-variant-numeric: tabular-nums">24</span><div style="width: 24px; height: 12px; background: #1446C2"></div><span style="font-size: 14px; color: #3A3A3F">Grid gutter, card padding</span></div>
+      <div style="display: grid; grid-template-columns: 40px 140px 1fr; align-items: center; gap: 16px"><span style="font-size: 14px; font-variant-numeric: tabular-nums">32</span><div style="width: 32px; height: 12px; background: #1446C2"></div><span style="font-size: 14px; color: #3A3A3F">Between columns of content</span></div>
+      <div style="display: grid; grid-template-columns: 40px 140px 1fr; align-items: center; gap: 16px"><span style="font-size: 14px; font-variant-numeric: tabular-nums">64</span><div style="width: 64px; height: 12px; background: #1446C2"></div><span style="font-size: 14px; color: #3A3A3F">Section heading to content</span></div>
+      <div style="display: grid; grid-template-columns: 40px 140px 1fr; align-items: center; gap: 16px"><span style="font-size: 14px; font-variant-numeric: tabular-nums">128</span><div style="width: 128px; height: 12px; background: #1446C2"></div><span style="font-size: 14px; color: #3A3A3F">Section padding (desktop)</span></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 600">Layout grid</span>
+        <div style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 16px 24px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 8px; height: 96px; box-sizing: border-box">
+          <div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div>
+        </div>
+        <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">1200 content width, 24 gutter, 24 minimum side margin. Hero splits 50/50 edge to edge.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 600">Radius by role, no shadows</span>
+        <div class="ds-wrap" style="display: flex; gap: 24px; align-items: flex-end">
+          <div style="display: flex; flex-direction: column; gap: 10px"><div style="width: 112px; height: 72px; background: #E6E1D8; border-radius: 4px"></div><span style="font-size: 13px; color: #3A3A3F">4 Images</span></div>
+          <div style="display: flex; flex-direction: column; gap: 10px"><div style="width: 112px; height: 72px; background: #D9E3FA; border-radius: 8px"></div><span style="font-size: 13px; color: #3A3A3F">8 Cards, swatches</span></div>
+          <div style="display: flex; flex-direction: column; gap: 10px"><div style="width: 140px; height: 52px; background: #1446C2; border-radius: 999px"></div><span style="font-size: 13px; color: #3A3A3F">Pill Buttons, controls</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 COMPONENTS -->
+<section class="ds-sec" style="padding: 136px 120px 0; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">04</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Components</p>
+    <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">The building blocks.</h2>
+  </div>
+
+  <div class="ds-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+    <div class="ds-card" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+      <span style="font-size: 15px; font-weight: 600">Buttons on paper</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+        <a href="#" style="display: inline-flex; align-items: center; gap: 32px; min-height: 56px; padding: 0 24px 0 30px; border-radius: 999px; background: #1446C2; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 500">Primary <svg width="32" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+        <a href="#" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 30px; border-radius: 999px; background: #0D3393; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 500">Hover</a>
+        <button type="button" aria-label="Previous" style="width: 52px; height: 52px; border-radius: 999px; border: 1px solid #1446C2; background: transparent; color: #1446C2; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+        <button type="button" aria-label="Next" style="width: 52px; height: 52px; border-radius: 999px; border: 0; background: #1446C2; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
+      </div>
+      <span style="font-size: 14px; line-height: 21px; color: #6B6B70">The long arrow marks the page’s one primary action. Minimum height 52.</span>
+    </div>
+    <div class="ds-card" style="background: #1446C2; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 24px; color: #FFFFFF">
+      <span style="font-size: 15px; font-weight: 600">Buttons on blue</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+        <a href="#" style="display: inline-flex; align-items: center; gap: 32px; min-height: 52px; padding: 0 22px 0 26px; border: 1px solid rgba(255,255,255,.7); border-radius: 999px; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 500">Outline <svg width="32" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+        <a href="#" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; color: #1446C2; text-decoration: none; font-size: 15px; font-weight: 600">Sign Up</a>
+      </div>
+      <span style="font-size: 14px; line-height: 21px; color: #DCE5FB">Outline for navigation away; solid white only to submit a form.</span>
+    </div>
+
+    <div class="ds-card ds-cardrow" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 32px; align-items: flex-start">
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Service card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Tint surface, image flush on top, title with a link arrow. Whole card is the link.</span></div>
+      <div style="flex: 1; border-radius: 8px; overflow: hidden; background: #D9E3FA">
+        <div style="aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; background: #E6E1D8; color: #5E5953; font-size: 13px">Service image, 16:10</div>
+        <div style="padding: 18px 20px 20px; display: flex; justify-content: space-between; align-items: center; color: #1446C2"><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.015em">Executive Search</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></div>
+      </div>
+    </div>
+    <div class="ds-card ds-cardrow" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 32px; align-items: flex-start">
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Team card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Portrait 4:5. Name, role, then email under a tinted hairline.</span></div>
+      <div style="width: 240px; border-radius: 8px; overflow: hidden; background: #D9E3FA">
+        <div style="height: 150px; display: flex; align-items: center; justify-content: center; background: #E6E1D8; color: #5E5953; font-size: 13px">Portrait, 4:5</div>
+        <div style="padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 18px; font-weight: 500; color: #1446C2">Name Surname</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1446C2" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></div>
+          <span style="font-size: 14px; color: #3A3A3F">Role title</span>
+          <span style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(20,70,194,.18); font-size: 13px; color: #3A3A3F">name@leadershipmavericks.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-card" style="background: #1446C2; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 20px; color: #FFFFFF">
+      <span style="font-size: 15px; font-weight: 600">Process step, closed and open</span>
+      <div style="border-top: 1px solid rgba(255,255,255,.35)">
+        <div style="display: flex; align-items: center; gap: 28px; min-height: 80px; border-bottom: 1px solid rgba(255,255,255,.35)"><span style="font-size: 14px; font-weight: 500; color: #C9D6F7">01</span><span style="flex: 1; font-size: 22px; font-weight: 450; letter-spacing: -0.015em">First, the right questions</span><span style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.45); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></div>
+        <div style="border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 24px">
+          <div style="display: flex; align-items: center; gap: 28px; min-height: 80px"><span style="font-size: 14px; font-weight: 500; color: #C9D6F7">02</span><span style="flex: 1; font-size: 22px; font-weight: 450; letter-spacing: -0.015em">Know the Terrain</span><span style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; color: #1446C2; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="transform: rotate(45deg)" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></div>
+          <p style="margin: 0 0 0 46px; font-size: 16px; line-height: 26px; color: #DCE5FB">Detail aligns with the step title.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-card" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 32px">
+      <span style="font-size: 15px; font-weight: 600">Navigation, progress, stat, input</span>
+      <div class="ds-wrap" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 500; color: #1446C2"><span>Home</span><span style="text-decoration: underline; text-underline-offset: 6px">Services</span><span>Articles</span><span style="padding: 12px 22px; border-radius: 999px; background: #1446C2; color: #FFFFFF">Contact Us</span></div>
+      <div style="display: flex; align-items: center; gap: 20px"><span style="font-size: 14px; font-weight: 500; color: #3A3A3F">02 / 03</span><div style="flex: 1; display: flex; gap: 4px; align-items: center"><span style="flex: 1; height: 1px; background: #BDB6AB"></span><span style="flex: 1; height: 3px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #BDB6AB"></span></div></div>
+      <div style="display: flex; align-items: baseline; gap: 14px; color: #1446C2"><span style="font-size: 56px; line-height: 1; font-weight: 400; letter-spacing: -0.04em">30+</span><span style="font-size: 18px; font-weight: 500">Happy Clients</span></div>
+      <label style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; font-weight: 500; max-width: 380px">Email
+        <input type="email" placeholder="Your email address" style="min-height: 52px; border: 0; border-bottom: 1px solid #1446C2; background: transparent; font: inherit; font-size: 16px; font-weight: 400">
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ILLUSTRATION & IMAGERY -->
+<section class="ds-sec ds-sec-last" style="padding: 136px 120px 136px; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">05</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Illustration and imagery</p>
+    <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">Ink-drawn metaphors for fit, search and difference.</h2>
+  </div>
+  <div class="ds-illus" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="height: 220px; border-radius: 8px; border: 1px solid #D9D3C9; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 140 140" width="150" height="150" aria-hidden="true"><path d="M0 0 H35 C35 -14 65 -14 65 0 H100 V35 C114 35 114 65 100 65 V100 H65 C65 86 35 86 35 100 H0 V65 C14 65 14 35 0 35 Z" transform="translate(24 28) rotate(-10 50 50) scale(0.95)" fill="#1446C2" stroke="#1C1C1E" stroke-width="3.5"></path></svg></div>
+      <span style="font-size: 15px; font-weight: 600">The puzzle piece</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Fit and the right match. The core motif.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="height: 220px; border-radius: 8px; border: 1px solid #D9D3C9; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 200 140" width="200" height="140" aria-hidden="true"><g fill="#F8F4EE" stroke="#1C1C1E" stroke-width="3"><circle cx="30" cy="54" r="10"></circle><path d="M14 104 C14 76 46 76 46 104 Z"></path><circle cx="72" cy="54" r="10"></circle><path d="M56 104 C56 76 88 76 88 104 Z"></path><circle cx="114" cy="54" r="10"></circle><path d="M98 104 C98 76 130 76 130 104 Z"></path></g><g transform="translate(150 22) rotate(12 16 40)"><circle cx="16" cy="12" r="13" fill="#1446C2" stroke="#1C1C1E" stroke-width="3"></circle><path d="M-6 80 C-6 40 38 40 38 80 Z" fill="#1446C2" stroke="#1C1C1E" stroke-width="3"></path></g><path d="M8 112 H140" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round"></path></svg></div>
+      <span style="font-size: 15px; font-weight: 600">The maverick</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Outlined crowd, one solid blue figure stepping out.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="height: 220px; border-radius: 8px; border: 1px solid #D9D3C9; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 180 180" width="150" height="150" aria-hidden="true"><path d="M108 108 L160 160" stroke="#1C1C1E" stroke-width="18" stroke-linecap="round"></path><circle cx="70" cy="70" r="60" fill="#D9E3FA" stroke="#1C1C1E" stroke-width="9"></circle><circle cx="70" cy="52" r="11" fill="#1446C2"></circle><path d="M50 102 C50 70 90 70 90 102 Z" fill="#1446C2"></path></svg></div>
+      <span style="font-size: 15px; font-weight: 600">The search</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">A magnifier finding the one, for discovery and mapping.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="height: 220px; border-radius: 8px; background: #1446C2; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 420 260" width="230" height="142" aria-hidden="true"><path d="M20 220 C90 220 80 140 150 140 S220 210 260 170 S230 60 290 70 S360 120 380 60" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="1 12" stroke-linecap="round"></path><circle cx="20" cy="220" r="11" fill="#FFFFFF"></circle><path d="M380 60 V0" stroke="#FFFFFF" stroke-width="4"></path><path d="M380 2 L414 14 L380 28 Z" fill="#F8F4EE"></path></svg></div>
+      <span style="font-size: 15px; font-weight: 600">The route</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">White dotted line work on blue, for process.</span>
+    </div>
+  </div>
+  <div class="ds-stack" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; border-top: 1px solid #D9D3C9; padding-top: 32px">
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Line and fill</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Ink strokes of 3–3.5px with round caps. Flat fills in Ink, Blue, Paper or Tint; diagonal hatching for shadow.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Photography</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Natural light, warm tones, candid portraits on plain grounds. Portraits 4:5, services 16:10, story 4:3.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Placeholders</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Sand with an icon and the ratio written out, so final images drop straight in at the right shape.</span></div>
+  </div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

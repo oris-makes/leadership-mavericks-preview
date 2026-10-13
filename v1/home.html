@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leadership Mavericks — Landing page</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F8F6F0}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #A86A92;outline-offset:3px}
+.lm-menu,.lm-panel,.lm-email-short{display:none}
+/* motion tokens */
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)}
+@keyframes lmRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes lmFade{from{opacity:0}to{opacity:1}}
+@keyframes lmReveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* links: hover fade to 72% (design system), only on real pointers */
+a{transition:opacity 150ms ease}
+@media (hover:hover) and (pointer:fine){a:hover{opacity:.72}}
+
+/* pill buttons: press feedback, arrow nudge */
+.lm-cta-btn,.lm-cta-main,.lm-menu{transition:opacity 150ms ease,transform 160ms var(--ease-out)}
+.lm-cta-btn:active,.lm-cta-main:active,.lm-menu:active{transform:scale(.97)}
+.lm-cta-btn svg,.lm-cta-main svg{transition:transform 200ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.lm-cta-btn:hover svg,.lm-cta-main:hover svg{transform:translateX(4px)}}
+
+/* hero: one-time entrance, staggered; signature stripe draws in */
+.lm-hero-copy>*{animation:lmRise 600ms var(--ease-out) both}
+.lm-hero-copy>:nth-child(1){animation-delay:80ms}
+.lm-hero-copy>:nth-child(2){animation-delay:140ms}
+.lm-hero-copy>:nth-child(3){animation-delay:200ms}
+.lm-hero-copy>:nth-child(4){animation-delay:260ms}
+.lm-hero-stripe{animation:lmReveal 900ms var(--ease-in-out) 300ms both}
+.lm-hero-img>img{animation:lmFade 700ms ease-out both}
+
+/* mobile menu panel */
+.lm-panel{transition:opacity 200ms var(--ease-out),transform 200ms var(--ease-out)}
+.lm-panel>a{transition:opacity 250ms var(--ease-out),transform 250ms var(--ease-out)}
+.lm-panel>a:nth-child(2){transition-delay:30ms}.lm-panel>a:nth-child(3){transition-delay:60ms}.lm-panel>a:nth-child(4){transition-delay:90ms}.lm-panel>a:nth-child(5){transition-delay:120ms}
+@starting-style{.lm-panel{opacity:0;transform:translateY(-8px)}.lm-panel>a{opacity:0;transform:translateY(-4px)}}
+
+/* services: hover / focus cards (tokens from the v1 design system)
+   hover = cream fill rises from the bottom, title flips colour as it passes,
+   then the description writes itself in word by word. Leaving reverses fast. */
+.lm-svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.lm-svc{position:relative;isolation:isolate;display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:0;background:#311023;color:#F8F6F0;border:1px solid #4F1F3B;border-radius:4px;overflow:hidden;cursor:default;transition:color 150ms ease,border-color 200ms ease}
+.lm-svc::before{content:"";position:absolute;inset:0;z-index:1;background:#E9E5D6;transform:scaleY(0);transform-origin:bottom;transition:transform 320ms var(--ease-in-out);pointer-events:none}
+.lm-svc-top{position:relative;z-index:2;padding:24px 24px 24px;display:flex;flex-direction:column;gap:8px}
+.lm-svc-num{font-family:'Source Serif 4',Georgia,serif;font-weight:300;font-size:32px;line-height:1.2}
+.lm-svc h3{margin:0;font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:26px;line-height:1.2;color:inherit}
+.lm-svc-media{position:relative;aspect-ratio:4/3}
+.lm-svc-media>img,.lm-svc-media>.lm-svc-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.lm-svc-body{position:absolute;inset:0;z-index:2;padding:0 24px 24px;color:#7A1E5A;visibility:hidden;transition:visibility 0s linear 320ms}
+.lm-svc-body p{margin:0}
+.lm-svc-body ul{margin:0;padding-left:16px;list-style:none;display:flex;flex-direction:column;gap:8px}
+.lm-svc-body li{position:relative}
+.lm-svc-body li::before{content:"";position:absolute;left:-14px;top:.62em;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0;transition:opacity 150ms ease}
+.lm-w{display:inline-block;opacity:0;filter:blur(3px);transform:translateY(4px);transition:opacity 120ms ease,filter 120ms ease,transform 120ms ease}
+.lm-svc:focus{outline:none}
+.lm-svc:focus-visible{outline:2px solid #A86A92;outline-offset:3px}
+/* on state (hover on real pointers, focus / tap everywhere) */
+.lm-svc:is(:focus,:focus-within){color:#311023;border-color:#D9D3BE;transition:color 200ms ease 260ms,border-color 200ms ease}
+.lm-svc:is(:focus,:focus-within)::before{transform:none;transition:transform 560ms var(--ease-in-out)}
+.lm-svc:is(:focus,:focus-within) .lm-svc-body{visibility:visible;transition-delay:0s}
+.lm-svc:is(:focus,:focus-within) .lm-svc-body li::before{opacity:1;transition-delay:500ms}
+.lm-svc:is(:focus,:focus-within) .lm-w{opacity:1;filter:none;transform:none;transition:opacity 300ms ease,filter 300ms ease,transform 300ms var(--ease-out);transition-delay:calc(480ms + var(--w,0) * 28ms)}
+@media (hover:hover) and (pointer:fine){
+  .lm-svc:hover{color:#311023;border-color:#D9D3BE;transition:color 200ms ease 260ms,border-color 200ms ease}
+  .lm-svc:hover::before{transform:none;transition:transform 560ms var(--ease-in-out)}
+  .lm-svc:hover .lm-svc-body{visibility:visible;transition-delay:0s}
+  .lm-svc:hover .lm-svc-body li::before{opacity:1;transition-delay:500ms}
+  .lm-svc:hover .lm-w{opacity:1;filter:none;transform:none;transition:opacity 300ms ease,filter 300ms ease,transform 300ms var(--ease-out);transition-delay:calc(480ms + var(--w,0) * 28ms)}
+}
+
+/* reduced motion: keep fades and colour, drop movement and blur */
+@media (prefers-reduced-motion: reduce){
+  .lm-hero-copy>*{animation-name:lmFade}
+  .lm-hero-stripe{animation:none}
+  .lm-cta-btn:active,.lm-cta-main:active,.lm-menu:active,.lm-cta-btn:hover svg,.lm-cta-main:hover svg{transform:none!important}
+  .lm-panel,.lm-panel>a,.lm-svc-body{transform:none!important;filter:none!important}
+  .lm-svc-media>*{filter:none!important}
+  .lm-svc::before{transform:none!important;opacity:0;transition:opacity 200ms ease!important}
+  .lm-svc:is(:hover,:focus,:focus-within)::before{opacity:1}
+  .lm-w{filter:none!important;transform:none!important;transition-delay:0s!important}
+}
+/* ---------- on-view reveals (only once JS has marked an element) ---------- */
+html.lm-js [data-reveal]{transition-property:opacity,transform,clip-path;transition-duration:700ms;transition-timing-function:var(--ease-out);transition-delay:calc(var(--d,0) * 70ms)}
+html.lm-js [data-reveal=up]:not([data-in]){opacity:0;transform:translateY(20px)}
+html.lm-js [data-reveal=fade]:not([data-in]){opacity:0}
+html.lm-js [data-reveal=right]:not([data-in]){opacity:0;transform:translateX(40px)}
+html.lm-js [data-reveal=pop]:not([data-in]){opacity:0;transform:scale(.94)}
+html.lm-js [data-reveal=rise]{transition-duration:900ms}
+html.lm-js [data-reveal=rise]:not([data-in]){opacity:0;transform:translateY(48px)}
+html.lm-js [data-reveal=wipe]{transition-duration:1000ms;transition-timing-function:var(--ease-in-out)}
+html.lm-js [data-reveal=wipe]:not([data-in]){clip-path:inset(100% 0 0 0)}
+html.lm-js [data-reveal=clipx]{transition-duration:1600ms;transition-timing-function:var(--ease-in-out)}
+html.lm-js [data-reveal=clipx]:not([data-in]){clip-path:inset(0 100% 0 0)}
+html.lm-js [data-reveal=grow]{transition-duration:600ms}
+html.lm-js [data-reveal=grow]:not([data-in]){transform:scaleY(0)}
+html.lm-js [data-reveal=draw] path{stroke-dasharray:1 2;transition:stroke-dashoffset 1400ms var(--ease-in-out)}
+html.lm-js [data-reveal=draw]:not([data-in]) path{stroke-dashoffset:1.02}
+html.lm-js [data-reveal=draw] path:nth-child(2){transition-delay:150ms}
+html.lm-js [data-reveal=draw] path:nth-child(3){transition-delay:300ms}
+html.lm-js [data-reveal=draw] path:nth-child(4){transition-delay:450ms}
+@keyframes lmPulse{from{transform:scale(1);opacity:.6}to{transform:scale(2.2);opacity:0}}
+@keyframes lmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+/* v1 section signatures */
+.lm-hero-img{overflow:hidden}
+@keyframes lmZoom{from{transform:scale(1.06)}to{transform:none}}
+.lm-hero-img>img{animation:lmFade 700ms ease-out both,lmZoom 2400ms var(--ease-out) both}
+/* banner: photo settles from a slow zoom as it comes into view */
+#about{background:#D8CDD3!important;isolation:isolate;overflow:hidden;margin-bottom:-1px}
+#about::before{content:"";position:absolute;inset:0;z-index:-1;background:url(./assets/banner.png) center/cover no-repeat}
+html.lm-js #about::before{transform:scale(1.08);transition:transform 1800ms var(--ease-out)}
+html.lm-js #about[data-in]::before{transform:none}
+/* approach: the circles bloom open petal by petal (clockwise from top-left),
+   each unfolding from the shared centre, then the leader badge lands */
+.lm-venn>div:nth-child(1){transform-origin:83.3% 83.3%}
+.lm-venn>div:nth-child(2){transform-origin:16.7% 83.3%}
+.lm-venn>div:nth-child(3){transform-origin:83.3% 16.7%}
+.lm-venn>div:nth-child(4){transform-origin:16.7% 16.7%}
+html.lm-js .lm-venn>div:nth-child(-n+4){--petal:0ms;transition:transform 900ms cubic-bezier(.34,1.25,.64,1) var(--petal),opacity 500ms ease var(--petal),background-color 200ms ease 0s}
+html.lm-js .lm-venn>div:nth-child(2){--petal:220ms}
+html.lm-js .lm-venn>div:nth-child(4){--petal:440ms}
+html.lm-js .lm-venn>div:nth-child(3){--petal:660ms}
+html.lm-js .lm-venn[data-reveal]:not([data-in])>div:nth-child(-n+4){opacity:0;transform:scale(0) rotate(-60deg)}
+html.lm-js .lm-venn>span{transition:opacity 500ms ease}
+html.lm-js .lm-venn>span:nth-child(5){transition-delay:450ms}
+html.lm-js .lm-venn>span:nth-child(6){transition-delay:670ms}
+html.lm-js .lm-venn>span:nth-child(8){transition-delay:890ms}
+html.lm-js .lm-venn>span:nth-child(7){transition-delay:1110ms}
+html.lm-js .lm-venn[data-reveal]:not([data-in])>span{opacity:0}
+html.lm-js .lm-venn>div:last-child{transition:transform 500ms cubic-bezier(.34,1.4,.64,1) 1350ms,opacity 300ms ease 1350ms}
+html.lm-js .lm-venn[data-reveal]:not([data-in])>div:last-child{opacity:0;transform:scale(.5)}
+.lm-venn>div:last-child::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid #E9E5D6;opacity:0;pointer-events:none}
+html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(--ease-out) 1800ms 2}
+/* hover details */
+@media (hover:hover) and (pointer:fine){
+  section[aria-labelledby="led-at"] li,section[aria-labelledby="sectors"] dd span{transition:color 150ms ease}
+  section[aria-labelledby="led-at"] li:hover,section[aria-labelledby="sectors"] dd span:hover{color:#7A1E5A}
+  .lm-venn>div:nth-child(-n+4):hover{background:rgba(201,163,188,.16)!important}
+  .lm-partners img{transition:transform 300ms var(--ease-out)}
+  .lm-partners article:hover img{transform:translateY(-4px)}
+  .lm-partners h3{transition:color 150ms ease}
+  .lm-partners article:hover h3{color:#7A1E5A!important}
+  footer nav a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size 250ms var(--ease-out),opacity 150ms ease}
+  footer nav a:hover{background-size:100% 1px;opacity:1}
+}
+#blog-email{transition:border-color 200ms ease}
+#blog-email:focus{border-bottom-color:#E9E5D6!important}
+@media (prefers-reduced-motion: reduce){
+  html.lm-js [data-reveal]{transform:none!important;clip-path:none!important;transition-property:opacity!important}
+  html.lm-js [data-reveal=draw] path{stroke-dashoffset:0!important;transition:none!important}
+  html.lm-js [data-reveal] *{animation:none!important}
+}
+@media (prefers-reduced-motion: reduce){
+  .lm-hero-img>img{animation:lmFade 700ms ease-out both}
+  html.lm-js #about::before{transform:none;transition:none}
+  html.lm-js .lm-venn>div{transform:none!important}
+  .lm-venn>div:last-child::after{animation:none!important}
+}
+/* contact form (pre-footer) */
+.lm-field{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:#5E4A55}
+.lm-field input,.lm-field textarea{font:inherit;font-size:15px;font-weight:400;line-height:1.6;color:#241019;background:transparent;border:0;border-bottom:1px solid #C9BFA6;border-radius:0;padding:10px 0;min-height:44px;box-sizing:border-box;width:100%;transition:border-color 200ms ease,box-shadow 200ms ease}
+.lm-field textarea{resize:vertical;min-height:112px}
+.lm-field input:focus,.lm-field textarea:focus{border-bottom-color:#7A1E5A;box-shadow:0 1px 0 #7A1E5A}
+.lm-field-full{grid-column:1/-1}
+.lm-form,.lm-form-done{background:#E9E5D6;border-radius:4px;padding:clamp(24px,5vw,48px);box-sizing:border-box;width:100%;max-width:760px}
+@keyframes lmDone{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lm-form-done{animation:lmDone 400ms var(--ease-out) both}
+@media (max-width: 640px){.lm-form{grid-template-columns:1fr!important;gap:24px!important}.lm-form .lm-cta-main{flex:1 1 100%;justify-content:center}}
+@media (prefers-reduced-motion: reduce){.lm-form-done{animation-name:lmFade}}
+/* hero fits the first screen on desktop/tablet */
+@media (min-width: 641px){
+  header#top{min-height:100vh;min-height:100svh}
+  .lm-hero-img{min-height:0!important}
+  .lm-hero-copy{padding:clamp(32px,7vh,120px) 0 clamp(24px,4vh,48px)!important;gap:clamp(20px,3vh,32px)!important}
+  .lm-hero-copy h1{font-size:clamp(42px,min(5vw,8.5vh),70px)!important}
+  .lm-hero-stripe{max-height:20vh}
+}
+@media (max-width: 640px){
+  .lm-links{display:none!important}
+  .lm-menu{display:flex!important}
+  .lm-panel{display:flex!important}
+  .lm-hero-copy{padding-top:56px!important;padding-bottom:40px!important;gap:24px!important}
+  .lm-hero-copy p{font-size:17px!important}
+  .lm-cta-btn{flex:1 1 100%;justify-content:center}
+  .lm-hero-img{min-height:420px!important;flex-basis:100%!important}
+  .lm-stats-wrap{padding:0 16px!important}
+  .lm-stats{grid-template-columns:1fr!important}
+  .lm-stats li{flex-direction:row!important;align-items:baseline;gap:16px!important;padding:20px 24px!important;box-shadow:inset 0 1px 0 #4F1F3B!important}
+  .lm-stats li:first-child{box-shadow:none!important}
+  .lm-stats li span:first-child{flex:0 0 104px;font-size:44px!important}
+  .lm-banner-h{text-align:right}
+  .lm-venn span{font-size:15px!important}
+  .lm-partners{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:32px 14px!important}
+  .lm-partners h3{font-size:19px!important}
+  .lm-email-full{display:none!important}
+  .lm-email-short{display:inline-block!important}
+  .lm-cta-main{align-self:stretch;justify-content:center}
+  .lm-svc-num{font-size:24px}
+}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: #241019; background: #F8F6F0; width: 100%; overflow-x: hidden; font-feature-settings: 'ss01', 'cv11'">
+
+<!-- ================= HERO ================= -->
+<header id="top" style="background: #311023; color: #F8F6F0; display: flex; flex-wrap: wrap">
+  <div style="flex: 1 1 560px; min-width: 0; padding: 36px clamp(24px, 6vw, 88px) 0; display: flex; flex-direction: column; box-sizing: border-box; position: relative; overflow: hidden">
+    <nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px; position: relative; z-index: 1">
+      <a href="#top" aria-label="Leadership Mavericks home" style="display: block; line-height: 0"><img src="./assets/logo.png" alt="Leadership Mavericks" style="height: 48px; width: auto"></a>
+      <div class="lm-links" style="display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 15px; font-weight: 500; color: #E9E5D6">
+        <a href="#about" style="text-decoration: none; padding: 12px 0">About</a>
+        <a href="#services" style="text-decoration: none; padding: 12px 0">Services</a>
+        <a href="#partners" style="text-decoration: none; padding: 12px 0">Partners</a>
+        <a href="#articles" style="text-decoration: none; padding: 12px 0">Articles</a>
+        <a href="#contact" style="text-decoration: none; padding: 12px 0">Contact</a>
+      </div>
+      <button type="button" class="lm-menu" aria-label="{{menuLabel}}" aria-expanded="{{menuOpen}}" onClick="{{toggleMenu}}" style="width: 48px; height: 48px; margin-right: -12px; border: 0; background: transparent; color: #E9E5D6; align-items: center; justify-content: center; cursor: pointer">
+        <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+        </sc-if>
+        <sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8h18M3 16h18"></path></svg>
+        </sc-if>
+      </button>
+      <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+        <div class="lm-panel" style="flex: 1 1 100%; flex-direction: column; padding: 8px 0 16px; border-top: 1px solid #4F1F3B; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 28px; line-height: 1.2">
+          <a href="#about" onClick="{{closeMenu}}" style="text-decoration: none; padding: 12px 0">About</a>
+          <a href="#services" onClick="{{closeMenu}}" style="text-decoration: none; padding: 12px 0">Services</a>
+          <a href="#partners" onClick="{{closeMenu}}" style="text-decoration: none; padding: 12px 0">Partners</a>
+          <a href="#articles" onClick="{{closeMenu}}" style="text-decoration: none; padding: 12px 0">Articles</a>
+          <a href="#contact" onClick="{{closeMenu}}" style="text-decoration: none; padding: 12px 0">Contact</a>
+        </div>
+      </sc-if>
+    </nav>
+
+    <div class="lm-hero-copy" style="display: flex; flex-direction: column; gap: 32px; max-width: 600px; padding: clamp(80px, 11vw, 152px) 0 64px; position: relative; z-index: 1">
+      <p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: #C9A3BC">
+        <svg aria-hidden="true" width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 13L8 1M8 13L14 1M14 13L20 1"></path></svg>
+        Executive search, independent thinking
+      </p>
+      <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(42px, 5vw, 70px); line-height: 1.04; letter-spacing: -0.02em">Strong leadership starts with the right people.</h1>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #E3CFDB; max-width: 30em">We find exceptional leaders with curiosity, conviction and the courage to look beyond the obvious.</p>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding-top: 8px">
+        <a href="#contact" class="lm-cta-btn" style="display: inline-flex; align-items: center; gap: 18px; min-height: 52px; padding: 0 28px; background: #E9E5D6; border-radius: 999px; color: #311023; text-decoration: none; font-size: 16px; font-weight: 500">Book a call
+          <svg aria-hidden="true" width="36" height="12" viewBox="0 0 36 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h33M29 1l5 5-5 5"></path></svg>
+        </a>
+        <a href="#services" style="font-size: 15px; font-weight: 500; color: #E9E5D6; text-underline-offset: 6px; padding: 12px 0">See how we search</a>
+      </div>
+    </div>
+
+    <svg class="lm-hero-stripe" aria-hidden="true" viewBox="0 0 640 220" preserveAspectRatio="xMinYMax meet" style="display: block; width: 100%; max-width: 640px; height: auto; margin-top: auto; margin-left: -4%">
+      <defs>
+        <pattern id="hero-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(28)">
+          <rect width="12" height="12" fill="#311023"></rect>
+          <rect width="5" height="12" fill="#4F1F3B"></rect>
+        </pattern>
+      </defs>
+      <path d="M0 220 L96 30 Q108 6 134 6 L214 6 Q236 6 226 28 L130 220 Z" fill="url(#hero-hatch)"></path>
+      <path d="M150 220 L246 30 Q258 6 284 6 L364 6 Q386 6 376 28 L280 220 Z" fill="url(#hero-hatch)"></path>
+      <path d="M300 220 L396 30 Q408 6 434 6 L514 6 Q536 6 526 28 L430 220 Z" fill="url(#hero-hatch)"></path>
+    </svg>
+  </div>
+
+  <div class="lm-hero-img" style="flex: 1 1 520px; min-height: 720px; background: #4A1D37; display: flex; align-items: center; justify-content: center; position: relative">
+    <img src="./assets/hero.png" alt="Leaders reviewing documents together around a table" width="1040" height="1077" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+  </div>
+</header>
+
+<!-- ================= TRACK RECORD ================= -->
+<section aria-labelledby="led-at" style="background: #E9E5D6; padding: 44px clamp(24px, 6vw, 88px)">
+  <div style="max-width: 1264px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 56px">
+    <h2 id="led-at" style="margin: 0; flex: 0 0 auto; font-size: 14px; font-weight: 500; line-height: 1.4; color: #7A1E5A; max-width: 11em">Our partners have led searches at</h2>
+    <ul style="flex: 1 1 600px; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 36px; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; color: #4A1D37">
+      <li>Heidrick &amp; Struggles</li>
+      <li>Stanton Chase</li>
+      <li>Korn Ferry</li>
+      <li>LinkedIn</li>
+      <li>Egon Zehnder</li>
+      <li>KoSolve</li>
+      <li>Alphasoft Services</li>
+      <li>TVA Allegis</li>
+      <li>XSearch</li>
+      <li>Cisco</li>
+      <li>Perot Systems</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= BANNER + PROOF ================= -->
+<section id="about" aria-labelledby="search-begins" style="position: relative; background: #D8CDD3 url(./assets/banner.png) center / cover no-repeat; min-height: 600px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box">
+  <div style="max-width: 1264px; width: 100%; margin: 0 auto; padding: 32px clamp(24px, 6vw, 88px) 0; box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px">
+    <h2 id="search-begins" class="lm-banner-h" style="margin: clamp(48px, 7vw, 96px) 0 0 auto; max-width: 8em; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(40px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.02em; color: #311023">Where every search begins.</h2>
+  </div>
+  <div class="lm-stats-wrap" style="max-width: 1264px; width: 100%; margin: 0 auto; padding: 0 clamp(24px, 6vw, 88px); box-sizing: border-box; transform: translateY(1px)">
+    <ul class="lm-stats" style="list-style: none; margin: 0; padding: 0; background: #311023; color: #F8F6F0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-radius: 4px 4px 0 0">
+      <li style="padding: 36px 40px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 52px; line-height: 1; letter-spacing: -0.02em">30+</span>
+        <span style="font-size: 15px; color: #C9A3BC">Clients served</span>
+      </li>
+      <li style="padding: 36px 40px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 1px 0 0 #4F1F3B">
+        <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 52px; line-height: 1; letter-spacing: -0.02em">100+</span>
+        <span style="font-size: 15px; color: #C9A3BC">Leadership searches delivered</span>
+      </li>
+      <li style="padding: 36px 40px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 1px 0 0 #4F1F3B">
+        <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 52px; line-height: 1; letter-spacing: -0.02em">20+</span>
+        <span style="font-size: 15px; color: #C9A3BC">Years of search experience</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= APPROACH ================= -->
+<section aria-labelledby="approach" style="background: #311023; color: #F8F6F0">
+  <div style="max-width: 1264px; margin: 0 auto; padding: clamp(80px, 10vw, 136px) clamp(24px, 6vw, 88px); box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; gap: 72px">
+    <div style="flex: 1 1 400px; min-width: 0; display: flex; justify-content: center">
+      <div class="lm-venn" role="img" aria-label="Four overlapping circles: intentional goals, expertise, tailored approach and timeline commitment. Where all four meet is the right leader." style="position: relative; width: 100%; max-width: 500px; aspect-ratio: 1 / 1">
+        <div style="position: absolute; left: 0; top: 0; width: 60%; height: 60%; border: 1px solid #A86A92; background: rgba(201,163,188,0.06); border-radius: 50%; box-sizing: border-box"></div>
+        <div style="position: absolute; right: 0; top: 0; width: 60%; height: 60%; border: 1px solid #A86A92; background: rgba(201,163,188,0.06); border-radius: 50%; box-sizing: border-box"></div>
+        <div style="position: absolute; left: 0; bottom: 0; width: 60%; height: 60%; border: 1px solid #A86A92; background: rgba(201,163,188,0.06); border-radius: 50%; box-sizing: border-box"></div>
+        <div style="position: absolute; right: 0; bottom: 0; width: 60%; height: 60%; border: 1px solid #A86A92; background: rgba(201,163,188,0.06); border-radius: 50%; box-sizing: border-box"></div>
+        <span style="position: absolute; left: 8%; top: 22%; width: 28%; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.25; color: #F8F6F0">Intentional goals</span>
+        <span style="position: absolute; right: 8%; top: 22%; width: 28%; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.25; color: #F8F6F0">Expertise</span>
+        <span style="position: absolute; left: 8%; bottom: 22%; width: 28%; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.25; color: #F8F6F0">Tailored approach</span>
+        <span style="position: absolute; right: 8%; bottom: 22%; width: 28%; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.25; color: #F8F6F0">Timeline commitment</span>
+        <div style="position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: #E9E5D6; display: flex; align-items: center; justify-content: center; color: #311023">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1.2-3.6 3.8-5.5 7-5.5s5.8 1.9 7 5.5"></path></svg>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+      <p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: #C9A3BC">
+        <svg aria-hidden="true" width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 13L8 1M8 13L14 1M14 13L20 1"></path></svg>
+        Our approach
+      </p>
+      <h2 id="approach" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.02em">Less guesswork.<br>More groundwork.</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #E3CFDB; max-width: 30em">Our domain specialists bring the breadth and depth of knowledge needed to navigate global talent markets.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 12px; border: 1px solid #4F1F3B; border-radius: 4px; overflow: hidden">
+        <div style="padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #A88E9C">A typical search</h3>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.45; color: #A88E9C">
+            <li>Starts from a job title.</li>
+            <li>Sends many matching profiles.</li>
+            <li>Leaves the choosing to you.</li>
+          </ul>
+        </div>
+        <div style="background: #E9E5D6; color: #311023; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: #7A1E5A">Leadership Mavericks</h3>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.45">
+            <li>Starts from your business, culture and goals.</li>
+            <li>Recommends a few strong candidates.</li>
+            <li>Explains why each one fits.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" aria-labelledby="services-h" style="background: #F8F6F0">
+  <div style="max-width: 1264px; margin: 0 auto; padding: clamp(80px, 10vw, 136px) clamp(24px, 6vw, 88px); box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px">
+      <div style="display: flex; flex-direction: column; gap: 24px; max-width: 640px">
+        <p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: #7A1E5A">
+          <svg aria-hidden="true" width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 13L8 1M8 13L14 1M14 13L20 1"></path></svg>
+          Our services
+        </p>
+        <h2 id="services-h" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.02em; color: #311023">Focused search for critical leadership roles.</h2>
+      </div>
+      <a href="#contact" style="font-size: 15px; font-weight: 500; color: #311023; text-underline-offset: 6px; padding: 12px 0">Discuss a search</a>
+    </div>
+
+    <div class="lm-svc-grid">
+      <article class="lm-svc" tabindex="0" aria-label="Executive search">
+        <div class="lm-svc-top">
+          <span class="lm-svc-num">01</span>
+          <h3>Executive search</h3>
+        </div>
+        <div class="lm-svc-media">
+          <img src="./assets/service-executive-search.png" alt="Executive in a suit reviewing papers at a desk" width="398" height="340" loading="lazy">
+          <div class="lm-svc-body">
+            <p>Board, CXO and senior leadership hires, run end to end by a partner.</p>
+          </div>
+        </div>
+      </article>
+      <article class="lm-svc" tabindex="0" aria-label="Market mapping">
+        <div class="lm-svc-top">
+          <span class="lm-svc-num">02</span>
+          <h3>Market mapping</h3>
+        </div>
+        <div class="lm-svc-media">
+          <img src="./assets/service-market-mapping.png" alt="Laptop showing a world map of market data" width="398" height="340" loading="lazy">
+          <div class="lm-svc-body">
+            <p>A clear view of the talent pool and competitor teams before you hire.</p>
+          </div>
+        </div>
+      </article>
+      <article class="lm-svc" tabindex="0" aria-label="Bespoke consulting">
+        <div class="lm-svc-top">
+          <span class="lm-svc-num">03</span>
+          <h3>Bespoke consulting</h3>
+        </div>
+        <div class="lm-svc-media">
+          <div class="lm-svc-art" style="background: #311023; color: #E9E5D6; display: flex; align-items: center; justify-content: center">
+            <svg width="62%" role="img" aria-label="Illustration of an organisation chart" viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="88" y="8" width="44" height="28" rx="3"></rect>
+            <path d="M110 36v18M40 54h140M40 54v16M110 54v16M180 54v16"></path>
+            <rect x="18" y="70" width="44" height="28" rx="3"></rect>
+            <rect x="88" y="70" width="44" height="28" rx="3" fill="#7A1E5A" stroke="#E9E5D6"></rect>
+            <rect x="158" y="70" width="44" height="28" rx="3"></rect>
+            <path d="M110 98v14M88 112h44M88 112v10M132 112v10"></path>
+            <circle cx="88" cy="132" r="8"></circle>
+            <circle cx="132" cy="132" r="8"></circle>
+          </svg>
+          </div>
+          <div class="lm-svc-body">
+            <ul>
+              <li>Shape their teams through organisation design and compensation benchmarking.</li>
+              <li>Leadership structuring and hands-on support for talent acquisition teams.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article class="lm-svc" tabindex="0" aria-label="Diversity & niche searches">
+        <div class="lm-svc-top">
+          <span class="lm-svc-num">04</span>
+          <h3>Diversity &amp; niche searches</h3>
+        </div>
+        <div class="lm-svc-media">
+          <img src="./assets/service-diversity.png" alt="Three young professionals reading a map together" width="398" height="340" loading="lazy">
+          <div class="lm-svc-body">
+            <p>Searches for under-represented and hard-to-find leadership profiles.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLIENTS ================= -->
+<section aria-labelledby="sectors" style="background: #E9E5D6">
+  <div style="max-width: 1264px; margin: 0 auto; padding: clamp(72px, 9vw, 120px) clamp(24px, 6vw, 88px); box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 64px">
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: #7A1E5A">
+          <svg aria-hidden="true" width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 13L8 1M8 13L14 1M14 13L20 1"></path></svg>
+          Our clients
+        </p>
+        <h2 id="sectors" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.02em; color: #311023">Sectors we know.<br>Seats we fill.</h2>
+      </div>
+      <p style="margin: 0; max-width: 24em; font-size: 15px; line-height: 1.6; color: #5E4A55">From founder-led start-ups to listed companies, for the roles that shape the business.</p>
+    </div>
+    <dl style="margin: 0; display: flex; flex-direction: column">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 48px; padding: 28px 0; border-top: 1px solid #C9BFA6">
+        <dt style="flex: 0 0 120px; font-size: 14px; font-weight: 500; color: #7A1E5A">Sectors</dt>
+        <dd style="margin: 0; flex: 1 1 400px; display: flex; flex-wrap: wrap; gap: 8px 40px; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; color: #311023">
+          <span>IT</span><span>Software</span><span>Hardware</span><span>Semiconductor</span>
+        </dd>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 48px; padding: 28px 0; border-top: 1px solid #C9BFA6; border-bottom: 1px solid #C9BFA6">
+        <dt style="flex: 0 0 120px; font-size: 14px; font-weight: 500; color: #7A1E5A">Seats</dt>
+        <dd style="margin: 0; flex: 1 1 400px; display: flex; flex-wrap: wrap; gap: 8px 40px; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; color: #311023">
+          <span>CEO</span><span>COO</span><span>CTO / CIO</span><span>CHRO</span><span>CDO</span><span>CFO</span>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================= PARTNERS ================= -->
+<section id="partners" aria-labelledby="partners-h" style="background: #F8F6F0">
+  <div style="max-width: 1264px; margin: 0 auto; padding: clamp(80px, 10vw, 136px) clamp(24px, 6vw, 88px) 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: #7A1E5A">
+        <svg aria-hidden="true" width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 13L8 1M8 13L14 1M14 13L20 1"></path></svg>
+        Our partners
+      </p>
+      <h2 id="partners-h" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.02em; color: #311023">The mavericks on your search.</h2>
+    </div>
+    <div class="lm-partners" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px 24px">
+      <article style="display: flex; flex-direction: column; gap: 20px">
+        <img src="./assets/partner-lakshmi.png" alt="Lakshmi Prasanna" width="360" height="288" loading="lazy" style="width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: center top; border-radius: 4px; background: #E3CFDB; display: block">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.25; color: #311023">Lakshmi Prasanna</h3>
+          <p style="margin: 0; font-size: 15px; color: #5E4A55">Founding Partner</p>
+          <a href="mailto:lakshmi@leadershipmavericks.com" class="lm-email-full" style="margin-top: 10px; font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; word-break: break-all">lakshmi@leadershipmavericks.com</a>
+          <a href="mailto:lakshmi@leadershipmavericks.com" class="lm-email-short" style="font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; padding: 10px 0">Email Lakshmi</a>
+        </div>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 20px">
+        <img src="./assets/partner-monika.png" alt="Monika Pathak" width="360" height="288" loading="lazy" style="width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: center top; border-radius: 4px; background: #E3CFDB; display: block">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.25; color: #311023">Monika Pathak</h3>
+          <p style="margin: 0; font-size: 15px; color: #5E4A55">Founding Partner</p>
+          <a href="mailto:monika@leadershipmavericks.com" class="lm-email-full" style="margin-top: 10px; font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; word-break: break-all">monika@leadershipmavericks.com</a>
+          <a href="mailto:monika@leadershipmavericks.com" class="lm-email-short" style="font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; padding: 10px 0">Email Monika</a>
+        </div>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 20px">
+        <img src="./assets/partner-saba.png" alt="Saba Alam" width="360" height="288" loading="lazy" style="width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: center top; border-radius: 4px; background: #E3CFDB; display: block">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.25; color: #311023">Saba Alam</h3>
+          <p style="margin: 0; font-size: 15px; color: #5E4A55">Senior Partner</p>
+          <a href="mailto:saba@leadershipmavericks.com" class="lm-email-full" style="margin-top: 10px; font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; word-break: break-all">saba@leadershipmavericks.com</a>
+          <a href="mailto:saba@leadershipmavericks.com" class="lm-email-short" style="font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; padding: 10px 0">Email Saba</a>
+        </div>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 20px">
+        <img src="./assets/partner-panini.png" alt="Panini Balaji" width="360" height="288" loading="lazy" style="width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: center top; border-radius: 4px; background: #E3CFDB; display: block">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.25; color: #311023">Panini Balaji</h3>
+          <p style="margin: 0; font-size: 15px; color: #5E4A55">Senior Partner</p>
+          <a href="mailto:panini@leadershipmavericks.com" class="lm-email-full" style="margin-top: 10px; font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; word-break: break-all">panini@leadershipmavericks.com</a>
+          <a href="mailto:panini@leadershipmavericks.com" class="lm-email-short" style="font-size: 14px; color: #7A1E5A; text-underline-offset: 4px; padding: 10px 0">Email Panini</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section id="contact" aria-labelledby="cta" style="background: #F8F6F0; padding: clamp(80px, 10vw, 136px) clamp(24px, 6vw, 88px)">
+  <div style="max-width: 1264px; margin: 0 auto; border-top: 1px solid #D9D3BE; padding-top: clamp(64px, 8vw, 104px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px">
+    <svg role="img" aria-label="Line illustration of an empty chair" width="104" height="104" viewBox="0 0 104 104" fill="none" stroke="#311023" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 14h36c3.3 0 6 2.7 6 6v32H28V20c0-3.3 2.7-6 6-6z"></path>
+      <path d="M38 24l6-8M46 24l6-8M54 24l6-8M62 24l6-8" stroke="#A86A92"></path>
+      <path d="M22 52h60c2.2 0 4 1.8 4 4v5c0 2.2-1.8 4-4 4H22c-2.2 0-4-1.8-4-4v-5c0-2.2 1.8-4 4-4z"></path>
+      <path d="M26 65l-4 30M78 65l4 30M34 65l-2 18M70 65l2 18"></path>
+    </svg>
+    <h2 id="cta" style="margin: 12px 0 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(38px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.02em; color: #311023">Have a seat that matters?</h2>
+    <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #5E4A55; max-width: 28em">Your next great leader is out there. Let’s find them together.</p>
+    <sc-if value="{{formOpen}}" hint-placeholder-val="{{ true }}">
+    <form class="lm-form" onSubmit="{{submitContact}}" aria-label="Contact us" style="margin-top: 32px; width: 100%; max-width: 760px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; text-align: left">
+      <label class="lm-field">Name *<input name="name" type="text" autocomplete="name" required="required"></label>
+      <label class="lm-field">Work email *<input name="email" type="email" autocomplete="email" required="required"></label>
+      <label class="lm-field">Company<input name="company" type="text" autocomplete="organization"></label>
+      <label class="lm-field">Role you’re hiring for<input name="role" type="text"></label>
+      <label class="lm-field lm-field-full">How can we help? *<textarea name="message" rows="4" required="required"></textarea></label>
+      <div class="lm-field-full" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 8px">
+        <span style="font-size: 13px; color: #5E4A55">* Required</span>
+        <button type="submit" class="lm-cta-main" style="display: inline-flex; align-items: center; gap: 18px; min-height: 52px; padding: 0 28px; background: #311023; border: 0; border-radius: 999px; color: #F8F6F0; font: inherit; font-size: 16px; font-weight: 500; cursor: pointer">Start a conversation
+          <svg aria-hidden="true" width="36" height="12" viewBox="0 0 36 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h33M29 1l5 5-5 5"></path></svg>
+        </button>
+      </div>
+    </form>
+    </sc-if>
+    <sc-if value="{{formSent}}" hint-placeholder-val="{{ false }}">
+    <div role="status" class="lm-form-done" style="margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 12px">
+      <p style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 26px; line-height: 1.2; color: #311023">Thank you. We’ll be in touch shortly.</p>
+      <button type="button" onClick="{{resetContact}}" style="border: 0; background: transparent; padding: 12px 0; font: inherit; font-size: 15px; font-weight: 500; color: #7A1E5A; text-decoration: underline; text-underline-offset: 6px; cursor: pointer">Send another message</button>
+    </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer style="background: #311023; color: #E9E5D6; padding: 88px clamp(24px, 6vw, 88px) 40px">
+  <div style="max-width: 1264px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 56px">
+      <form style="flex: 1 1 380px; max-width: 480px; display: flex; flex-direction: column; gap: 20px">
+        <label for="blog-email" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 28px; line-height: 1.2; color: #F8F6F0">Keep up with our writing on leadership and search.</label>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+          <input id="blog-email" type="email" autocomplete="email" placeholder="Your email address" style="flex: 1 1 220px; min-height: 48px; background: transparent; border: 0; border-bottom: 1px solid #A86A92; color: #F8F6F0; font: inherit; font-size: 16px; padding: 0 2px">
+          <button type="submit" style="min-height: 48px; padding: 0 26px; border-radius: 999px; border: 1px solid #E9E5D6; background: transparent; color: #F8F6F0; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Subscribe</button>
+        </div>
+      </form>
+      <nav aria-label="Footer" style="flex: 0 1 520px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 32px">
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 15px">
+          <span style="font-size: 14px; font-weight: 500; color: #A88E9C; padding-bottom: 8px">Firm</span>
+          <a href="#about" style="text-decoration: none; padding: 6px 0">About</a>
+          <a href="#partners" style="text-decoration: none; padding: 6px 0">Partners</a>
+          <a href="#articles" style="text-decoration: none; padding: 6px 0">Articles</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 15px">
+          <span style="font-size: 14px; font-weight: 500; color: #A88E9C; padding-bottom: 8px">Work with us</span>
+          <a href="#services" style="text-decoration: none; padding: 6px 0">Services</a>
+          <a href="#contact" style="text-decoration: none; padding: 6px 0">Book a call</a>
+          <a href="#contact" style="text-decoration: none; padding: 6px 0">Contact</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 15px">
+          <span style="font-size: 14px; font-weight: 500; color: #A88E9C; padding-bottom: 8px">Follow</span>
+          <a href="https://www.linkedin.com" style="text-decoration: none; padding: 6px 0">LinkedIn</a>
+        </div>
+      </nav>
+    </div>
+    <div style="border-top: 1px solid #4F1F3B; padding-top: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <img src="./assets/logo.png" alt="Leadership Mavericks" style="height: 40px; width: auto">
+      <p style="margin: 0; font-size: 13px; color: #A88E9C">© 2026 Leadership Mavericks. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menuOpen: false, sent: false };
+  }
+  renderVals() {
+    const open = !!this.state.menuOpen;
+    return {
+      menuOpen: open,
+      menuClosed: !open,
+      menuLabel: open ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setState({ menuOpen: !open }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      formOpen: !this.state.sent,
+      formSent: !!this.state.sent,
+      submitContact: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      resetContact: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+<script>
+(function () {
+  var doc = document.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window)) return;
+  doc.classList.add('lm-js');
+  var SIMPLE = { up: 1, fade: 1, right: 1, pop: 1, wipe: 1 };
+  function $(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  function q(s, c) { return (c || document).querySelector(s); }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      (e.target.__lmTargets || []).forEach(show);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+  function count(el) {
+    if (el.__lmCounted) return;
+    el.__lmCounted = true;
+    var node = el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild : null;
+    var text = node ? node.nodeValue : '';
+    var m = text.match(/^(\D*)(\d+)(.*)$/);
+    if (!node || !m || reduce) return;
+    var end = +m[2], dur = 1400, t0 = null;
+    el.style.fontVariantNumeric = 'tabular-nums';
+    node.nodeValue = m[1] + '0' + m[3];
+    setTimeout(function () {
+      requestAnimationFrame(function step(t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
+        node.nodeValue = p < 1 ? m[1] + Math.round(end * e) + m[3] : text;
+        if (p < 1) requestAnimationFrame(step);
+      });
+    }, 250);
+  }
+
+  function show(el) {
+    el.setAttribute('data-in', '');
+    if (el.hasAttribute('data-count')) count(el);
+    $('[data-count]', el).forEach(count);
+    var type = el.getAttribute('data-reveal');
+    if (SIMPLE[type]) {
+      var d = parseFloat(el.style.getPropertyValue('--d')) || 0;
+      setTimeout(function () {
+        el.removeAttribute('data-reveal');
+        el.removeAttribute('data-in');
+        el.style.removeProperty('--d');
+      }, 1300 + d * 70);
+    }
+  }
+
+  function mark(list, type, offset) {
+    if (!list) return;
+    if (list.nodeType) list = [list];
+    list = Array.prototype.slice.call(list).filter(Boolean);
+    list.forEach(function (el, i) {
+      if (el.hasAttribute('data-reveal')) return;
+      el.style.setProperty('--d', Math.min(i, 10) + (offset || 0));
+      el.setAttribute('data-reveal', type);
+      if (type === 'draw') $('path', el).forEach(function (p) { p.setAttribute('pathLength', '1'); });
+      // fully clipped elements never intersect, so watch their parent instead
+      var watch = (type === 'wipe' || type === 'clipx') && el.parentElement ? el.parentElement : el;
+      (watch.__lmTargets = watch.__lmTargets || []).push(el);
+      io.observe(watch);
+    });
+  }
+  function head(sec) {
+    var h = sec && q('h2', sec);
+    if (h) mark(h.parentElement.children, 'up');
+  }
+
+  var done = false;
+  function run() {
+    if (done || !q('#dc-root footer')) return;
+    done = true;
+    try { (function (q, $, mark, head) {
+  var led = q('section[aria-labelledby="led-at"]');
+  if (led) { mark(q('h2', led), 'up'); mark($('li', led), 'up', 1); }
+
+  var about = q('#about');
+  if (about) {
+    mark(about, 'zoom');
+    mark(q('#search-begins'), 'up', 2);
+    $('.lm-stats li > span:first-child').forEach(function (s) { s.setAttribute('data-count', ''); });
+    mark(q('.lm-stats'), 'rise', 3);
+  }
+
+  var ap = q('#approach');
+  if (ap) {
+    mark(q('.lm-venn'), 'venn');
+    mark(ap.parentElement.children, 'up');
+    mark($('li', ap.parentElement), 'fade', 4);
+  }
+
+  var svc = q('#services');
+  $('.lm-svc-body p, .lm-svc-body li').forEach(function (el) {
+    var n = 0;
+    Array.prototype.slice.call(el.childNodes).forEach(function (t) {
+      if (t.nodeType !== 3) return;
+      var frag = document.createDocumentFragment();
+      t.nodeValue.split(/(\s+)/).forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+        var sp = document.createElement('span');
+        sp.className = 'lm-w'; sp.textContent = w; sp.style.setProperty('--w', n++);
+        frag.appendChild(sp);
+      });
+      t.parentNode.replaceChild(frag, t);
+    });
+  });
+  // words keep counting across a card's bullets so the second line writes after the first
+  $('.lm-svc-body').forEach(function (b) { $('.lm-w', b).forEach(function (w, i) { w.style.setProperty('--w', i); }); });
+  if (svc) { head(svc); mark(q('#services-h').parentElement.nextElementSibling, 'fade', 2); mark($('.lm-svc'), 'up', 2); }
+
+  var cl = q('section[aria-labelledby="sectors"]');
+  if (cl) {
+    head(cl);
+    mark(q('#sectors').parentElement.nextElementSibling, 'fade', 2);
+    mark($('dt', cl), 'fade', 2);
+    mark($('dd span', cl), 'up', 3);
+  }
+
+  var pt = q('#partners');
+  if (pt) { head(pt); mark($('.lm-partners img'), 'wipe', 1); mark($('.lm-partners article > div'), 'up', 3); }
+
+  var cta = q('#cta');
+  if (cta) {
+    mark(cta.previousElementSibling, 'draw');
+    mark([cta, cta.nextElementSibling, cta.nextElementSibling && cta.nextElementSibling.nextElementSibling], 'up', 2);
+  }
+
+  mark($('footer form, footer nav > div'), 'up');
+  mark(q('footer > div > div:last-child'), 'fade', 3);
+})(q, $, mark, head); } catch (err) { if (window.console) console.warn('motion setup', err); }
+  }
+  run();
+  if (!done) {
+    var mo = new MutationObserver(function () { run(); if (done) mo.disconnect(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); }, 10000);
+  }
+})();
+</script>
+</body>
+</html>

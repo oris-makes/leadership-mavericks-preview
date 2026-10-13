@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leadership Mavericks — Design system</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{opacity:.72}
+@media (max-width: 1439px){.ds{width:100%!important;height:auto!important}}
+@media (max-width: 760px){
+  .ds-hero{padding:40px 20px 0!important;gap:36px!important}
+  .ds-logo{height:40px!important}
+  .ds-hero-row{flex-direction:column!important;align-items:flex-start!important;gap:32px!important}
+  .ds-h1{font-size:48px!important}
+  .ds-hero-row p{font-size:17px!important}
+  .ds-principles{grid-template-columns:1fr!important;gap:20px!important}
+  .ds-stripe{width:100%!important;max-width:420px;height:auto!important}
+  .ds-body{padding:56px 20px 72px!important;gap:72px!important}
+  .ds-sechead{flex-direction:column!important;align-items:flex-start!important;gap:12px!important}
+  .ds-sechead h2{font-size:36px!important}
+  .ds-stack{grid-template-columns:1fr!important;gap:32px!important}
+  .ds-brand{gap:16px!important}
+  .ds-brand>div{height:160px!important;padding:24px!important}
+  .ds-brand>div span:first-child+div>span:first-child{font-size:36px!important}
+  .ds-sw9{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .ds-sw8{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .ds-sw>div{height:104px!important;padding:12px!important}
+  .ds-role{grid-template-columns:28px 1fr auto!important;row-gap:2px!important}
+  .ds-role>span:nth-child(4){grid-column:2/-1;font-size:13px}
+  .ds-typecard{padding:24px!important}
+  .ds-typecard span[style*="40px"]{font-size:32px!important}
+  .ds-aa{font-size:80px!important}
+  .ds-typehead{display:none!important}
+  .ds-typerow{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px 16px!important;padding:22px 0!important}
+  .ds-typerow>span:nth-child(1),.ds-typerow>span:nth-child(2){grid-column:1/-1}
+  .ds-typerow>span:nth-child(2){margin:4px 0 8px}
+  .ds-typerow:nth-child(2)>span:nth-child(2){font-size:42px!important}
+  .ds-typerow:nth-child(3)>span:nth-child(2){font-size:36px!important}
+  .ds-typerow:nth-child(4)>span:nth-child(2){font-size:40px!important}
+  .ds-typerow:nth-child(5)>span:nth-child(2){font-size:24px!important}
+  .ds-typerow:nth-child(7)>span:nth-child(2){font-size:17px!important}
+  .ds-card{padding:24px!important}
+  .ds-card a{min-height:48px!important}
+  .ds-proof{grid-template-columns:1fr!important}
+  .ds-proof>div{flex-direction:row!important;align-items:baseline;gap:16px!important;padding:18px 24px!important}
+  .ds-proof>div+div{box-shadow:inset 0 1px 0 #4F1F3B!important}
+  .ds-space{flex-wrap:wrap!important;gap:12px!important}
+}
+</style>
+</helmet>
+<div class="ds" style="width: 1440px; height: 3600px; box-sizing: border-box; background: #F8F6F0; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.55; color: #241019; display: flex; flex-direction: column; font-variant-numeric: tabular-nums">
+
+  <!-- Header -->
+  <div class="ds-hero" style="background: #311023; color: #F8F6F0; padding: 72px 88px 0; display: flex; flex-direction: column; gap: 56px; overflow: hidden">
+    <img class="ds-logo" src="./assets/logo.png" alt="Leadership Mavericks" style="height: 56px; width: auto; align-self: flex-start">
+    <div class="ds-hero-row" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 64px">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <h1 class="ds-h1" style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 80px; line-height: 1; letter-spacing: -0.02em">Design system</h1>
+        <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #E3CFDB; max-width: 30em">Quiet confidence for a boutique search firm. Deep maroon, warm paper, a light editorial serif and a precise sans.</p>
+      </div>
+      <div class="ds-principles" style="display: grid; grid-template-columns: repeat(3, 200px); gap: 32px; font-size: 15px; line-height: 1.5; color: #C9A3BC">
+        <div style="display: flex; flex-direction: column; gap: 6px"><strong style="color: #F8F6F0; font-weight: 500">Editorial</strong>The serif carries the voice. Inter does the work.</div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><strong style="color: #F8F6F0; font-weight: 500">Restrained</strong>Maroon and cream do most of the job. Mauve adds warmth.</div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><strong style="color: #F8F6F0; font-weight: 500">One signature</strong>The logo’s hatched stripe is the only ornament.</div>
+      </div>
+    </div>
+    <svg class="ds-stripe" aria-hidden="true" viewBox="0 0 640 140" style="display: block; width: 640px; height: 140px; margin-left: -20px">
+      <defs>
+        <pattern id="ds-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(28)">
+          <rect width="12" height="12" fill="#311023"></rect>
+          <rect width="5" height="12" fill="#4F1F3B"></rect>
+        </pattern>
+      </defs>
+      <path d="M0 140 L62 18 Q70 4 88 4 L150 4 Q166 4 158 20 L96 140 Z" fill="url(#ds-hatch)"></path>
+      <path d="M120 140 L182 18 Q190 4 208 4 L270 4 Q286 4 278 20 L216 140 Z" fill="url(#ds-hatch)"></path>
+      <path d="M240 140 L302 18 Q310 4 328 4 L390 4 Q406 4 398 20 L336 140 Z" fill="url(#ds-hatch)"></path>
+    </svg>
+  </div>
+
+  <div class="ds-body" style="padding: 88px; display: flex; flex-direction: column; gap: 104px">
+
+    <!-- COLOUR -->
+    <section style="display: flex; flex-direction: column; gap: 36px">
+      <div class="ds-sechead" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; border-bottom: 1px solid #311023; padding-bottom: 20px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 48px; line-height: 1.05; letter-spacing: -0.02em; color: #311023">Colour</h2>
+        <p style="margin: 0; max-width: 34em; font-size: 15px; color: #5E4A55">Two brand colours, one scale built from each. Every text pairing below is measured against WCAG.</p>
+      </div>
+
+      <div class="ds-stack ds-brand" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px">
+        <div style="height: 240px; background: #311023; color: #F8F6F0; border-radius: 4px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+          <span style="font-size: 14px; font-weight: 500; color: #C9A3BC">Primary</span>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end">
+            <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 44px; line-height: 1">Maroon</span>
+            <span style="font-size: 15px">#311023</span>
+          </div>
+        </div>
+        <div style="height: 240px; background: #E9E5D6; color: #311023; border-radius: 4px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+          <span style="font-size: 14px; font-weight: 500; color: #7A1E5A">Secondary</span>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end">
+            <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 44px; line-height: 1">Cream</span>
+            <span style="font-size: 15px">#E9E5D6</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Maroon scale</h3>
+        <div class="ds-sw ds-sw9" style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); border-radius: 4px; overflow: hidden">
+          <sc-for list="{{maroon}}" as="s" hint-placeholder-count="9">
+            <div style="height: 136px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; background: {{s.hex}}; color: {{s.ink}}">
+              <span style="font-size: 14px; font-weight: 500">{{s.name}}</span>
+              <span style="font-size: 13px">{{s.hex}}</span>
+              <span style="font-size: 13px; opacity: 0.8">{{s.role}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Paper, cream and ink</h3>
+        <div class="ds-sw ds-sw8" style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); border-radius: 4px; overflow: hidden; box-shadow: inset 0 0 0 1px #E9E5D6">
+          <sc-for list="{{neutrals}}" as="s" hint-placeholder-count="8">
+            <div style="height: 136px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; background: {{s.hex}}; color: {{s.ink}}">
+              <span style="font-size: 14px; font-weight: 500">{{s.name}}</span>
+              <span style="font-size: 13px">{{s.hex}}</span>
+              <span style="font-size: 13px; opacity: 0.8">{{s.role}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div class="ds-stack" style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Tokens by role</h3>
+          <div style="display: flex; flex-direction: column; border-top: 1px solid #D9D3BE">
+            <sc-for list="{{roles}}" as="r" hint-placeholder-count="11">
+              <div class="ds-role" style="display: grid; grid-template-columns: 28px 190px 96px 1fr; align-items: center; gap: 16px; padding: 11px 0; border-bottom: 1px solid #E9E5D6; font-size: 14px">
+                <span style="width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(49,16,35,0.18); background: {{r.hex}}"></span>
+                <span style="font-weight: 500; color: #311023">{{r.token}}</span>
+                <span style="color: #5E4A55">{{r.hex}}</span>
+                <span style="color: #5E4A55">{{r.use}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Text pairings</h3>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <sc-for list="{{pairs}}" as="p" hint-placeholder-count="6">
+              <div style="border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 1px #E9E5D6; background: {{p.bg}}; color: {{p.fg}}">
+                <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 30px; line-height: 1.1">Aa</span>
+                <span style="font-size: 13px">{{p.label}}</span>
+                <span style="font-size: 13px; font-weight: 600">{{p.ratio}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section style="display: flex; flex-direction: column; gap: 36px">
+      <div class="ds-sechead" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; border-bottom: 1px solid #311023; padding-bottom: 20px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 48px; line-height: 1.05; letter-spacing: -0.02em; color: #311023">Typography</h2>
+        <p style="margin: 0; max-width: 34em; font-size: 15px; color: #5E4A55">Headlines are set light and tight; body text is set open. Sentence case everywhere, no capitalised labels.</p>
+      </div>
+      <div class="ds-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+        <div class="ds-typecard" style="background: #311023; color: #F8F6F0; border-radius: 4px; padding: 36px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 14px; font-weight: 500; color: #C9A3BC">Display and headings</span>
+            <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1.1">Source Serif Pro</span>
+            <span style="font-size: 14px; color: #C9A3BC">Light 300 for headlines, Regular 400 for card titles. Loaded as Source Serif 4.</span>
+          </div>
+          <span class="ds-aa" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 128px; line-height: 0.8">Aa</span>
+        </div>
+        <div class="ds-typecard" style="background: #E9E5D6; color: #311023; border-radius: 4px; padding: 36px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 14px; font-weight: 500; color: #7A1E5A">Body and interface</span>
+            <span style="font-size: 40px; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em">Inter</span>
+            <span style="font-size: 14px; color: #5E4A55">Regular 400 for reading, Medium 500 for labels and buttons.</span>
+          </div>
+          <span class="ds-aa" style="font-size: 128px; line-height: 0.8; font-weight: 500; letter-spacing: -0.03em">Aa</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column">
+        <div class="ds-typehead" style="display: grid; grid-template-columns: 170px 1fr 90px 90px 110px; gap: 24px; padding: 0 0 12px; font-size: 13px; font-weight: 500; color: #5E4A55; border-bottom: 1px solid #D9D3BE">
+          <span>Role</span><span>Specimen</span><span>Size</span><span>Leading</span><span>Weight</span>
+        </div>
+        <sc-for list="{{type}}" as="t" hint-placeholder-count="9">
+          <div class="ds-typerow" style="display: grid; grid-template-columns: 170px 1fr 90px 90px 110px; gap: 24px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid #E9E5D6; font-size: 14px; color: #5E4A55">
+            <span style="font-weight: 500; color: #311023">{{t.role}}</span>
+            <span style="display: block; {{t.style}}">{{t.sample}}</span>
+            <span>{{t.size}}</span>
+            <span>{{t.lh}}</span>
+            <span>{{t.weight}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section style="display: flex; flex-direction: column; gap: 36px">
+      <div class="ds-sechead" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; border-bottom: 1px solid #311023; padding-bottom: 20px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 48px; line-height: 1.05; letter-spacing: -0.02em; color: #311023">Components</h2>
+        <p style="margin: 0; max-width: 34em; font-size: 15px; color: #5E4A55">Two radii only: pill for actions, 4 px for images and panels. No drop shadows; depth comes from colour.</p>
+      </div>
+
+      <div class="ds-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+        <div class="ds-card" style="background: #311023; border-radius: 4px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+          <span style="font-size: 14px; font-weight: 500; color: #C9A3BC">Actions on maroon</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
+            <a href="#" style="display: inline-flex; align-items: center; gap: 18px; min-height: 52px; padding: 0 28px; background: #E9E5D6; border-radius: 999px; color: #311023; text-decoration: none; font-size: 16px; font-weight: 500">Book a call<svg aria-hidden="true" width="36" height="12" viewBox="0 0 36 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h33M29 1l5 5-5 5"></path></svg></a>
+            <a href="#" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border: 1px solid #E9E5D6; border-radius: 999px; color: #F8F6F0; text-decoration: none; font-size: 16px; font-weight: 500; box-sizing: border-box">Subscribe</a>
+            <a href="#" style="font-size: 15px; font-weight: 500; color: #E9E5D6; text-underline-offset: 6px; padding: 12px 0">See how we search</a>
+          </div>
+          <span style="font-size: 14px; color: #C9A3BC">Primary, secondary and text link. One primary per view.</span>
+        </div>
+        <div class="ds-card" style="background: #E9E5D6; border-radius: 4px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+          <span style="font-size: 14px; font-weight: 500; color: #7A1E5A">Actions on paper and cream</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
+            <a href="#" style="display: inline-flex; align-items: center; gap: 18px; min-height: 52px; padding: 0 28px; background: #311023; border-radius: 999px; color: #F8F6F0; text-decoration: none; font-size: 16px; font-weight: 500">Start a conversation<svg aria-hidden="true" width="36" height="12" viewBox="0 0 36 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h33M29 1l5 5-5 5"></path></svg></a>
+            <a href="#" style="font-size: 15px; font-weight: 500; color: #311023; text-underline-offset: 6px; padding: 12px 0">Discuss a search</a>
+          </div>
+          <span style="font-size: 14px; color: #5E4A55">Hover fades to 72%. Focus shows a 2 px mauve-400 ring with 3 px offset.</span>
+        </div>
+      </div>
+
+      <div class="ds-stack" style="display: grid; grid-template-columns: 280px 280px 1fr; gap: 40px; align-items: start">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Service</span>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div style="aspect-ratio: 4 / 3; background: #E9E5D6; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #7A1E5A; font-size: 13px">Photograph, 600 × 450</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #311023; padding-top: 18px">
+              <span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; line-height: 1.2; color: #311023">Executive search</span>
+              <span style="font-size: 15px; color: #5E4A55">One-line description of what the service delivers.</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Partner</span>
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <div style="aspect-ratio: 4 / 5; max-height: 260px; background: #E3CFDB; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #4A1D37; font-size: 13px">Portrait, 480 × 600</div>
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; color: #311023">Partner name</span>
+              <span style="font-size: 14px; color: #5E4A55">Founding Partner</span>
+              <span style="margin-top: 8px; font-size: 14px; color: #7A1E5A; text-decoration: underline; text-underline-offset: 4px">name@leadershipmavericks.com</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 32px">
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Section label and heading</span>
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <span style="display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: #7A1E5A"><svg aria-hidden="true" width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 13L8 1M8 13L14 1M14 13L20 1"></path></svg>Our approach</span>
+              <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1.08; letter-spacing: -0.02em; color: #311023">Less guesswork. More groundwork.</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Proof bar</span>
+            <div class="ds-proof" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #311023; color: #F8F6F0; border-radius: 4px">
+              <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1">30+</span><span style="font-size: 14px; color: #C9A3BC">Clients served</span></div>
+              <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 4px; box-shadow: inset 1px 0 0 #4F1F3B"><span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1">100+</span><span style="font-size: 14px; color: #C9A3BC">Searches delivered</span></div>
+              <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 4px; box-shadow: inset 1px 0 0 #4F1F3B"><span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1">20+</span><span style="font-size: 14px; color: #C9A3BC">Years of experience</span></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Comparison panel</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; background: #311023; border-radius: 4px; overflow: hidden">
+              <div style="padding: 22px; font-size: 15px; color: #A88E9C; display: flex; flex-direction: column; gap: 8px"><span style="font-weight: 500">A typical search</span>Starts from a job title.</div>
+              <div style="padding: 22px; font-size: 15px; background: #E9E5D6; color: #311023; display: flex; flex-direction: column; gap: 8px"><span style="font-weight: 600; color: #7A1E5A">Leadership Mavericks</span>Starts from your culture and goals.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNATURE, SPACE, RHYTHM -->
+    <section style="display: flex; flex-direction: column; gap: 36px">
+      <div class="ds-sechead" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; border-bottom: 1px solid #311023; padding-bottom: 20px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 48px; line-height: 1.05; letter-spacing: -0.02em; color: #311023">Layout and rhythm</h2>
+        <p style="margin: 0; max-width: 34em; font-size: 15px; color: #5E4A55">1264 px content width, 88 px side margins, an 8 px spacing step, and sections that alternate between maroon, paper and cream.</p>
+      </div>
+      <div class="ds-stack" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 56px">
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Page sequence</h3>
+          <div style="display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; box-shadow: inset 0 0 0 1px #D9D3BE; font-size: 13px">
+            <div style="background: #311023; color: #F8F6F0; padding: 10px 14px; height: 44px; box-sizing: border-box">Hero</div>
+            <div style="background: #E9E5D6; color: #311023; padding: 6px 14px">Track record</div>
+            <div style="background: #D8CDD3; color: #311023; padding: 10px 14px; height: 40px; box-sizing: border-box">Banner and proof bar</div>
+            <div style="background: #311023; color: #F8F6F0; padding: 10px 14px; height: 52px; box-sizing: border-box">Approach</div>
+            <div style="background: #F8F6F0; color: #311023; padding: 10px 14px; height: 52px; box-sizing: border-box">Services</div>
+            <div style="background: #E9E5D6; color: #311023; padding: 10px 14px; height: 40px; box-sizing: border-box">Clients</div>
+            <div style="background: #F8F6F0; color: #311023; padding: 10px 14px; height: 52px; box-sizing: border-box">Partners and call to action</div>
+            <div style="background: #311023; color: #F8F6F0; padding: 10px 14px; height: 40px; box-sizing: border-box">Footer</div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Spacing step</h3>
+          <div class="ds-space" style="display: flex; align-items: flex-end; gap: 14px">
+            <sc-for list="{{space}}" as="sp" hint-placeholder-count="8">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+                <div style="background: #7A1E5A; border-radius: 1px; width: {{sp.px}}; height: {{sp.px}}"></div>
+                <span style="font-size: 12px; color: #5E4A55">{{sp.v}}</span>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin: 0; font-size: 14px; color: #5E4A55">Section padding 136 on desktop, 80 on phones. Heading to body 24 to 28. Card gap 24.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Breakpoints</h3>
+          <div style="display: flex; flex-direction: column; border-top: 1px solid #D9D3BE; font-size: 14px">
+            <div style="display: grid; grid-template-columns: 90px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">1440</span><span style="color: #5E4A55">12 columns, 24 gutter, 88 margin</span></div>
+            <div style="display: grid; grid-template-columns: 90px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">768</span><span style="color: #5E4A55">8 columns, 20 gutter, 40 margin</span></div>
+            <div style="display: grid; grid-template-columns: 90px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">390</span><span style="color: #5E4A55">4 columns, 16 gutter, 24 margin</span></div>
+          </div>
+          <h3 style="margin: 12px 0 0; font-size: 15px; font-weight: 500; color: #311023">Signature stripe</h3>
+          <p style="margin: 0; font-size: 14px; color: #5E4A55">Taken from the logo’s hatching. Large only in the hero; small as the marker beside section labels. Never as a background fill elsewhere.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = '#311023', D = '#F8F6F0';
+    const serif = "font-family: 'Source Serif 4', Georgia, serif; color: #311023; ";
+    return {
+      maroon: [
+        { name: '950', hex: '#1F0815', role: 'Deepest', ink: D },
+        { name: '900', hex: '#311023', role: 'Brand', ink: D },
+        { name: '850', hex: '#4F1F3B', role: 'Rules on maroon', ink: D },
+        { name: '800', hex: '#4A1D37', role: 'Image wells', ink: D },
+        { name: '600', hex: '#7A1E5A', role: 'Accent text', ink: D },
+        { name: '400', hex: '#A86A92', role: 'Focus, lines', ink: L },
+        { name: '300', hex: '#C9A3BC', role: 'Text on maroon', ink: L },
+        { name: '200', hex: '#E3CFDB', role: 'Portrait wells', ink: L },
+        { name: '100', hex: '#F3E9EF', role: 'Tint', ink: L }
+      ],
+      neutrals: [
+        { name: 'Paper', hex: '#F8F6F0', role: 'Page', ink: L },
+        { name: 'Cream', hex: '#E9E5D6', role: 'Brand band', ink: L },
+        { name: 'Cream 300', hex: '#D9D3BE', role: 'Hairlines', ink: L },
+        { name: 'Cream 400', hex: '#C9BFA6', role: 'Rules on cream', ink: L },
+        { name: 'Stone', hex: '#D8CDD3', role: 'Photo well', ink: L },
+        { name: 'Ink 400', hex: '#A88E9C', role: 'Muted on maroon', ink: L },
+        { name: 'Ink 600', hex: '#5E4A55', role: 'Secondary text', ink: D },
+        { name: 'Ink 900', hex: '#241019', role: 'Body text', ink: D }
+      ],
+      roles: [
+        { token: 'surface.page', hex: '#F8F6F0', use: 'Default background' },
+        { token: 'surface.inverse', hex: '#311023', use: 'Hero, approach, footer' },
+        { token: 'surface.band', hex: '#E9E5D6', use: 'Track record, clients' },
+        { token: 'surface.well', hex: '#E3CFDB', use: 'Portrait placeholders' },
+        { token: 'text.body', hex: '#241019', use: 'Running text on light' },
+        { token: 'text.heading', hex: '#311023', use: 'Headings on light' },
+        { token: 'text.secondary', hex: '#5E4A55', use: 'Leads, descriptions' },
+        { token: 'text.accent', hex: '#7A1E5A', use: 'Labels, links on light' },
+        { token: 'text.on-inverse', hex: '#E3CFDB', use: 'Leads on maroon' },
+        { token: 'line.inverse', hex: '#4F1F3B', use: 'Dividers on maroon' },
+        { token: 'focus.ring', hex: '#A86A92', use: 'Keyboard focus' }
+      ],
+      pairs: [
+        { bg: '#311023', fg: '#F8F6F0', label: 'Paper on maroon', ratio: '15.8 : 1  AAA' },
+        { bg: '#311023', fg: '#C9A3BC', label: 'Mauve 300 on maroon', ratio: '7.7 : 1  AAA' },
+        { bg: '#F8F6F0', fg: '#7A1E5A', label: 'Accent on paper', ratio: '9.0 : 1  AAA' },
+        { bg: '#E9E5D6', fg: '#5E4A55', label: 'Ink 600 on cream', ratio: '6.4 : 1  AA' },
+        { bg: '#E3CFDB', fg: '#4A1D37', label: 'Maroon 800 on mauve', ratio: '9.3 : 1  AAA' },
+        { bg: '#311023', fg: '#A88E9C', label: 'Ink 400 on maroon', ratio: '5.7 : 1  AA' }
+      ],
+      type: [
+        { role: 'Display', sample: 'Strong leadership starts', style: serif + 'font-size: 70px; font-weight: 300; line-height: 1.04; letter-spacing: -0.02em', size: '70 / 42', lh: '1.04', weight: 'Serif 300' },
+        { role: 'Heading 2', sample: 'Less guesswork. More groundwork.', style: serif + 'font-size: 54px; font-weight: 300; line-height: 1.08; letter-spacing: -0.02em', size: '54 / 36', lh: '1.08', weight: 'Serif 300' },
+        { role: 'Proof number', sample: '30+  100+  20+', style: serif + 'font-size: 52px; font-weight: 300; line-height: 1', size: '52', lh: '1.0', weight: 'Serif 300' },
+        { role: 'List display', sample: 'CEO  COO  CHRO  CFO', style: serif + 'font-size: 32px; font-weight: 300; line-height: 1.2', size: '32 / 24', lh: '1.2', weight: 'Serif 300' },
+        { role: 'Heading 3', sample: 'Executive search', style: serif + 'font-size: 26px; font-weight: 400; line-height: 1.2', size: '26', lh: '1.2', weight: 'Serif 400' },
+        { role: 'Lead', sample: 'Our domain specialists bring the breadth and depth of knowledge needed.', style: 'font-size: 19px; line-height: 1.6; color: #5E4A55', size: '19', lh: '1.6', weight: 'Inter 400' },
+        { role: 'Body', sample: 'Board, CXO and senior leadership hires, run end to end by a partner.', style: 'font-size: 15px; line-height: 1.6; color: #241019', size: '15', lh: '1.6', weight: 'Inter 400' },
+        { role: 'Label', sample: 'Our approach', style: 'font-size: 14px; font-weight: 500; color: #7A1E5A', size: '14', lh: '1.4', weight: 'Inter 500' },
+        { role: 'Caption', sample: '© 2026 Leadership Mavericks. All rights reserved.', style: 'font-size: 13px; line-height: 1.45; color: #5E4A55', size: '13', lh: '1.45', weight: 'Inter 400' }
+      ],
+      space: [4, 8, 16, 24, 32, 48, 64, 88].map((v) => ({ v: String(v), px: v + 'px' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

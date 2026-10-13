@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leadership Mavericks — Landing page</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F8F4EE}
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1);--ease-drawer:cubic-bezier(.32,.72,0,1)}
+a{transition:color 150ms ease}
+a{color:#1446C2}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+@media (hover:hover) and (pointer:fine){
+a:hover{color:#0D3393}
+.lm-primary:hover{background:#0D3393 !important;color:#FFFFFF !important}
+.lm-ghost:hover{background:rgba(255,255,255,.12) !important;color:#FFFFFF !important}
+.lm-nav:hover{color:#0D3393 !important;text-decoration:underline;text-underline-offset:6px}
+.lm-foot:hover{color:#FFFFFF !important;text-decoration:underline;text-underline-offset:5px}
+.lm-mlink:hover{color:#FFFFFF !important;background:rgba(255,255,255,.08)}
+}
+@keyframes lmRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes lmFade{from{opacity:0}to{opacity:1}}
+.lm-rise{animation:lmRise 600ms var(--ease-out) both}
+.lm-fade{animation:lmFade 700ms ease-out 150ms both}
+@media (prefers-reduced-motion: reduce){.lm-rise,.lm-fade{animation:none}}
+.lm-mobile{display:none !important}
+/* press feedback on every pill / round button */
+.lm-primary:active,.lm-ghost:active,.lm-press:active{transform:scale(.97)}
+.lm-press{transition:background-color 200ms ease,transform 160ms var(--ease-out)}
+/* arrows nudge toward where they point */
+.lm-primary svg,.lm-ghost svg,.lm-scard h3+svg,.lm-team-info a svg{transition:transform 200ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){
+  .lm-primary:hover>svg[width="36"],.lm-ghost:hover>svg{transform:translateX(4px)}
+  .lm-scard:hover h3+svg,.lm-team-info a:hover svg{transform:translate(2px,-2px)}
+}
+/* accordion body + mobile menu enter */
+.lm-step-body{transition:opacity 250ms var(--ease-out),transform 250ms var(--ease-out)}
+#lm-mobile-menu{transition:opacity 200ms var(--ease-out),transform 200ms var(--ease-out)}
+#lm-mobile-menu>a{transition:opacity 250ms var(--ease-out),transform 250ms var(--ease-out)}
+#lm-mobile-menu>a:nth-child(2){transition-delay:30ms}#lm-mobile-menu>a:nth-child(3){transition-delay:60ms}#lm-mobile-menu>a:nth-child(4){transition-delay:90ms}#lm-mobile-menu>a:nth-child(5){transition-delay:120ms}
+@starting-style{.lm-step-body{opacity:0;transform:translateY(-6px)}#lm-mobile-menu{opacity:0;transform:translateY(-8px)}#lm-mobile-menu>a{opacity:0;transform:translateY(-4px)}}
+@media (prefers-reduced-motion: reduce){
+  .lm-rise{animation-name:lmFade}
+  .lm-track{transition:none!important}
+  .lm-primary:active,.lm-ghost:active,.lm-press:active{transform:none}
+  .lm-primary svg,.lm-ghost svg,.lm-scard svg,.lm-team-info a svg{transform:none!important}
+  .lm-step-body,#lm-mobile-menu,#lm-mobile-menu>a{transform:none!important}
+}
+/* ---------- on-view reveals (only once JS has marked an element) ---------- */
+html.lm-js [data-reveal]{transition-property:opacity,transform,clip-path;transition-duration:700ms;transition-timing-function:var(--ease-out);transition-delay:calc(var(--d,0) * 70ms)}
+/* buttons whose inline style sets its own transition would otherwise pop in unstaggered */
+html.lm-js [data-reveal][style*="transition"]{transition-property:opacity,transform,clip-path!important;transition-duration:700ms!important;transition-timing-function:var(--ease-out)!important;transition-delay:calc(var(--d,0) * 70ms)!important}
+html.lm-js [data-reveal=up]:not([data-in]){opacity:0;transform:translateY(20px)}
+html.lm-js [data-reveal=fade]:not([data-in]){opacity:0}
+html.lm-js [data-reveal=right]:not([data-in]){opacity:0;transform:translateX(40px)}
+html.lm-js [data-reveal=pop]:not([data-in]){opacity:0;transform:scale(.94)}
+html.lm-js [data-reveal=rise]{transition-duration:900ms}
+html.lm-js [data-reveal=rise]:not([data-in]){opacity:0;transform:translateY(48px)}
+html.lm-js [data-reveal=wipe]{transition-duration:1000ms;transition-timing-function:var(--ease-in-out)}
+html.lm-js [data-reveal=wipe]:not([data-in]){clip-path:inset(100% 0 0 0)}
+html.lm-js [data-reveal=clipx]{transition-duration:1600ms;transition-timing-function:var(--ease-in-out)}
+html.lm-js [data-reveal=clipx]:not([data-in]){clip-path:inset(0 100% 0 0)}
+html.lm-js [data-reveal=grow]{transition-duration:600ms}
+html.lm-js [data-reveal=grow]:not([data-in]){transform:scaleY(0)}
+html.lm-js [data-reveal=draw] path{stroke-dasharray:1 1;transition:stroke-dashoffset 1400ms var(--ease-in-out)}
+html.lm-js [data-reveal=draw]:not([data-in]) path{stroke-dashoffset:1}
+html.lm-js [data-reveal=draw] path:nth-child(2){transition-delay:150ms}
+html.lm-js [data-reveal=draw] path:nth-child(3){transition-delay:300ms}
+html.lm-js [data-reveal=draw] path:nth-child(4){transition-delay:450ms}
+@keyframes lmPulse{from{transform:scale(1);opacity:.6}to{transform:scale(2.2);opacity:0}}
+@keyframes lmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+/* v2 section signatures */
+.lm-fade img{animation:lmFloat 7s ease-in-out 1.2s infinite}
+/* story timeline: dot lands, line draws to the next chapter */
+html.lm-js [data-reveal=timeline]>span:first-child{transition:transform 500ms cubic-bezier(.34,1.4,.64,1);transition-delay:calc(var(--d,0) * 220ms)}
+html.lm-js [data-reveal=timeline]>span:last-child{transform-origin:left center;transition:transform 900ms var(--ease-in-out);transition-delay:calc(var(--d,0) * 220ms + 150ms)}
+html.lm-js [data-reveal=timeline]:not([data-in])>span:first-child{transform:scale(0)}
+html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scaleX(0)}
+/* stats divider grows from the centre */
+html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
+/* hover details */
+@media (hover:hover) and (pointer:fine){
+  .lm-scard{transition:background-color 200ms ease}
+  .lm-scard:hover{background:#C9D6F7!important}
+  .lm-team>article{transition:transform 300ms var(--ease-out)}
+  .lm-team>article:hover{transform:translateY(-4px)}
+  .lm-team>article img{transition:transform 400ms var(--ease-out)}
+  .lm-team>article:hover img{transform:scale(1.04)}
+  .lm-logo-cell{transition:background-color 200ms ease}
+  .lm-logo-cell:hover{background:#EEF3FD}
+  .lm-logo-cell>div{transition:transform 250ms var(--ease-out)}
+  .lm-logo-cell:hover>div{transform:translateY(-2px)}
+  .lm-step-btn>span:nth-child(2){transition:transform 250ms var(--ease-out)}
+  .lm-step-btn:hover>span:nth-child(2){transform:translateX(6px)}
+  #story li>div:nth-child(2){transition:transform 300ms var(--ease-out)}
+  #story li:hover>div:nth-child(2){transform:translateY(-4px)}
+}
+@media (prefers-reduced-motion: reduce){
+  html.lm-js [data-reveal]{transform:none!important;clip-path:none!important;transition-property:opacity!important}
+  html.lm-js [data-reveal=draw] path{stroke-dashoffset:0!important;transition:none!important}
+  html.lm-js [data-reveal] *{animation:none!important}
+}
+@media (prefers-reduced-motion: reduce){
+  .lm-fade img{animation:none}
+  html.lm-js [data-reveal=timeline]>span{transform:none!important}
+}
+/* contact form (pre-footer) */
+.lm-field{display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:22px;font-weight:500;color:#1C1C1E}
+.lm-field input,.lm-field textarea{font:inherit;font-size:16px;font-weight:400;line-height:26px;color:#1C1C1E;background:transparent;border:0;border-bottom:1px solid #BDB6AB;border-radius:0;padding:12px 0;min-height:52px;box-sizing:border-box;width:100%;transition:border-color 200ms ease,box-shadow 200ms ease}
+.lm-field textarea{resize:vertical;min-height:120px}
+.lm-field input:focus,.lm-field textarea:focus{outline:none;border-bottom-color:#1446C2;box-shadow:0 1px 0 #1446C2}
+.lm-field-full{grid-column:1/-1}
+.lm-form,.lm-form-done{background:#D9E3FA;border-radius:8px;padding:clamp(24px,5vw,48px);box-sizing:border-box;width:100%;max-width:760px}
+.lm-form .lm-field input,.lm-form .lm-field textarea{border-bottom-color:rgba(20,70,194,.35)}
+.lm-form .lm-field input:focus,.lm-form .lm-field textarea:focus{border-bottom-color:#1446C2}
+.lm-form>.lm-field-full>span{color:#3A3A3F!important}
+@keyframes lmDone{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lm-form-done{animation:lmDone 400ms var(--ease-out) both}
+@media (max-width: 640px){.lm-form{grid-template-columns:1fr!important;gap:24px!important}}
+@media (prefers-reduced-motion: reduce){.lm-form-done{animation-name:lmFade}}
+/* hero fits the first screen on desktop/tablet */
+@media (min-width: 641px){
+  .lm-hero-l{min-height:100vh!important;min-height:100svh!important;gap:clamp(24px,4vh,48px)!important;padding-bottom:clamp(40px,6vh,104px)!important}
+  .lm-hero-l h1{font-size:clamp(44px,min(5.6vw,9vh),80px)!important}
+  .lm-hero-l>div:last-child{gap:clamp(18px,2.8vh,28px)!important;margin-block:auto!important}
+  .lm-fade img{max-height:calc(100svh - 180px);width:auto!important;max-width:100%}
+}
+@media (max-width: 640px){
+.lm-desk,.lm-hide-m{display:none !important}
+.lm-mobile{display:flex !important}
+.lm-hero-l{min-height:0 !important;padding:24px 20px 56px !important;gap:0 !important}
+.lm-hero-r{padding:32px 20px 40px !important}
+.lm-h1{font-size:42px !important;line-height:1.05 !important}
+.lm-h2{font-size:36px !important;line-height:1.1 !important}
+.lm-cta-h{font-size:40px !important;line-height:1.08 !important}
+.lm-lead{font-size:17px !important;line-height:27px !important}
+.lm-full{width:100% !important;justify-content:space-between !important;box-sizing:border-box !important}
+.lm-sec{padding-top:80px !important;padding-bottom:80px !important}
+.lm-step-btn{gap:16px !important}
+.lm-step-body{padding:0 0 24px 44px !important;font-size:16px !important;line-height:26px !important}
+.lm-team{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:12px !important}
+.lm-team-info{padding:14px 12px 4px !important}
+.lm-team-name{font-size:16px !important;line-height:22px !important}
+.lm-team-role{font-size:14px !important;line-height:20px !important}
+.lm-email{display:block !important;padding:12px 0 !important;font-size:12px !important;line-height:20px !important}
+.lm-stats{flex-direction:column !important;gap:20px !important}
+.lm-stat-n{font-size:44px !important}
+.lm-signup{flex-direction:column !important;align-items:stretch !important}
+.lm-signup input{flex:0 0 auto !important}
+.lm-foot-nav{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+.lm-foot-nav a{display:flex !important;align-items:center;min-height:44px;box-sizing:border-box}
+.lm-logo-cell{height:96px !important;padding:16px !important}
+}
+</style>
+</helmet>
+<div id="top" style="font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-optical-sizing: auto; color: #1C1C1E; background: #F8F4EE; -webkit-font-smoothing: antialiased; overflow-x: hidden">
+
+<!-- HERO -->
+<header style="display: flex; flex-wrap: wrap">
+  <div class="lm-mobile" style="flex: 1 1 100%; flex-direction: column; background: #1446C2; color: #FFFFFF">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px">
+      <a href="#top" aria-label="Leadership Mavericks home" style="display: inline-flex; min-height: 44px; align-items: center">
+        <img src="./assets/logo.png" alt="Leadership Mavericks" style="height: 40px; width: auto; display: block">
+      </a>
+      <button type="button" class="lm-press" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-controls="lm-mobile-menu" aria-label="{{menuLabel}}" style="width: 48px; height: 48px; flex: none; border-radius: 999px; border: 1px solid rgba(255,255,255,.6); background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </sc-if>
+        <sc-if value="{{menuClosed}}" hint-placeholder-val="{{true}}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg>
+        </sc-if>
+      </button>
+    </div>
+    <sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+      <nav id="lm-mobile-menu" aria-label="Mobile" style="display: flex; flex-direction: column; padding: 4px 20px 28px; border-top: 1px solid rgba(255,255,255,.25)">
+        <a class="lm-mlink" href="#top" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #DCE5FB; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">Home</a>
+        <a class="lm-mlink" href="#story" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #DCE5FB; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">About Us</a>
+        <a class="lm-mlink" href="#services" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #DCE5FB; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">Services</a>
+        <a class="lm-mlink" href="#articles" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #DCE5FB; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">Articles</a>
+        <a href="#contact" onClick="{{closeMenu}}" style="margin-top: 24px; min-height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #FFFFFF; color: #1446C2; text-decoration: none; font-size: 16px; font-weight: 600">Contact Us</a>
+      </nav>
+    </sc-if>
+  </div>
+  <div class="lm-hero-l" style="flex: 1 1 560px; min-width: 0; background: #1446C2; color: #FFFFFF; padding: 40px clamp(24px, 6vw, 96px) clamp(56px, 7vw, 104px); box-sizing: border-box; display: flex; flex-direction: column; gap: 96px; min-height: 760px">
+    <a class="lm-desk" href="#top" aria-label="Leadership Mavericks home" style="display: inline-flex; align-self: flex-start">
+      <img src="./assets/logo.png" alt="Leadership Mavericks" style="height: 48px; width: auto; display: block">
+    </a>
+    <div style="display: flex; flex-direction: column; gap: 28px; max-width: 560px; margin-top: auto">
+      <p class="lm-rise" style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; line-height: 20px; font-weight: 500; color: #C9D6F7; animation-delay: 80ms"><span style="width: 32px; height: 1px; background: #C9D6F7"></span>Executive search. Independent thinking.</p>
+      <h1 class="lm-rise lm-h1" style="margin: 0; font-size: clamp(44px, 5.6vw, 80px); line-height: 1.02; font-weight: 450; letter-spacing: -0.035em; text-wrap: balance; animation-delay: 140ms">Great Leaders Don’t Fit a Template.</h1>
+      <p class="lm-rise lm-lead" style="margin: 0; font-size: 19px; line-height: 30px; font-weight: 400; color: #DCE5FB; max-width: 420px; text-wrap: pretty; animation-delay: 200ms">Finding exceptional leaders with curiosity, conviction, and courage to look beyond the obvious.</p>
+      <a class="lm-ghost lm-rise lm-full" href="#contact" style="margin-top: 8px; align-self: flex-start; display: inline-flex; align-items: center; gap: 36px; min-height: 52px; padding: 0 22px 0 26px; border: 1px solid rgba(255,255,255,.7); border-radius: 999px; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 500; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1); animation-delay: 260ms">Find Your Next Mavericks
+        <svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="lm-hero-r" style="position: relative; flex: 1 1 560px; min-width: 0; padding: 28px clamp(24px, 6vw, 96px) 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px; background: #F8F4EE">
+    <svg width="100%" height="100%" style="position: absolute; inset: 0; opacity: .5; pointer-events: none" aria-hidden="true">
+      <filter id="lmgrain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix values="0 0 0 0 0.11  0 0 0 0 0.10  0 0 0 0 0.09  0 0 0 .09 0"></feColorMatrix></filter>
+      <rect width="100%" height="100%" filter="url(#lmgrain)"></rect>
+    </svg>
+    <nav class="lm-desk" aria-label="Primary" style="position: relative; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 4px">
+      <a class="lm-nav" href="#top" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1446C2">Home</a>
+      <a class="lm-nav" href="#story" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1446C2">About Us</a>
+      <a class="lm-nav" href="#services" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1446C2">Services</a>
+      <a class="lm-nav" href="#articles" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1446C2">Articles</a>
+      <a class="lm-primary" href="#contact" style="margin-left: 10px; padding: 12px 22px; font-size: 15px; font-weight: 500; text-decoration: none; color: #FFFFFF; background: #1446C2; border-radius: 999px; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1)">Contact Us</a>
+    </nav>
+    <div class="lm-fade" style="position: relative; flex: 1; display: flex; align-items: center; justify-content: center">
+      <img src="./assets/hero-v2.png" alt="" width="936" height="936" style="width: 100%; max-width: 560px; height: auto; display: block">
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- 01 WHAT WE DO -->
+<section id="services" class="lm-sec" style="padding: 136px 0 120px">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px">
+    <div style="display: flex; flex-direction: column; gap: 20px; max-width: 720px">
+      <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; line-height: 20px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2; font-variant-numeric: tabular-nums">01</span><span style="width: 32px; height: 1px; background: #1446C2"></span>What we do</p>
+      <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">The Right People Change Everything</h2>
+      <p class="lm-lead" style="margin: 0; font-size: 19px; line-height: 30px; color: #1446C2">Finding them? That’s where we come in.</p>
+    </div>
+    <div style="display: flex; gap: 12px">
+      <button type="button" class="lm-press" aria-label="Previous service" onClick="{{prev}}" style="width: 52px; height: 52px; border-radius: 999px; border: 1px solid #1446C2; background: transparent; color: #1446C2; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+      </button>
+      <button type="button" class="lm-primary" aria-label="Next service" onClick="{{next}}" style="width: 52px; height: 52px; border-radius: 999px; border: 0; background: #1446C2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <div style="overflow: hidden; margin-top: 64px">
+    <div class="lm-track" style="display: flex; gap: 24px; padding-left: max(24px, calc((100% - 1200px) / 2)); transition: transform 500ms cubic-bezier(.32,.72,0,1); transform: translateX(calc(-{{idx}} * (min(520px, 82vw) + 24px)))">
+      <sc-for list="{{services}}" as="s" hint-placeholder-count="3">
+        <a class="lm-scard" href="#services" style="flex: 0 0 min(520px, 82vw); border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column; text-decoration: none; color: #1446C2">
+          <div style="aspect-ratio: 16 / 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
+            <span>Service image, 16:10</span>
+          </div>
+          <div style="padding: 22px 24px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+            <h3 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500; letter-spacing: -0.015em">{{s.name}}</h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="max-width: 1248px; margin: 32px auto 0; padding: 0 24px; box-sizing: border-box; display: flex; align-items: center; gap: 20px">
+    <span style="font-size: 14px; font-weight: 500; color: #3A3A3F; font-variant-numeric: tabular-nums; min-width: 44px">{{counter}}</span>
+    <div style="flex: 1; display: flex; gap: 4px">
+      <sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
+        <button type="button" aria-label="{{d.label}}" onClick="{{d.pick}}" style="flex: 1; height: 44px; border: 0; padding: 0; background: transparent; display: flex; align-items: center; cursor: pointer">
+          <span style="{{d.dotStyle}}"></span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 02 HOW WE DO IT -->
+<section class="lm-sec" style="background: #1446C2; color: #FFFFFF; padding: 128px 0">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 72px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 48px">
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 20px; max-width: 620px">
+        <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; line-height: 20px; font-weight: 500; color: #DCE5FB"><span style="font-weight: 600; color: #FFFFFF; font-variant-numeric: tabular-nums">02</span><span style="width: 32px; height: 1px; background: #C9D6F7"></span>How we do it</p>
+        <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em">Less Guesswork.<br>More Groundwork.</h2>
+        <p class="lm-lead" style="margin: 0; font-size: 18px; line-height: 29px; color: #DCE5FB; max-width: 540px; text-wrap: pretty">Designed around your business, rather than a standard playbook. We bring independent thinking backed by the experience and discipline to deliver.</p>
+      </div>
+      <svg viewBox="0 0 420 260" style="flex: 0 1 400px; width: 100%; max-width: 400px; height: auto" aria-hidden="true">
+        <path d="M20 220 C90 220 80 140 150 140 S220 210 260 170 S230 60 290 70 S360 120 380 60" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"></path>
+        <path d="M150 140 C120 100 190 80 200 120" fill="none" stroke="#9DB5EE" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"></path>
+        <circle cx="20" cy="220" r="9" fill="#FFFFFF"></circle>
+        <circle cx="150" cy="140" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        <circle cx="260" cy="170" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        <circle cx="290" cy="70" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        <path d="M380 60 V0" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M380 2 L414 14 L380 28 Z" fill="#F8F4EE"></path>
+        <g transform="translate(60 40)" fill="none" stroke="#FFFFFF" stroke-width="2.5"><circle cx="24" cy="24" r="22"></circle><path d="M24 8 L30 24 L24 40 L18 24 Z" fill="#FFFFFF"></path></g>
+      </svg>
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,.35)">
+      <sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+        <div style="border-bottom: 1px solid rgba(255,255,255,.35)">
+          <button type="button" class="lm-step-btn" onClick="{{st.toggle}}" aria-expanded="{{st.expanded}}" style="width: 100%; min-height: 88px; display: flex; align-items: center; gap: 32px; padding: 20px 0; background: transparent; border: 0; color: #FFFFFF; text-align: left; font: inherit; cursor: pointer">
+            <span style="font-size: 14px; font-weight: 500; color: #C9D6F7; width: 28px; font-variant-numeric: tabular-nums">{{st.num}}</span>
+            <span style="flex: 1; font-size: clamp(20px, 2vw, 26px); line-height: 1.25; font-weight: 450; letter-spacing: -0.015em">{{st.title}}</span>
+            <span style="{{st.iconWrap}}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="{{st.chev}}"><path d="M12 5v14M5 12h14"></path></svg>
+            </span>
+          </button>
+          <sc-if value="{{st.open}}" hint-placeholder-val="{{false}}">
+            <p class="lm-step-body" style="margin: 0; padding: 0 76px 32px 60px; font-size: 17px; line-height: 28px; color: #DCE5FB; max-width: 680px">{{st.body}}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <p style="margin: 0; font-size: 15px; line-height: 24px; color: #DCE5FB"><strong style="color: #FFFFFF; font-weight: 600">Our forte:</strong> confidential, niche and diversity searches.</p>
+  </div>
+</section>
+
+<!-- 03 THE MAVERICK STORY -->
+<section id="story" class="lm-sec" style="padding: 136px 0 128px">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 64px">
+    <div style="display: flex; flex-direction: column; gap: 20px; max-width: 820px">
+      <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; line-height: 20px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2; font-variant-numeric: tabular-nums">03</span><span style="width: 32px; height: 1px; background: #1446C2"></span>The Maverick story</p>
+      <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">Shared History. Independent Minds. One Core Idea.</h2>
+    </div>
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 48px 32px">
+      <li style="display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; align-items: center; gap: 14px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #1446C2"></span></div>
+        <div style="aspect-ratio: 4 / 3; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
+          <span>Story image, 4:3</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 14px; font-weight: 500; color: #6B6B70">Chapter one</span>
+          <h3 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 450; letter-spacing: -0.02em; color: #1446C2">It started long before the name</h3>
+        </div>
+      </li>
+      <li style="display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; align-items: center; gap: 14px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #1446C2"></span></div>
+        <div style="aspect-ratio: 4 / 3; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
+          <span>Story image, 4:3</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 14px; font-weight: 500; color: #6B6B70">Chapter two</span>
+          <h3 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 450; letter-spacing: -0.02em; color: #1446C2">Then came the shared question</h3>
+        </div>
+      </li>
+      <li style="display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; align-items: center; gap: 14px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #1446C2; opacity: .3"></span></div>
+        <div style="aspect-ratio: 4 / 3; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
+          <span>Story image, 4:3</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 14px; font-weight: 500; color: #6B6B70">Chapter three</span>
+          <h3 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 450; letter-spacing: -0.02em; color: #1446C2">A business with a unique outlook</h3>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 04 MEET THE MAVERICKS -->
+<section class="lm-sec" style="background: #ECE8E2; padding: 128px 0">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 64px">
+    <div style="display: flex; flex-direction: column; gap: 20px; max-width: 820px">
+      <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; line-height: 20px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2; font-variant-numeric: tabular-nums">04</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Meet the Mavericks</p>
+      <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">Different Perspectives, Shared Conviction</h2>
+      <p class="lm-lead" style="margin: 0; font-size: 19px; line-height: 30px; color: #1446C2">The people behind the search.</p>
+    </div>
+    <div class="lm-team" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px">
+      <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
+        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
+          <img src="./assets/partner-1.png" alt="Lakshmi Prasanna" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        </div>
+        <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1446C2">Lakshmi Prasanna</h3>
+            <a href="#" aria-label="Lakshmi Prasanna on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1446C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Founding Partner</p>
+          <a class="lm-email" href="mailto:lakshmi@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(20,70,194,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">lakshmi@leadershipmavericks.com</a>
+        </div>
+      </article>
+      <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
+        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
+          <img src="./assets/partner-2.png" alt="Monika Pathak" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        </div>
+        <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1446C2">Monika Pathak</h3>
+            <a href="#" aria-label="Monika Pathak on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1446C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Founding Partner</p>
+          <a class="lm-email" href="mailto:monika@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(20,70,194,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">monika@leadershipmavericks.com</a>
+        </div>
+      </article>
+      <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
+        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
+          <img src="./assets/partner-3.png" alt="Saba Alam" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        </div>
+        <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1446C2">Saba Alam</h3>
+            <a href="#" aria-label="Saba Alam on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1446C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Senior Partner</p>
+          <a class="lm-email" href="mailto:saba@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(20,70,194,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">saba@leadershipmavericks.com</a>
+        </div>
+      </article>
+      <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
+        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
+          <img src="./assets/partner-4.png" alt="Panini Balaji" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        </div>
+        <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1446C2">Panini Balaji</h3>
+            <a href="#" aria-label="Panini Balaji on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1446C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Senior Partner</p>
+          <a class="lm-email" href="mailto:panini@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(20,70,194,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">panini@leadershipmavericks.com</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section aria-label="Track record" style="background: #1446C2; color: #FFFFFF; padding: 44px 24px">
+  <div class="lm-stats" style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 64px">
+    <p style="margin: 0; display: flex; align-items: baseline; gap: 14px"><span class="lm-stat-n" style="font-size: 56px; line-height: 1; font-weight: 400; letter-spacing: -0.04em; font-variant-numeric: tabular-nums">30+</span><span style="font-size: 18px; font-weight: 500; color: #DCE5FB">Happy Clients</span></p>
+    <span class="lm-hide-m" style="width: 1px; height: 48px; background: rgba(255,255,255,.35)" aria-hidden="true"></span>
+    <p style="margin: 0; display: flex; align-items: baseline; gap: 14px"><span class="lm-stat-n" style="font-size: 56px; line-height: 1; font-weight: 400; letter-spacing: -0.04em; font-variant-numeric: tabular-nums">100+</span><span style="font-size: 18px; font-weight: 500; color: #DCE5FB">Projects Delivered</span></p>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="articles" class="lm-sec" style="padding: 128px 0 136px">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px; align-items: center">
+    <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; color: #1446C2">Our Clients</h2>
+    <div style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 50%), 1fr)); border-top: 1px solid #D9D3C9; border-left: 1px solid #D9D3C9">
+      <sc-for list="{{logos}}" as="l" hint-placeholder-count="20">
+        <div class="lm-logo-cell" style="height: 120px; border-right: 1px solid #D9D3C9; border-bottom: 1px solid #D9D3C9; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box">
+          <div style="width: 100%; max-width: 140px; height: 44px; border-radius: 4px; background: #E6E1D8; color: #5E5953; display: flex; align-items: center; justify-content: center; font-size: 12px">Logo {{l.n}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+<!-- CTA -->
+<section id="contact" class="lm-sec" style="padding: 144px 24px 128px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 28px">
+  <h2 class="lm-cta-h" style="margin: 0; font-size: clamp(40px, 5vw, 72px); line-height: 1.04; font-weight: 450; letter-spacing: -0.035em; color: #1446C2; max-width: 900px; text-wrap: balance">Ready To Look Beyond The Obvious?</h2>
+  <p class="lm-lead" style="margin: 0; font-size: 19px; line-height: 30px; color: #3A3A3F">Your next great leader is out there, ready to find them?</p>
+  <sc-if value="{{formOpen}}" hint-placeholder-val="{{true}}">
+    <form class="lm-form" onSubmit="{{submitContact}}" aria-label="Contact us" style="margin-top: 20px; width: 100%; max-width: 760px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; text-align: left">
+      <label class="lm-field">Name *<input name="name" type="text" autocomplete="name" required="required"></label>
+      <label class="lm-field">Work email *<input name="email" type="email" autocomplete="email" required="required"></label>
+      <label class="lm-field">Company<input name="company" type="text" autocomplete="organization"></label>
+      <label class="lm-field">Role you’re hiring for<input name="role" type="text"></label>
+      <label class="lm-field lm-field-full">How can we help? *<textarea name="message" rows="4" required="required"></textarea></label>
+      <div class="lm-field-full" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 8px">
+        <span style="font-size: 13px; color: #6B6B70">* Required</span>
+        <button type="submit" class="lm-primary lm-full" style="display: inline-flex; align-items: center; gap: 36px; min-height: 56px; padding: 0 24px 0 30px; border: 0; border-radius: 999px; background: #1446C2; color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 500; cursor: pointer; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1)">Get The Maverick Experience
+          <svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg>
+        </button>
+      </div>
+    </form>
+  </sc-if>
+  <sc-if value="{{formSent}}" hint-placeholder-val="{{false}}">
+    <div role="status" class="lm-form-done" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px">
+      <p style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 450; letter-spacing: -0.02em; color: #1446C2">Thank you. We’ll be in touch shortly.</p>
+      <button type="button" onClick="{{resetContact}}" style="border: 0; background: transparent; padding: 12px 0; font: inherit; font-size: 15px; font-weight: 500; color: #1446C2; text-decoration: underline; text-underline-offset: 6px; cursor: pointer">Send another message</button>
+    </div>
+  </sc-if>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background: #1446C2; color: #FFFFFF; padding: 88px 0 36px">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 72px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 56px">
+      <div style="flex: 1 1 380px; max-width: 480px; display: flex; flex-direction: column; gap: 32px">
+        <img src="./assets/logo.png" alt="Leadership Mavericks" style="height: 52px; width: auto; align-self: flex-start">
+        <form style="display: flex; flex-direction: column; gap: 14px">
+          <label for="lm-email" style="font-size: 17px; line-height: 26px; font-weight: 500">Keep up to date with our blog</label>
+          <div class="lm-signup" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+            <input id="lm-email" type="email" placeholder="Your email address" style="flex: 1 1 220px; min-height: 52px; background: transparent; border: 0; border-bottom: 1px solid #C9D6F7; color: #FFFFFF; font: inherit; font-size: 16px; padding: 0 2px">
+            <button type="submit" style="min-height: 52px; padding: 0 30px; border-radius: 999px; border: 0; background: #FFFFFF; color: #1446C2; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Sign Up</button>
+          </div>
+        </form>
+      </div>
+      <nav class="lm-foot-nav" aria-label="Footer" style="flex: 1 1 360px; max-width: 520px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 24px; align-content: start">
+        <a class="lm-foot" href="#top" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">Home</a>
+        <a class="lm-foot" href="#articles" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">Articles</a>
+        <a class="lm-foot" href="#contact" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">Book a call</a>
+        <a class="lm-foot" href="#story" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">About Us</a>
+        <a class="lm-foot" href="#contact" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">Contact Us</a>
+        <span class="lm-hide-m"></span>
+        <a class="lm-foot" href="#services" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">Services</a>
+        <a class="lm-foot" href="#" style="color: #DCE5FB; text-decoration: none; font-size: 15px; padding: 10px 0">LinkedIn</a>
+      </nav>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,.3); padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #C9D6F7">
+      <span>© 2026 Leadership Mavericks</span>
+      <span>Executive search. Independent thinking.</span>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { idx: 0, open: 0, menu: false, sent: false };
+  }
+  renderVals() {
+    const services = [
+      { name: 'Executive Search' },
+      { name: 'Market Mapping' },
+      { name: '[Third service]' }
+    ];
+    const n = services.length;
+    const idx = this.state.idx;
+    const go = (i) => this.setState({ idx: (i + n) % n });
+    const dots = services.map((s, i) => ({
+      label: 'Show ' + s.name,
+      pick: () => go(i),
+      dotStyle: 'display:block;width:100%;height:3px;transform:scaleY(' + (i === idx ? '1' : '.34') + ');transition:transform 250ms cubic-bezier(.23,1,.32,1),background-color 200ms ease;background:' + (i === idx ? '#1446C2' : '#BDB6AB')
+    }));
+    const stepData = [
+      { title: 'First, the right questions', body: '[Describe how you shape the brief — the questions asked before the search begins.]' },
+      { title: 'Know the Terrain. Explore the Detours', body: '[Describe the market mapping and the unconventional talent pools you explore.]' },
+      { title: 'Big Ambitions, Clear Timelines', body: '[Describe the milestones and reporting cadence clients can expect.]' },
+      { title: 'Your Organisation, Your Search', body: '[Describe how each search is tailored to culture, stage and context.]' }
+    ];
+    const steps = stepData.map((s, i) => {
+      const open = this.state.open === i;
+      return {
+        ...s,
+        num: '0' + (i + 1),
+        open: open,
+        expanded: open ? 'true' : 'false',
+        iconWrap: 'flex:none;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;transition:background-color 200ms ease,border-color 200ms ease,color 200ms ease;border:1px solid ' + (open ? '#FFFFFF' : 'rgba(255,255,255,.45)') + ';background:' + (open ? '#FFFFFF' : 'transparent') + ';color:' + (open ? '#1446C2' : '#FFFFFF'),
+        chev: 'transition:transform 200ms cubic-bezier(.23,1,.32,1);transform:rotate(' + (open ? '45deg' : '0deg') + ')',
+        toggle: () => this.setState({ open: open ? -1 : i })
+      };
+    });
+    const logos = Array.from({ length: 20 }, (_, i) => ({ n: String(i + 1).padStart(2, '0') }));
+    return {
+      services, idx, dots, steps, logos,
+      menuOpen: this.state.menu,
+      menuClosed: !this.state.menu,
+      menuExpanded: this.state.menu ? 'true' : 'false',
+      menuLabel: this.state.menu ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setState({ menu: !this.state.menu }),
+      closeMenu: () => this.setState({ menu: false }),
+      formOpen: !this.state.sent,
+      formSent: !!this.state.sent,
+      submitContact: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      resetContact: () => this.setState({ sent: false }),
+      counter: String(idx + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0'),
+      prev: () => go(idx - 1),
+      next: () => go(idx + 1)
+    };
+  }
+}
+</script>
+<script>
+(function () {
+  var doc = document.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window)) return;
+  doc.classList.add('lm-js');
+  var SIMPLE = { up: 1, fade: 1, right: 1, pop: 1, wipe: 1 };
+  function $(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  function q(s, c) { return (c || document).querySelector(s); }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      (e.target.__lmTargets || []).forEach(show);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+  function count(el) {
+    if (el.__lmCounted) return;
+    el.__lmCounted = true;
+    var node = el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild : null;
+    var text = node ? node.nodeValue : '';
+    var m = text.match(/^(\D*)(\d+)(.*)$/);
+    if (!node || !m || reduce) return;
+    var end = +m[2], dur = 1400, t0 = null;
+    el.style.fontVariantNumeric = 'tabular-nums';
+    node.nodeValue = m[1] + '0' + m[3];
+    setTimeout(function () {
+      requestAnimationFrame(function step(t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
+        node.nodeValue = p < 1 ? m[1] + Math.round(end * e) + m[3] : text;
+        if (p < 1) requestAnimationFrame(step);
+      });
+    }, 250);
+  }
+
+  function show(el) {
+    el.setAttribute('data-in', '');
+    if (el.hasAttribute('data-count')) count(el);
+    $('[data-count]', el).forEach(count);
+    var type = el.getAttribute('data-reveal');
+    if (SIMPLE[type]) {
+      var d = parseFloat(el.style.getPropertyValue('--d')) || 0;
+      setTimeout(function () {
+        el.removeAttribute('data-reveal');
+        el.removeAttribute('data-in');
+        el.style.removeProperty('--d');
+      }, 1300 + d * 70);
+    }
+  }
+
+  function mark(list, type, offset) {
+    if (!list) return;
+    if (list.nodeType) list = [list];
+    list = Array.prototype.slice.call(list).filter(Boolean);
+    list.forEach(function (el, i) {
+      if (el.hasAttribute('data-reveal')) return;
+      el.style.setProperty('--d', Math.min(i, 10) + (offset || 0));
+      el.setAttribute('data-reveal', type);
+      if (type === 'draw') $('path', el).forEach(function (p) { p.setAttribute('pathLength', '1'); });
+      // fully clipped elements never intersect, so watch their parent instead
+      var watch = (type === 'wipe' || type === 'clipx') && el.parentElement ? el.parentElement : el;
+      (watch.__lmTargets = watch.__lmTargets || []).push(el);
+      io.observe(watch);
+    });
+  }
+  function head(sec) {
+    var h = sec && q('h2', sec);
+    if (h) mark(h.parentElement.children, 'up');
+  }
+
+  var done = false;
+  function run() {
+    if (done || !q('#dc-root footer')) return;
+    done = true;
+    try { (function (q, $, mark, head) {
+  var svc = q('#services');
+  if (svc) {
+    head(svc);
+    mark($('button', svc.firstElementChild), 'pop', 3);
+    mark($('.lm-scard'), 'right', 2);
+  }
+
+  var step = q('.lm-step-btn');
+  var proc = step && step.closest('section');
+  if (proc) {
+    head(proc);
+    mark(q('svg[viewBox="0 0 420 260"]', proc), 'clipx', 2);
+    mark($('.lm-step-btn', proc).map(function (b) { return b.parentElement; }), 'up', 3);
+    var ps = $('p', proc); mark(ps[ps.length - 1], 'fade', 6);
+  }
+
+  var story = q('#story');
+  if (story) {
+    head(story);
+    var lis = $('li', story);
+    mark(lis.map(function (li) { return li.children[0]; }), 'timeline');
+    mark(lis.map(function (li) { return li.children[1]; }), 'up', 1);
+    mark(lis.map(function (li) { return li.children[2]; }), 'up', 2);
+  }
+
+  var team = q('.lm-team');
+  if (team) { head(team.closest('section')); mark($('.lm-team > article'), 'up', 2); }
+
+  var cta = q('#contact');
+  if (cta) mark(cta.children, 'up');
+
+  var stats = q('section[aria-label="Track record"]');
+  if (stats) {
+    $('.lm-stat-n', stats).forEach(function (s) { s.setAttribute('data-count', ''); });
+    mark($('p', stats), 'up');
+    mark(q('.lm-hide-m', stats), 'grow', 1);
+  }
+
+  var cl = q('#articles');
+  if (cl) { mark(q('h2', cl), 'up'); mark($('.lm-logo-cell', cl), 'up', 1); }
+
+  mark($('footer > div > div:first-child > *'), 'up');
+})(q, $, mark, head); } catch (err) { if (window.console) console.warn('motion setup', err); }
+  }
+  run();
+  if (!done) {
+    var mo = new MutationObserver(function () { run(); if (done) mo.disconnect(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); }, 10000);
+  }
+})();
+</script>
+</body>
+</html>
