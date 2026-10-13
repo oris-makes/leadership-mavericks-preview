@@ -55,10 +55,51 @@ a{color:inherit}a:hover{opacity:.72}
   .ds-proof>div{flex-direction:row!important;align-items:baseline;gap:16px!important;padding:18px 24px!important}
   .ds-proof>div+div{box-shadow:inset 0 1px 0 #4F1F3B!important}
   .ds-space{flex-wrap:wrap!important;gap:12px!important}
+  .ds-svcpair{grid-template-columns:1fr!important;gap:32px!important}
+  .ds-svcpair>div:nth-child(-n+2){max-width:360px}
+  .ds-form{grid-template-columns:1fr!important;gap:24px!important;padding:24px!important}
+  .ds-form button{flex:1 1 100%;justify-content:center}
+  .ds-done{padding:32px 24px!important}
+  .ds-row{grid-template-columns:1fr!important;row-gap:4px!important}
 }
+/* service card demo (mirrors .lm-svc in home.html) */
+.ds-svc{position:relative;isolation:isolate;display:flex;flex-direction:column;height:100%;box-sizing:border-box;background:#311023;color:#F8F6F0;border:1px solid #4F1F3B;border-radius:4px;overflow:hidden;transition:color 150ms ease,border-color 200ms ease}
+.ds-svc::before{content:"";position:absolute;inset:0;z-index:1;background:#E9E5D6;transform:scaleY(0);transform-origin:bottom;transition:transform 320ms cubic-bezier(.77,0,.175,1);pointer-events:none}
+.ds-svc-top{position:relative;z-index:2;padding:24px;display:flex;flex-direction:column;gap:8px}
+.ds-svc-num{font-family:'Source Serif 4',Georgia,serif;font-weight:300;font-size:32px;line-height:1.2}
+.ds-svc-title{font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:26px;line-height:1.2}
+.ds-svc-media{position:relative;aspect-ratio:4/3;margin-top:auto}
+.ds-svc-well{position:absolute;inset:0;background:#4A1D37;color:#C9A3BC;display:flex;align-items:center;justify-content:center;font-size:13px}
+.ds-svc-body{position:absolute;inset:0;z-index:2;padding:0 24px 24px;color:#7A1E5A;font-size:15px;line-height:1.6;visibility:hidden;transition:visibility 0s linear 320ms}
+.ds-w{display:inline-block;opacity:0;filter:blur(3px);transform:translateY(4px);transition:opacity 120ms ease,filter 120ms ease,transform 120ms ease}
+.ds-w:nth-child(2){--w:1}.ds-w:nth-child(3){--w:2}.ds-w:nth-child(4){--w:3}.ds-w:nth-child(5){--w:4}.ds-w:nth-child(6){--w:5}.ds-w:nth-child(7){--w:6}.ds-w:nth-child(8){--w:7}.ds-w:nth-child(9){--w:8}.ds-w:nth-child(10){--w:9}.ds-w:nth-child(11){--w:10}.ds-w:nth-child(12){--w:11}.ds-w:nth-child(13){--w:12}
+.ds-svc:focus{outline:none}
+.ds-svc:focus-visible{outline:2px solid #A86A92;outline-offset:3px}
+.ds-svc-on,.ds-svc-live:is(:focus,:focus-within){color:#311023;border-color:#D9D3BE;transition:color 200ms ease 260ms,border-color 200ms ease}
+.ds-svc-on::before,.ds-svc-live:is(:focus,:focus-within)::before{transform:none;transition:transform 560ms cubic-bezier(.77,0,.175,1)}
+.ds-svc-on .ds-svc-body,.ds-svc-live:is(:focus,:focus-within) .ds-svc-body{visibility:visible;transition-delay:0s}
+.ds-svc-on .ds-w{opacity:1;filter:none;transform:none}
+.ds-svc-live:is(:focus,:focus-within) .ds-w{opacity:1;filter:none;transform:none;transition:opacity 300ms ease,filter 300ms ease,transform 300ms cubic-bezier(.23,1,.32,1);transition-delay:calc(480ms + var(--w,0) * 28ms)}
+@media (hover:hover) and (pointer:fine){
+  .ds-svc-live:hover{color:#311023;border-color:#D9D3BE;transition:color 200ms ease 260ms,border-color 200ms ease}
+  .ds-svc-live:hover::before{transform:none;transition:transform 560ms cubic-bezier(.77,0,.175,1)}
+  .ds-svc-live:hover .ds-svc-body{visibility:visible;transition-delay:0s}
+  .ds-svc-live:hover .ds-w{opacity:1;filter:none;transform:none;transition:opacity 300ms ease,filter 300ms ease,transform 300ms cubic-bezier(.23,1,.32,1);transition-delay:calc(480ms + var(--w,0) * 28ms)}
+}
+@media (prefers-reduced-motion: reduce){
+  .ds-svc::before{transform:none!important;opacity:0;transition:opacity 200ms ease!important}
+  .ds-svc-on::before,.ds-svc-live:is(:hover,:focus,:focus-within)::before{opacity:1}
+  .ds-w{filter:none!important;transform:none!important;transition-delay:0s!important}
+}
+/* contact form demo (mirrors .lm-field in home.html) */
+.ds-field{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:#5E4A55}
+.ds-field input,.ds-field textarea{font:inherit;font-size:15px;font-weight:400;line-height:1.6;color:#241019;background:transparent;border:0;border-bottom:1px solid #C9BFA6;border-radius:0;padding:10px 0;min-height:44px;box-sizing:border-box;width:100%;transition:border-color 200ms ease,box-shadow 200ms ease}
+.ds-field textarea{resize:vertical;min-height:112px}
+.ds-field input:focus,.ds-field textarea:focus,.ds-field-focus input{border-bottom-color:#7A1E5A;box-shadow:0 1px 0 #7A1E5A}
+.ds-field input:focus-visible,.ds-field textarea:focus-visible{outline:2px solid #A86A92;outline-offset:3px}
 </style>
 </helmet>
-<div class="ds" style="width: 1440px; height: 3600px; box-sizing: border-box; background: #F8F6F0; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.55; color: #241019; display: flex; flex-direction: column; font-variant-numeric: tabular-nums">
+<div class="ds" style="width: 1440px; min-height: 3600px; box-sizing: border-box; background: #F8F6F0; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.55; color: #241019; display: flex; flex-direction: column; font-variant-numeric: tabular-nums">
 
   <!-- Header -->
   <div class="ds-hero" style="background: #311023; color: #F8F6F0; padding: 72px 88px 0; display: flex; flex-direction: column; gap: 56px; overflow: hidden">
@@ -236,17 +277,45 @@ a{color:inherit}a:hover{opacity:.72}
         </div>
       </div>
 
-      <div class="ds-stack" style="display: grid; grid-template-columns: 280px 280px 1fr; gap: 40px; align-items: start">
-        <div style="display: flex; flex-direction: column; gap: 14px">
-          <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Service</span>
-          <div style="display: flex; flex-direction: column; gap: 20px">
-            <div style="aspect-ratio: 4 / 3; background: #E9E5D6; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #7A1E5A; font-size: 13px">Photograph, 600 × 450</div>
-            <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #311023; padding-top: 18px">
-              <span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; line-height: 1.2; color: #311023">Executive search</span>
-              <span style="font-size: 15px; color: #5E4A55">One-line description of what the service delivers.</span>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Service card</span>
+        <div class="ds-stack ds-svcpair" style="display: grid; grid-template-columns: 300px 300px 1fr; gap: 24px 40px; align-items: stretch">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <div class="ds-svc ds-svc-live" tabindex="0" aria-label="Executive search, service card demo">
+              <div class="ds-svc-top">
+                <span class="ds-svc-num">01</span>
+                <span class="ds-svc-title">Executive search</span>
+              </div>
+              <div class="ds-svc-media">
+                <div class="ds-svc-well">Photograph, 600 × 450</div>
+                <div class="ds-svc-body"><p style="margin: 0"><span class="ds-w">Board,</span> <span class="ds-w">CXO</span> <span class="ds-w">and</span> <span class="ds-w">senior</span> <span class="ds-w">leadership</span> <span class="ds-w">hires,</span> <span class="ds-w">run</span> <span class="ds-w">end</span> <span class="ds-w">to</span> <span class="ds-w">end</span> <span class="ds-w">by</span> <span class="ds-w">a</span> <span class="ds-w">partner.</span></p></div>
+              </div>
             </div>
+            <span style="font-size: 13px; color: #5E4A55">Default. Hover or focus to try it.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <div class="ds-svc ds-svc-on" aria-hidden="true">
+              <div class="ds-svc-top">
+                <span class="ds-svc-num">01</span>
+                <span class="ds-svc-title">Executive search</span>
+              </div>
+              <div class="ds-svc-media">
+                <div class="ds-svc-well">Photograph, 600 × 450</div>
+                <div class="ds-svc-body"><p style="margin: 0"><span class="ds-w">Board,</span> <span class="ds-w">CXO</span> <span class="ds-w">and</span> <span class="ds-w">senior</span> <span class="ds-w">leadership</span> <span class="ds-w">hires,</span> <span class="ds-w">run</span> <span class="ds-w">end</span> <span class="ds-w">to</span> <span class="ds-w">end</span> <span class="ds-w">by</span> <span class="ds-w">a</span> <span class="ds-w">partner.</span></p></div>
+              </div>
+            </div>
+            <span style="font-size: 13px; color: #5E4A55">Hover, focus or tap.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #5E4A55; max-width: 30em">
+            <span style="font-size: 14px; font-weight: 500; color: #311023">How it behaves</span>
+            <p style="margin: 0">Maroon card, 1 px maroon 850 border, 4 px radius. Number in List display (serif 300, 32), title in Heading 3 (serif 400, 26), then a 4 : 3 photograph.</p>
+            <p style="margin: 0">On hover or focus a cream fill rises from the bottom over 560 ms (ease in-out). Number and title turn maroon as it passes, then the description writes in word by word in accent #7A1E5A at Body size, 28 ms apart.</p>
+            <p style="margin: 0">Leaving reverses faster: the fill drops in 320 ms. Cards sit four across, auto-fit with a 240 px minimum; on phones the number drops to 24.</p>
           </div>
         </div>
+      </div>
+
+      <div class="ds-stack" style="display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start">
         <div style="display: flex; flex-direction: column; gap: 14px">
           <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Partner</span>
           <div style="display: flex; flex-direction: column; gap: 18px">
@@ -283,6 +352,97 @@ a{color:inherit}a:hover{opacity:.72}
           </div>
         </div>
       </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 14px; font-weight: 500; color: #5E4A55">Contact form</span>
+        <div class="ds-stack" style="display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 40px; align-items: start">
+          <div class="ds-form" role="group" aria-label="Contact form demo" style="background: #E9E5D6; border-radius: 4px; padding: 48px; box-sizing: border-box; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px">
+            <label class="ds-field">Name *<input type="text" autocomplete="off"></label>
+            <label class="ds-field ds-field-focus">Work email *<input type="email" autocomplete="off"></label>
+            <label class="ds-field">Company<input type="text" autocomplete="off"></label>
+            <label class="ds-field">Role you’re hiring for<input type="text" autocomplete="off"></label>
+            <label class="ds-field" style="grid-column: 1 / -1">How can we help? *<textarea rows="4"></textarea></label>
+            <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 8px">
+              <span style="font-size: 13px; color: #5E4A55">* Required</span>
+              <button type="button" style="display: inline-flex; align-items: center; gap: 18px; min-height: 52px; padding: 0 28px; background: #311023; border: 0; border-radius: 999px; color: #F8F6F0; font: inherit; font-size: 16px; font-weight: 500; cursor: pointer">Start a conversation<svg aria-hidden="true" width="36" height="12" viewBox="0 0 36 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h33M29 1l5 5-5 5"></path></svg></button>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 24px">
+            <div class="ds-done" style="background: #E9E5D6; border-radius: 4px; padding: 48px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
+              <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 26px; line-height: 1.2; color: #311023">Thank you. We’ll be in touch shortly.</span>
+              <span style="padding: 12px 0; font-size: 15px; font-weight: 500; color: #7A1E5A; text-decoration: underline; text-underline-offset: 6px">Send another message</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #5E4A55">
+              <span style="font-weight: 500; color: #311023">How it behaves</span>
+              <p style="margin: 0">Cream panel, 4 px radius, 48 px padding (24 on phones), max 760 wide. Two columns, one on phones, where the button goes full width.</p>
+              <p style="margin: 0">Labels sit above the field in 14 px Medium, ink 600. Fields are a 1 px cream 400 bottom rule with 15 px text; on focus the rule turns accent and thickens to 2 px (shown on work email).</p>
+              <p style="margin: 0">On send, the form is replaced by the thank-you state, which fades up 8 px over 400 ms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOTION -->
+    <section style="display: flex; flex-direction: column; gap: 36px">
+      <div class="ds-sechead" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; border-bottom: 1px solid #311023; padding-bottom: 20px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 48px; line-height: 1.05; letter-spacing: -0.02em; color: #311023">Motion</h2>
+        <p style="margin: 0; max-width: 34em; font-size: 15px; color: #5E4A55">Two curves, short durations, and every entrance plays once. Motion should feel settled, never busy.</p>
+      </div>
+      <div class="ds-stack" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 56px">
+        <div style="display: flex; flex-direction: column; gap: 40px">
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Easing</h3>
+            <div style="display: flex; flex-direction: column; border-top: 1px solid #D9D3BE; font-size: 14px">
+              <div style="display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid #E9E5D6">
+                <svg aria-hidden="true" width="32" height="32" viewBox="-2 -2 32 32" fill="none" stroke-linecap="round"><path d="M0 28H28M0 28V0" stroke="#D9D3BE" stroke-width="1"></path><path d="M0 28C6.4 0 9 0 28 0" stroke="#7A1E5A" stroke-width="1.5"></path></svg>
+                <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500; color: #311023">--ease-out <span style="font-weight: 400; color: #5E4A55">cubic-bezier(.23, 1, .32, 1)</span></span><span style="color: #5E4A55">Entrances, reveals, press and arrow nudge.</span></span>
+              </div>
+              <div style="display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid #E9E5D6">
+                <svg aria-hidden="true" width="32" height="32" viewBox="-2 -2 32 32" fill="none" stroke-linecap="round"><path d="M0 28H28M0 28V0" stroke="#D9D3BE" stroke-width="1"></path><path d="M0 28C21.6 28 4.9 0 28 0" stroke="#7A1E5A" stroke-width="1.5"></path></svg>
+                <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500; color: #311023">--ease-in-out <span style="font-weight: 400; color: #5E4A55">cubic-bezier(.77, 0, .175, 1)</span></span><span style="color: #5E4A55">Things that travel: stripe, card fill, portrait wipe, line drawing.</span></span>
+              </div>
+              <div style="display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid #E9E5D6">
+                <svg aria-hidden="true" width="32" height="32" viewBox="-2 -2 32 32" fill="none" stroke-linecap="round"><path d="M0 28H28M0 28V0" stroke="#D9D3BE" stroke-width="1"></path><path d="M0 28C7 25 7 0 28 0" stroke="#A86A92" stroke-width="1.5"></path></svg>
+                <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500; color: #311023">ease</span><span style="color: #5E4A55">Plain colour and opacity changes.</span></span>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Duration</h3>
+            <div style="display: flex; flex-direction: column; border-top: 1px solid #D9D3BE; font-size: 14px">
+              <div class="ds-row" style="display: grid; grid-template-columns: 130px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">160 ms</span><span style="color: #5E4A55">Press</span></div>
+              <div class="ds-row" style="display: grid; grid-template-columns: 130px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">150–200 ms</span><span style="color: #5E4A55">Hover and colour</span></div>
+              <div class="ds-row" style="display: grid; grid-template-columns: 130px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">600–900 ms</span><span style="color: #5E4A55">Reveals and entrances</span></div>
+              <div class="ds-row" style="display: grid; grid-template-columns: 130px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">1000–1600 ms</span><span style="color: #5E4A55">Signature moments: wipes and line drawings</span></div>
+              <div class="ds-row" style="display: grid; grid-template-columns: 130px 1fr; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">60–70 ms</span><span style="color: #5E4A55">Stagger between items</span></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Rules</h3>
+            <div style="display: flex; flex-direction: column; border-top: 1px solid #D9D3BE; font-size: 14px; color: #5E4A55">
+              <p style="margin: 0; padding: 12px 0; border-bottom: 1px solid #E9E5D6">Hover effects only on <span style="color: #311023">(hover: hover) and (pointer: fine)</span>. Touch screens never get stuck hover states.</p>
+              <p style="margin: 0; padding: 12px 0; border-bottom: 1px solid #E9E5D6">Tap and keyboard focus mirror hover, so nothing is mouse-only.</p>
+              <p style="margin: 0; padding: 12px 0; border-bottom: 1px solid #E9E5D6">Exits are faster than entrances.</p>
+              <p style="margin: 0; padding: 12px 0; border-bottom: 1px solid #E9E5D6">With <span style="color: #311023">prefers-reduced-motion</span>, fades and colour stay; movement, blur, zoom and the count-up go.</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Patterns</h3>
+          <div style="display: flex; flex-direction: column; border-top: 1px solid #D9D3BE; font-size: 14px">
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Links</span><span style="color: #5E4A55">Fade to 72% over 150 ms. Pointer devices only.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Pill buttons</span><span style="color: #5E4A55">Scale to .97 on press. The long arrow nudges 4 px right on hover.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Hero entrance</span><span style="color: #5E4A55">Label, headline, lead and actions rise 12 px in a 60 ms stagger. The signature stripe draws in from the left; the photo settles from a slow zoom.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">On-scroll reveals</span><span style="color: #5E4A55">Fade up 20 px over 700 ms, 70 ms between items. Once only.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Proof numbers</span><span style="color: #5E4A55">Count up from zero over 1.4 s as the bar rises into view.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Approach circles</span><span style="color: #5E4A55">Bloom open petal by petal, clockwise from the top left, then the leader badge lands with two soft pulses.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Service card</span><span style="color: #5E4A55">Cream fill rises over 560 ms, then the description writes in word by word.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Partner portraits</span><span style="color: #5E4A55">Wipe up from the bottom over 1000 ms; names and roles follow.</span></div>
+            <div class="ds-row" style="display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #E9E5D6"><span style="font-weight: 500; color: #311023">Call to action chair</span><span style="color: #5E4A55">The line drawing draws itself stroke by stroke over 1.4 s.</span></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SIGNATURE, SPACE, RHYTHM -->
@@ -301,9 +461,11 @@ a{color:inherit}a:hover{opacity:.72}
             <div style="background: #311023; color: #F8F6F0; padding: 10px 14px; height: 52px; box-sizing: border-box">Approach</div>
             <div style="background: #F8F6F0; color: #311023; padding: 10px 14px; height: 52px; box-sizing: border-box">Services</div>
             <div style="background: #E9E5D6; color: #311023; padding: 10px 14px; height: 40px; box-sizing: border-box">Clients</div>
-            <div style="background: #F8F6F0; color: #311023; padding: 10px 14px; height: 52px; box-sizing: border-box">Partners and call to action</div>
+            <div style="background: #F8F6F0; color: #311023; padding: 10px 14px; height: 52px; box-sizing: border-box">Partners</div>
+            <div style="background: #F8F6F0; color: #311023; padding: 10px 14px; height: 52px; box-sizing: border-box; box-shadow: inset 0 1px 0 #D9D3BE">Call to action and contact form</div>
             <div style="background: #311023; color: #F8F6F0; padding: 10px 14px; height: 40px; box-sizing: border-box">Footer</div>
           </div>
+          <p style="margin: 0; font-size: 14px; color: #5E4A55">The hero fills the first screen on desktop and tablet (min-height 100svh). Services, partners and the call to action share paper; a hairline separates the last two.</p>
         </div>
         <div style="display: flex; flex-direction: column; gap: 18px">
           <h3 style="margin: 0; font-size: 15px; font-weight: 500; color: #311023">Spacing step</h3>
@@ -332,7 +494,7 @@ a{color:inherit}a:hover{opacity:.72}
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3600}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7270}}'>
 class Component extends DCLogic {
   renderVals() {
     const L = '#311023', D = '#F8F6F0';
@@ -362,7 +524,7 @@ class Component extends DCLogic {
       roles: [
         { token: 'surface.page', hex: '#F8F6F0', use: 'Default background' },
         { token: 'surface.inverse', hex: '#311023', use: 'Hero, approach, footer' },
-        { token: 'surface.band', hex: '#E9E5D6', use: 'Track record, clients' },
+        { token: 'surface.band', hex: '#E9E5D6', use: 'Track record, clients, contact form' },
         { token: 'surface.well', hex: '#E3CFDB', use: 'Portrait placeholders' },
         { token: 'text.body', hex: '#241019', use: 'Running text on light' },
         { token: 'text.heading', hex: '#311023', use: 'Headings on light' },

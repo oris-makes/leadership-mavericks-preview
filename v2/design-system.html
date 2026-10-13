@@ -16,6 +16,10 @@
 <style>
 body{margin:0}
 a{color:#1446C2}a:hover{color:#0D3393}
+.ds-field{display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:22px;font-weight:500;color:#1C1C1E}
+.ds-field input,.ds-field textarea{font:inherit;font-size:16px;font-weight:400;line-height:26px;color:#1C1C1E;background:transparent;border:0;border-bottom:1px solid rgba(20,70,194,.35);border-radius:0;padding:12px 0;min-height:52px;box-sizing:border-box;width:100%;transition:border-color 200ms ease,box-shadow 200ms ease}
+.ds-field textarea{resize:vertical;min-height:120px}
+.ds-field input:focus,.ds-field textarea:focus,.ds-field-focus input{outline:none;border-bottom-color:#1446C2;box-shadow:0 1px 0 #1446C2}
 @media (max-width: 1439px){.ds{width:100%!important;min-height:0!important}}
 @media (max-width: 760px){
   .ds-hero{padding:28px 20px 56px!important;gap:64px!important}
@@ -50,6 +54,9 @@ a{color:#1446C2}a:hover{color:#0D3393}
   .ds-illus{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px 12px!important}
   .ds-illus>div>div:first-child{height:150px!important}
   .ds-illus svg{max-width:80%;height:auto}
+  .ds-form{grid-template-columns:1fr!important;gap:24px!important;padding:24px!important}
+  .ds-form-btn{width:100%;justify-content:space-between!important;box-sizing:border-box}
+  .ds-motion-row{grid-template-columns:1fr!important;gap:6px!important;padding:20px 0!important}
 }
 </style>
 </helmet>
@@ -115,11 +122,11 @@ a{color:#1446C2}a:hover{color:#0D3393}
     <div style="display: flex; flex-direction: column; gap: 14px">
       <span style="font-size: 15px; font-weight: 600">Section rhythm down the page</span>
       <div style="display: flex; height: 36px; border-radius: 4px; overflow: hidden">
-        <div style="flex: 5; background: #1446C2"></div><div style="flex: 5; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 6; background: #1446C2"></div><div style="flex: 5; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 6; background: #ECE8E2"></div><div style="flex: 3; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 1; background: #1446C2"></div><div style="flex: 4; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 3; background: #1446C2"></div>
+        <div style="flex: 9; background: #1446C2"></div><div style="flex: 10; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 11; background: #1446C2"></div><div style="flex: 9; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 10; background: #ECE8E2"></div><div style="flex: 1.5; background: #1446C2"></div><div style="flex: 8.5; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 11; background: #F8F4EE; box-shadow: inset 0 0 0 1px #D9D3C9"></div><div style="flex: 4; background: #1446C2"></div>
       </div>
-      <span style="font-size: 13px; color: #6B6B70">Hero, services, process, story, team, CTA, stats, clients, footer</span>
+      <span style="font-size: 13px; line-height: 19px; color: #6B6B70">Hero, services, process, story, team, stats, clients, CTA with contact form, footer</span>
     </div>
-    <p style="margin: 0; font-size: 15px; line-height: 24px; color: #3A3A3F">Alternate paper and blue to pace the scroll; Stone appears once, for the team. Blue is the only hue: no second accent, no gradients. Ink is reserved for text and illustration.</p>
+    <p style="margin: 0; font-size: 15px; line-height: 24px; color: #3A3A3F">Alternate paper and blue to pace the scroll; Stone appears once, for the team. A thin blue stats band breaks the paper before clients, and the page closes on paper with the contact form before a blue footer. Blue is the only hue: no second accent, no gradients. Ink is reserved for text and illustration.</p>
   </div>
 </section>
 
@@ -206,6 +213,7 @@ a{color:#1446C2}a:hover{color:#0D3393}
           <div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div><div style="background: #D9E3FA"></div>
         </div>
         <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">1200 content width, 24 gutter, 24 minimum side margin. Hero splits 50/50 edge to edge.</span>
+        <span style="font-size: 14px; line-height: 21px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 14px"><span style="font-weight: 600; color: #1C1C1E">Hero fills the first screen</span> on desktop and tablet: min-height 100svh, the heading block centred vertically, headline clamped so it fits short screens. On phones it sizes to content.</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 14px">
         <span style="font-size: 15px; font-weight: 600">Radius by role, no shadows</span>
@@ -236,6 +244,7 @@ a{color:#1446C2}a:hover{color:#0D3393}
         <button type="button" aria-label="Next" style="width: 52px; height: 52px; border-radius: 999px; border: 0; background: #1446C2; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
       </div>
       <span style="font-size: 14px; line-height: 21px; color: #6B6B70">The long arrow marks the page’s one primary action. Minimum height 52.</span>
+      <span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #1446C2">Hover and press</span>&nbsp; Hover deepens to Deep Blue and slides the long arrow 4px right. Every pill and round button scales to .97 while pressed.</span>
     </div>
     <div class="ds-card" style="background: #1446C2; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 24px; color: #FFFFFF">
       <span style="font-size: 15px; font-weight: 600">Buttons on blue</span>
@@ -244,17 +253,18 @@ a{color:#1446C2}a:hover{color:#0D3393}
         <a href="#" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; color: #1446C2; text-decoration: none; font-size: 15px; font-weight: 600">Sign Up</a>
       </div>
       <span style="font-size: 14px; line-height: 21px; color: #DCE5FB">Outline for navigation away; solid white only to submit a form.</span>
+      <span style="font-size: 13px; line-height: 19px; color: #DCE5FB; border-top: 1px solid rgba(255,255,255,.35); padding-top: 12px"><span style="font-weight: 600; color: #FFFFFF">Hover and press</span>&nbsp; Outline fills with white at 12% on hover; its arrow slides 4px right. Press scales to .97.</span>
     </div>
 
     <div class="ds-card ds-cardrow" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 32px; align-items: flex-start">
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Service card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Tint surface, image flush on top, title with a link arrow. Whole card is the link.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Service card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Tint surface, image flush on top, title with a link arrow. Whole card is the link.</span><span style="display: flex; align-items: center; gap: 8px; margin-top: 8px"><span style="width: 28px; height: 20px; border-radius: 4px; background: #D9E3FA"></span><svg width="16" height="8" viewBox="0 0 40 12" fill="none" stroke="#6B6B70" stroke-width="2" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg><span style="width: 28px; height: 20px; border-radius: 4px; background: #C9D6F7"></span></span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #1446C2">Hover and press</span>&nbsp; Surface deepens Tint to Sky; the arrow nudges 2px up and right.</span></div>
       <div style="flex: 1; border-radius: 8px; overflow: hidden; background: #D9E3FA">
         <div style="aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; background: #E6E1D8; color: #5E5953; font-size: 13px">Service image, 16:10</div>
         <div style="padding: 18px 20px 20px; display: flex; justify-content: space-between; align-items: center; color: #1446C2"><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.015em">Executive Search</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></div>
       </div>
     </div>
     <div class="ds-card ds-cardrow" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 32px; align-items: flex-start">
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Team card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Portrait 4:5. Name, role, then email under a tinted hairline.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Team card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Portrait 4:5. Name, role, then email under a tinted hairline.</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #1446C2">Hover and press</span>&nbsp; The card lifts 4px and the portrait scales to 1.04 inside its frame; the email arrow nudges up-right.</span></div>
       <div style="width: 240px; border-radius: 8px; overflow: hidden; background: #D9E3FA">
         <div style="height: 150px; display: flex; align-items: center; justify-content: center; background: #E6E1D8; color: #5E5953; font-size: 13px">Portrait, 4:5</div>
         <div style="padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 4px">
@@ -274,21 +284,51 @@ a{color:#1446C2}a:hover{color:#0D3393}
           <p style="margin: 0 0 0 46px; font-size: 16px; line-height: 26px; color: #DCE5FB">Detail aligns with the step title.</p>
         </div>
       </div>
+      <span style="font-size: 13px; line-height: 19px; color: #DCE5FB; border-top: 1px solid rgba(255,255,255,.35); padding-top: 12px"><span style="font-weight: 600; color: #FFFFFF">Hover and press</span>&nbsp; The step title nudges 6px right. Opening a step fades the detail in as it slides down 6px.</span>
     </div>
     <div class="ds-card" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 32px">
-      <span style="font-size: 15px; font-weight: 600">Navigation, progress, stat, input</span>
+      <span style="font-size: 15px; font-weight: 600">Navigation, progress, stat, input, client logo</span>
       <div class="ds-wrap" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 500; color: #1446C2"><span>Home</span><span style="text-decoration: underline; text-underline-offset: 6px">Services</span><span>Articles</span><span style="padding: 12px 22px; border-radius: 999px; background: #1446C2; color: #FFFFFF">Contact Us</span></div>
       <div style="display: flex; align-items: center; gap: 20px"><span style="font-size: 14px; font-weight: 500; color: #3A3A3F">02 / 03</span><div style="flex: 1; display: flex; gap: 4px; align-items: center"><span style="flex: 1; height: 1px; background: #BDB6AB"></span><span style="flex: 1; height: 3px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #BDB6AB"></span></div></div>
       <div style="display: flex; align-items: baseline; gap: 14px; color: #1446C2"><span style="font-size: 56px; line-height: 1; font-weight: 400; letter-spacing: -0.04em">30+</span><span style="font-size: 18px; font-weight: 500">Happy Clients</span></div>
       <label style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; font-weight: 500; max-width: 380px">Email
         <input type="email" placeholder="Your email address" style="min-height: 52px; border: 0; border-bottom: 1px solid #1446C2; background: transparent; font: inherit; font-size: 16px; font-weight: 400">
       </label>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 380px; border-top: 1px solid #D9D3C9; border-left: 1px solid #D9D3C9"><div style="height: 88px; border-right: 1px solid #D9D3C9; border-bottom: 1px solid #D9D3C9; background: transparent; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box"><div style="width: 100%; max-width: 120px; height: 36px; border-radius: 4px; background: #E6E1D8; color: #5E5953; display: flex; align-items: center; justify-content: center; font-size: 12px">Logo</div></div><div style="height: 88px; border-right: 1px solid #D9D3C9; border-bottom: 1px solid #D9D3C9; background: #EEF3FD; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box"><div style="width: 100%; max-width: 120px; height: 36px; border-radius: 4px; background: #E6E1D8; color: #5E5953; display: flex; align-items: center; justify-content: center; font-size: 12px; transform: translateY(-2px)">Logo</div></div></div>
+      <span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #1446C2">Hover and press</span>&nbsp; Nav links darken to Deep Blue and underline. A client logo cell tints to Wash and its logo lifts 2px (right).</span>
+    </div>
+
+    <div class="ds-card" style="grid-column: 1 / -1; border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
+      <div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span style="font-size: 15px; font-weight: 600">Contact form</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Closes the page under the CTA headline. A Tint panel, labels above underlined fields, two columns that stack to one on phones. Submitting swaps the panel for a short thank-you.</span></div>
+      <div class="ds-stack" style="display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 40px; align-items: start">
+        <form class="ds-form" aria-label="Contact form example" style="margin: 0; background: #D9E3FA; border-radius: 8px; padding: 48px; box-sizing: border-box; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px">
+          <label class="ds-field">Name *<input type="text" name="name"></label>
+          <label class="ds-field ds-field-focus">Work email *<input type="email" name="email"></label>
+          <label class="ds-field">Company<input type="text" name="company"></label>
+          <label class="ds-field">Role you’re hiring for<input type="text" name="role"></label>
+          <label class="ds-field" style="grid-column: 1 / -1">How can we help? *<textarea name="message" rows="4"></textarea></label>
+          <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 8px">
+            <span style="font-size: 13px; color: #3A3A3F">* Required</span>
+            <button type="button" class="ds-form-btn" style="display: inline-flex; align-items: center; gap: 36px; min-height: 56px; padding: 0 24px 0 30px; border: 0; border-radius: 999px; background: #1446C2; color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 500">Get The Maverick Experience <svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></button>
+          </div>
+        </form>
+        <div style="display: flex; flex-direction: column; gap: 24px">
+          <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Field</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Label 15 / 22, 500, Ink, above the input. Input 16 / 26, min-height 52, 1px rule in Blue at 35%. Mark required fields with an asterisk and explain it once: “* Required”, 13px Graphite.</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Focus</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The rule turns Maverick Blue and doubles with a 1px shadow line, over 200ms (Work email, left).</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Panel</span><span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Tint, radius 8, padding 48 (24 on phones), max width 760. Gaps 32 down, 24 across. The submit is the page’s last primary pill.</span></div>
+          <div role="status" style="border-top: 1px solid #D9D3C9; padding-top: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px">
+            <span style="font-size: 13px; font-weight: 500; color: #6B6B70; margin-bottom: 8px">Success state</span>
+            <p style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 450; letter-spacing: -0.02em; color: #1446C2">Thank you. We’ll be in touch shortly.</p>
+            <a href="#" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 500; text-decoration: underline; text-underline-offset: 6px">Send another message</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- 05 ILLUSTRATION & IMAGERY -->
-<section class="ds-sec ds-sec-last" style="padding: 136px 120px 136px; display: flex; flex-direction: column; gap: 48px">
+<section class="ds-sec" style="padding: 136px 120px 0; display: flex; flex-direction: column; gap: 48px">
   <div style="display: flex; flex-direction: column; gap: 20px">
     <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">05</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Illustration and imagery</p>
     <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">Ink-drawn metaphors for fit, search and difference.</h2>
@@ -317,9 +357,117 @@ a{color:#1446C2}a:hover{color:#0D3393}
     <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Placeholders</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Sand with an icon and the ratio written out, so final images drop straight in at the right shape.</span></div>
   </div>
 </section>
+
+<!-- 06 MOTION -->
+<section class="ds-sec ds-sec-last" style="padding: 136px 120px 136px; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 500; color: #3A3A3F"><span style="font-weight: 600; color: #1446C2">06</span><span style="width: 32px; height: 1px; background: #1446C2"></span>Motion</p>
+    <h2 class="ds-h2" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 450; letter-spacing: -0.03em">Quick to answer, calm to arrive.</h2>
+    <p style="margin: 0; font-size: 17px; line-height: 28px; color: #3A3A3F; max-width: 620px">Motion confirms a touch and paces the scroll. It never decorates: things fade up into place once, controls answer within 200ms, and nothing loops except the hero illustration’s slow float.</p>
+  </div>
+
+  <div style="display: flex; flex-direction: column">
+    <span style="font-size: 15px; font-weight: 600; padding-bottom: 16px; border-bottom: 1px solid #D9D3C9">Easing</span>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600"><svg width="40" height="40" viewBox="-2 -2 52 52" fill="none" aria-hidden="true" style="flex: none; border: 1px solid #D9D3C9; border-radius: 4px"><path d="M0 48 C11 0, 15.4 0, 48 0" stroke="#1446C2" stroke-width="2.5" stroke-linecap="round"></path></svg>Ease out</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">cubic-bezier(.23, 1, .32, 1)<br>--ease-out</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Default for reveals, presses, hovers that move and anything entering.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600"><svg width="40" height="40" viewBox="-2 -2 52 52" fill="none" aria-hidden="true" style="flex: none; border: 1px solid #D9D3C9; border-radius: 4px"><path d="M0 48 C37 48, 8.4 0, 48 0" stroke="#1446C2" stroke-width="2.5" stroke-linecap="round"></path></svg>Ease in-out</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">cubic-bezier(.77, 0, .175, 1)<br>--ease-in-out</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Lines that draw across the screen: process route, timeline, wipes.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600"><svg width="40" height="40" viewBox="-2 -2 52 52" fill="none" aria-hidden="true" style="flex: none; border: 1px solid #D9D3C9; border-radius: 4px"><path d="M0 48 C15.4 13.4, 0 0, 48 0" stroke="#1446C2" stroke-width="2.5" stroke-linecap="round"></path></svg>Drawer</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">cubic-bezier(.32, .72, 0, 1)<br>--ease-drawer</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The services carousel track sliding between cards.</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column">
+    <span style="font-size: 15px; font-weight: 600; padding-bottom: 16px; border-bottom: 1px solid #D9D3C9">Duration</span>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Press</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">160ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Pills and round buttons scale to .97 while held.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Hover and colour</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">150–200ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Link and button colour, card surfaces, field focus. Movement on hover runs 250–400ms.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Carousel</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">500ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Services track, with the drawer curve.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Reveals</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">600–900ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Hero entrance 600ms; on-scroll fades 700ms; large rises 900ms. Line drawing runs longer, 1–1.6s.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Stagger</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">60–70ms per item</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Siblings in a group enter in order; the mobile menu uses 30ms per link.</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column">
+    <span style="font-size: 15px; font-weight: 600; padding-bottom: 16px; border-bottom: 1px solid #D9D3C9">Patterns</span>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Hero entrance</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">600ms, staggered</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Marker, headline, lead and button rise 12px and fade in; the illustration fades, then floats 8px on a slow 7s loop.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Scroll reveal</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">700ms, 70ms stagger</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Headings and cards fade up 20px once as they enter the viewport. Never replayed.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Services carousel</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">500ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">New cards slide in from the right (40px); the track moves on the drawer curve.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Process route</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">1.6s, in-out</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The dotted route is uncovered left to right, as if drawn, then the steps fade up.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Story timeline</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">500ms dot, 900ms line</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Each chapter’s dot lands with a small overshoot, then the line draws to the next.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Stats</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">1.4s count</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Figures count up from zero when the band appears; the dividers grow from the centre.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Accordion and menu</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">250ms / 200ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">A step’s detail fades in sliding 6px down. The mobile menu slides down 8px; its links follow, staggered.</span>
+    </div>
+    <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Form success</span>
+      <span style="font-size: 14px; line-height: 21px; color: #1446C2; font-variant-numeric: tabular-nums">400ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The thank-you fades up 8px in place of the form.</span>
+    </div>
+  </div>
+
+  <div class="ds-stack" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; border-top: 1px solid #D9D3C9; padding-top: 32px">
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Hover needs a pointer</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Hover effects only apply under (hover: hover) and (pointer: fine), so taps never leave sticky states.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Transitions, not keyframes</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Interactive states use transitions so they can be interrupted midway. Keyframes are kept for one-off entrances and the float.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Exits are faster</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">Leaving takes less time than arriving. Closing a step or the menu is near-instant.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Reduced motion</span><span style="font-size: 14px; line-height: 22px; color: #3A3A3F">With prefers-reduced-motion, fades stay but movement goes: no rises, slides, scaling, drawing, float or count-up.</span></div>
+  </div>
+</section>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4500}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8800}}'>
 class Component extends DCLogic {
   renderVals() {
     return {};
