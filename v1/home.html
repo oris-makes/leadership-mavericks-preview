@@ -15,6 +15,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#F8F6F0}
+/* image-set switch (review tool): flips every photo between the original and the India set */
+.lm-imgswitch{position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:4px;padding:4px 4px 4px 14px;background:#311023;color:#C9A3BC;border:1px solid #4F1F3B;border-radius:999px;font:500 13px/1 Inter,system-ui,sans-serif}
+.lm-imgswitch span{margin-right:6px}
+.lm-imgswitch button{min-height:36px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:#E3CFDB;font:inherit;cursor:pointer;transition:background-color 150ms ease,color 150ms ease,transform 160ms cubic-bezier(.23,1,.32,1)}
+.lm-imgswitch button[aria-pressed="true"]{background:#E9E5D6;color:#311023}
+.lm-imgswitch button:active{transform:scale(.97)}
 a{color:inherit}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #A86A92;outline-offset:3px}
 .lm-menu,.lm-panel,.lm-email-short{display:none}
@@ -59,7 +65,7 @@ a{transition:opacity 150ms ease}
 .lm-svc-num{font-family:'Source Serif 4',Georgia,serif;font-weight:300;font-size:32px;line-height:1.2}
 .lm-svc h3{margin:0;font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:26px;line-height:1.2;color:inherit}
 .lm-svc-media{position:relative;aspect-ratio:4/3}
-.lm-svc-media>img,.lm-svc-media>.lm-svc-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.lm-svc-media>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .lm-svc-body{position:absolute;inset:0;z-index:2;padding:0 24px 24px;color:#7A1E5A;visibility:hidden;transition:visibility 0s linear 320ms}
 .lm-svc-body p{margin:0}
 .lm-svc-body ul{margin:0;padding-left:16px;list-style:none;display:flex;flex-direction:column;gap:8px}
@@ -120,7 +126,8 @@ html.lm-js [data-reveal=draw] path:nth-child(4){transition-delay:450ms}
 .lm-hero-img>img{animation:lmFade 700ms ease-out both,lmZoom 2400ms var(--ease-out) both}
 /* banner: photo settles from a slow zoom as it comes into view */
 #about{background:#D8CDD3!important;isolation:isolate;overflow:hidden;margin-bottom:-1px}
-#about::before{content:"";position:absolute;inset:0;z-index:-1;background:url(./assets/banner.png) center/cover no-repeat}
+#about::before{content:"";position:absolute;inset:0;z-index:-1;background:url(./assets/original/banner.png) center/cover no-repeat}
+[data-imgset="india"] #about::before{background-image:url(./assets/india/banner.png)}
 html.lm-js #about::before{transform:scale(1.08);transition:transform 1800ms var(--ease-out)}
 html.lm-js #about[data-in]::before{transform:none}
 /* approach: the circles bloom open petal by petal (clockwise from top-left),
@@ -201,7 +208,7 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
   .lm-stats li{flex-direction:row!important;align-items:baseline;gap:16px!important;padding:20px 24px!important;box-shadow:inset 0 1px 0 #4F1F3B!important}
   .lm-stats li:first-child{box-shadow:none!important}
   .lm-stats li span:first-child{flex:0 0 104px;font-size:44px!important}
-  .lm-banner-h{text-align:right}
+  .lm-banner-h{text-align:center}
   .lm-venn span{font-size:15px!important}
   .lm-partners{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:32px 14px!important}
   .lm-partners h3{font-size:19px!important}
@@ -210,9 +217,25 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
   .lm-cta-main{align-self:stretch;justify-content:center}
   .lm-svc-num{font-size:24px}
 }
+/* sectors & seats marquee */
+.lm-mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.lm-mq-track{display:flex;width:max-content}
+.lm-mq-group{display:flex;align-items:center;flex-shrink:0;margin:0;padding:0;list-style:none;animation:lmMarquee var(--lm-mq-dur,32s) linear infinite}
+.lm-mq-group li{white-space:nowrap;padding:4px 0}
+.lm-mq-sep{display:flex;align-items:center;padding:0 clamp(20px,2.4vw,36px)!important;color:#A86A92}
+.lm-mq-rev .lm-mq-group{animation-direction:reverse}
+.lm-mq:hover .lm-mq-group{animation-play-state:paused}
+@keyframes lmMarquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion: reduce){
+  .lm-mq{-webkit-mask-image:none;mask-image:none}
+  .lm-mq-track{width:auto}
+  .lm-mq-group{animation:none!important;flex-wrap:wrap;flex-shrink:1;row-gap:8px}
+  .lm-mq-group[aria-hidden]{display:none}
+  .lm-mq-group li:last-child{display:none}
+}
 </style>
 </helmet>
-<div style="font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: #241019; background: #F8F6F0; width: 100%; overflow-x: hidden; font-feature-settings: 'ss01', 'cv11'">
+<div data-imgset="{{imgSet}}" style="font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: #241019; background: #F8F6F0; width: 100%; overflow-x: hidden; font-feature-settings: 'ss01', 'cv11'">
 
 <!-- ================= HERO ================= -->
 <header id="top" style="background: #311023; color: #F8F6F0; display: flex; flex-wrap: wrap">
@@ -274,7 +297,7 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
   </div>
 
   <div class="lm-hero-img" style="flex: 1 1 520px; min-height: 720px; background: #4A1D37; display: flex; align-items: center; justify-content: center; position: relative">
-    <img src="./assets/hero.png" alt="Leaders reviewing documents together around a table" width="1040" height="1077" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+    <img src="{{img.hero}}" alt="{{img.heroAlt}}" width="1040" height="1077" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
   </div>
 </header>
 
@@ -299,9 +322,9 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
 </section>
 
 <!-- ================= BANNER + PROOF ================= -->
-<section id="about" aria-labelledby="search-begins" style="position: relative; background: #D8CDD3 url(./assets/banner.png) center / cover no-repeat; min-height: 600px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box">
+<section id="about" aria-labelledby="search-begins" style="position: relative; background: #D8CDD3 url(./assets/original/banner.png) center / cover no-repeat; min-height: 600px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box">
   <div style="max-width: 1264px; width: 100%; margin: 0 auto; padding: 32px clamp(24px, 6vw, 88px) 0; box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px">
-    <h2 id="search-begins" class="lm-banner-h" style="margin: clamp(48px, 7vw, 96px) 0 0 auto; max-width: 8em; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(40px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.02em; color: #311023">Where every search begins.</h2>
+    <h2 id="search-begins" class="lm-banner-h" style="margin: clamp(48px, 7vw, 96px) auto 0; max-width: 14em; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(28px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.02em; color: #311023">Where every search begins.</h2>
   </div>
   <div class="lm-stats-wrap" style="max-width: 1264px; width: 100%; margin: 0 auto; padding: 0 clamp(24px, 6vw, 88px); box-sizing: border-box; transform: translateY(1px)">
     <ul class="lm-stats" style="list-style: none; margin: 0; padding: 0; background: #311023; color: #F8F6F0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-radius: 4px 4px 0 0">
@@ -389,7 +412,7 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
           <h3>Executive search</h3>
         </div>
         <div class="lm-svc-media">
-          <img src="./assets/service-executive-search.png" alt="Executive in a suit reviewing papers at a desk" width="398" height="340" loading="lazy">
+          <img src="{{img.search}}" alt="{{img.searchAlt}}" width="398" height="340" loading="lazy">
           <div class="lm-svc-body">
             <p>Board, CXO and senior leadership hires, run end to end by a partner.</p>
           </div>
@@ -401,7 +424,7 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
           <h3>Market mapping</h3>
         </div>
         <div class="lm-svc-media">
-          <img src="./assets/service-market-mapping.png" alt="Laptop showing a world map of market data" width="398" height="340" loading="lazy">
+          <img src="{{img.mapping}}" alt="{{img.mappingAlt}}" width="398" height="340" loading="lazy">
           <div class="lm-svc-body">
             <p>A clear view of the talent pool and competitor teams before you hire.</p>
           </div>
@@ -413,18 +436,7 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
           <h3>Bespoke consulting</h3>
         </div>
         <div class="lm-svc-media">
-          <div class="lm-svc-art" style="background: #311023; color: #E9E5D6; display: flex; align-items: center; justify-content: center">
-            <svg width="62%" role="img" aria-label="Illustration of an organisation chart" viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="88" y="8" width="44" height="28" rx="3"></rect>
-            <path d="M110 36v18M40 54h140M40 54v16M110 54v16M180 54v16"></path>
-            <rect x="18" y="70" width="44" height="28" rx="3"></rect>
-            <rect x="88" y="70" width="44" height="28" rx="3" fill="#7A1E5A" stroke="#E9E5D6"></rect>
-            <rect x="158" y="70" width="44" height="28" rx="3"></rect>
-            <path d="M110 98v14M88 112h44M88 112v10M132 112v10"></path>
-            <circle cx="88" cy="132" r="8"></circle>
-            <circle cx="132" cy="132" r="8"></circle>
-          </svg>
-          </div>
+          <img src="{{img.bespoke}}" alt="{{img.bespokeAlt}}" width="398" height="340" loading="lazy">
           <div class="lm-svc-body">
             <ul>
               <li>Shape their teams through organisation design and compensation benchmarking.</li>
@@ -439,7 +451,7 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
           <h3>Diversity &amp; niche searches</h3>
         </div>
         <div class="lm-svc-media">
-          <img src="./assets/service-diversity.png" alt="Three young professionals reading a map together" width="398" height="340" loading="lazy">
+          <img src="{{img.diversity}}" alt="{{img.diversityAlt}}" width="398" height="340" loading="lazy">
           <div class="lm-svc-body">
             <p>Searches for under-represented and hard-to-find leadership profiles.</p>
           </div>
@@ -465,14 +477,14 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
     <dl style="margin: 0; display: flex; flex-direction: column">
       <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 48px; padding: 28px 0; border-top: 1px solid #C9BFA6">
         <dt style="flex: 0 0 120px; font-size: 14px; font-weight: 500; color: #7A1E5A">Sectors</dt>
-        <dd style="margin: 0; flex: 1 1 400px; display: flex; flex-wrap: wrap; gap: 8px 40px; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; color: #311023">
-          <span>IT</span><span>Software</span><span>Hardware</span><span>Semiconductor</span>
+        <dd class="lm-mq lm-mq-rev" style="margin: 0; flex: 1 1 400px; min-width: 0; --lm-mq-dur: 30s; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; color: #311023">
+          <div class="lm-mq-track"><ul class="lm-mq-group"><li>IT</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Software</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Hardware</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Semiconductor</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li></ul><ul class="lm-mq-group" aria-hidden="true"><li>IT</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Software</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Hardware</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Semiconductor</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li></ul><ul class="lm-mq-group" aria-hidden="true"><li>IT</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Software</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Hardware</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>Semiconductor</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li></ul></div>
         </dd>
       </div>
       <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 48px; padding: 28px 0; border-top: 1px solid #C9BFA6; border-bottom: 1px solid #C9BFA6">
         <dt style="flex: 0 0 120px; font-size: 14px; font-weight: 500; color: #7A1E5A">Seats</dt>
-        <dd style="margin: 0; flex: 1 1 400px; display: flex; flex-wrap: wrap; gap: 8px 40px; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; color: #311023">
-          <span>CEO</span><span>COO</span><span>CTO / CIO</span><span>CHRO</span><span>CDO</span><span>CFO</span>
+        <dd class="lm-mq " style="margin: 0; flex: 1 1 400px; min-width: 0; --lm-mq-dur: 38s; font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; color: #311023">
+          <div class="lm-mq-track"><ul class="lm-mq-group"><li>CEO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>COO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CTO / CIO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CHRO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CDO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CFO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li></ul><ul class="lm-mq-group" aria-hidden="true"><li>CEO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>COO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CTO / CIO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CHRO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CDO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CFO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li></ul><ul class="lm-mq-group" aria-hidden="true"><li>CEO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>COO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CTO / CIO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CHRO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CDO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li><li>CFO</li><li aria-hidden="true" class="lm-mq-sep"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 15L8 1"></path></svg></li></ul></div>
         </dd>
       </div>
     </dl>
@@ -602,13 +614,46 @@ html.lm-js .lm-venn[data-in]>div:last-child::after{animation:lmPulse 1600ms var(
   </div>
 </footer>
 
+<div class="lm-imgswitch" role="group" aria-label="Image set">
+  <span>Images</span>
+  <button type="button" aria-pressed="{{imgOriginal}}" onClick="{{useOriginal}}">Original</button>
+  <button type="button" aria-pressed="{{imgIndia}}" onClick="{{useIndia}}">India</button>
+</div>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+const IMAGE_SETS = {
+  original: {
+    hero: './assets/original/hero.png', heroAlt: 'Leaders reviewing documents together around a table',
+    search: './assets/original/service-executive-search.png', searchAlt: 'Executive in a suit reviewing papers at a desk',
+    mapping: './assets/original/service-market-mapping.png', mappingAlt: 'Laptop showing a world map of market data',
+    bespoke: './assets/original/service-bespoke-consulting.png', bespokeAlt: 'Hands marking up technical drawings and plans on a table',
+    diversity: './assets/original/service-diversity.png', diversityAlt: 'Three young professionals reading a map together'
+  },
+  india: {
+    hero: './assets/india/hero.png', heroAlt: 'A senior woman partner leading a shortlist review with colleagues',
+    search: './assets/india/service-executive-search.png', searchAlt: 'A woman partner in a sari and blazer reviewing a candidate profile',
+    mapping: './assets/india/service-market-mapping.png', mappingAlt: 'A woman mapping talent clusters across India on a laptop and printed map',
+    bespoke: './assets/india/service-bespoke-consulting.png', bespokeAlt: 'Two women consultants arranging cards into an organisation structure',
+    diversity: './assets/india/service-diversity.png', diversityAlt: 'A woman leader pointing out a route on a map to two colleagues'
+  }
+};
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { menuOpen: false, sent: false };
+    // image set: ?imgs=original|india in the URL wins, then the viewer's last choice, then India
+    let imgSet = 'india';
+    try {
+      const fromUrl = new URLSearchParams(location.search).get('imgs');
+      const saved = localStorage.getItem('lm-v1-imgset');
+      imgSet = IMAGE_SETS[fromUrl] ? fromUrl : IMAGE_SETS[saved] ? saved : imgSet;
+    } catch (e) {}
+    this.state = { menuOpen: false, sent: false, imgSet };
+  }
+  setImgSet(imgSet) {
+    try { localStorage.setItem('lm-v1-imgset', imgSet); } catch (e) {}
+    this.setState({ imgSet });
   }
   renderVals() {
     const open = !!this.state.menuOpen;
@@ -621,7 +666,13 @@ class Component extends DCLogic {
       formOpen: !this.state.sent,
       formSent: !!this.state.sent,
       submitContact: (e) => { e.preventDefault(); this.setState({ sent: true }); },
-      resetContact: () => this.setState({ sent: false })
+      resetContact: () => this.setState({ sent: false }),
+      imgSet: this.state.imgSet,
+      img: IMAGE_SETS[this.state.imgSet],
+      imgOriginal: this.state.imgSet === 'original',
+      imgIndia: this.state.imgSet === 'india',
+      useOriginal: () => this.setImgSet('original'),
+      useIndia: () => this.setImgSet('india')
     };
   }
 }

@@ -85,6 +85,46 @@ html.lm-js [data-reveal=timeline]>span:first-child{transition:transform 500ms cu
 html.lm-js [data-reveal=timeline]>span:last-child{transform-origin:left center;transition:transform 900ms var(--ease-in-out);transition-delay:calc(var(--d,0) * 220ms + 150ms)}
 html.lm-js [data-reveal=timeline]:not([data-in])>span:first-child{transform:scale(0)}
 html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scaleX(0)}
+/* route (02 How we do it): a dot travels the dotted route, stops land as it reaches them,
+   the detour branches off, the compass finds north, and the flag goes up on arrival. Plays once. */
+@keyframes lmDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes lmLand{0%{transform:scale(0)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes lmTravel{0%{offset-distance:0%;opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes lmNeedle{0%{transform:rotate(-200deg)}55%{transform:rotate(24deg)}75%{transform:rotate(-10deg)}90%{transform:rotate(4deg)}100%{transform:rotate(0)}}
+@keyframes lmUnfurl{0%{transform:scaleX(0)}70%{transform:scaleX(1.08)}100%{transform:scaleX(1)}}
+.lm-route-reveal,.lm-branch-reveal,.lm-route-pole,.lm-route-dial{stroke-dasharray:1 2}
+.lm-route-start,.lm-route-stop,.lm-route-needle{transform-box:fill-box;transform-origin:center}
+.lm-route-flag{transform-box:fill-box;transform-origin:left center}
+.lm-route-dot{opacity:0;offset-path:path('M20 220 C90 220 80 140 150 140 S220 210 260 170 S230 60 290 70 S360 120 380 60');offset-rotate:0deg}
+@media (prefers-reduced-motion: no-preference){
+  html.lm-js .lm-route:not([data-in]) :is(.lm-route-reveal,.lm-branch-reveal,.lm-route-pole,.lm-route-dial){stroke-dashoffset:1}
+  html.lm-js .lm-route:not([data-in]) :is(.lm-route-start,.lm-route-stop,.lm-route-needle){transform:scale(0)}
+  html.lm-js .lm-route:not([data-in]) .lm-route-flag{transform:scaleX(0)}
+  html.lm-js .lm-route[data-in] .lm-route-dial{animation:lmDraw 900ms var(--ease-in-out) both}
+  html.lm-js .lm-route[data-in] .lm-route-needle{animation:lmNeedle 1400ms var(--ease-out) 150ms both}
+  html.lm-js .lm-route[data-in] .lm-route-start{animation:lmLand 450ms var(--ease-out) both}
+  html.lm-js .lm-route[data-in] .lm-route-reveal{animation:lmDraw 1800ms cubic-bezier(.37,0,.63,1) 250ms both}
+  html.lm-js .lm-route[data-in] .lm-route-stop{animation:lmLand 450ms var(--ease-out) var(--at) both}
+  html.lm-js .lm-route[data-in] .lm-branch-reveal{animation:lmDraw 700ms var(--ease-in-out) 960ms both}
+  html.lm-js .lm-route[data-in] .lm-route-pole{animation:lmDraw 350ms var(--ease-out) 2050ms both}
+  html.lm-js .lm-route[data-in] .lm-route-flag{animation:lmUnfurl 500ms var(--ease-out) 2350ms both}
+  @supports (offset-distance:0%){
+    html.lm-js .lm-route[data-in] .lm-route-dot{animation:lmTravel 1800ms cubic-bezier(.37,0,.63,1) 250ms both}
+  }
+}
+/* team: photo by default, the illustrated avatar crossfades in on hover or keyboard focus */
+.lm-team-illo{opacity:0;transform:scale(.96)}
+.lm-team-photo,.lm-team-illo{transition:opacity 300ms var(--ease-out),transform 400ms var(--ease-out)!important}
+.lm-team>article:focus-within .lm-team-photo{opacity:0}
+.lm-team>article:focus-within .lm-team-illo{opacity:1;transform:none}
+@media (hover:hover) and (pointer:fine){
+  .lm-team>article:hover .lm-team-photo{opacity:0;transform:scale(1.04)}
+  .lm-team>article:hover .lm-team-illo{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion: reduce){.lm-team-photo,.lm-team-illo{transform:none!important}}
+/* clients: 10 logos, two rows of five; two a row on phones */
+.lm-logos{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:640px){.lm-logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* stats divider grows from the centre */
 html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 /* hover details */
@@ -217,7 +257,10 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
       <a class="lm-primary" href="#contact" style="margin-left: 10px; padding: 12px 22px; font-size: 15px; font-weight: 500; text-decoration: none; color: #FFFFFF; background: #1446C2; border-radius: 999px; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1)">Contact Us</a>
     </nav>
     <div class="lm-fade" style="position: relative; flex: 1; display: flex; align-items: center; justify-content: center">
-      <img src="./assets/hero-v2.png" alt="" width="936" height="936" style="width: 100%; max-width: 560px; height: auto; display: block">
+      <picture style="display: block; width: 100%; max-width: 560px">
+        <source srcset="./assets/hero-v2.png" media="(prefers-reduced-motion: reduce)">
+        <img src="./assets/hero-v2.gif" alt="" width="1000" height="1000" style="width: 100%; height: auto; display: block">
+      </picture>
     </div>
   </div>
 </header>
@@ -242,12 +285,11 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
   </div>
 
   <div style="overflow: hidden; margin-top: 64px">
-    <div class="lm-track" style="display: flex; gap: 24px; padding-left: max(24px, calc((100% - 1200px) / 2)); transition: transform 500ms cubic-bezier(.32,.72,0,1); transform: translateX(calc(-{{idx}} * (min(520px, 82vw) + 24px)))">
-      <sc-for list="{{services}}" as="s" hint-placeholder-count="3">
-        <a class="lm-scard" href="#services" style="flex: 0 0 min(520px, 82vw); border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column; text-decoration: none; color: #1446C2">
-          <div style="aspect-ratio: 16 / 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
-            <span>Service image, 16:10</span>
+    <div class="lm-track" style="display: flex; gap: 24px; padding-left: max(24px, calc((100% - 1200px) / 2)); transition: transform 500ms cubic-bezier(.32,.72,0,1); transform: translateX(calc(-{{idx}} * (min(400px, 78vw) + 24px)))">
+      <sc-for list="{{services}}" as="s" hint-placeholder-count="4">
+        <a class="lm-scard" href="#services" style="flex: 0 0 min(400px, 78vw); border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column; text-decoration: none; color: #1446C2">
+          <div style="aspect-ratio: 1 / 1; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+            <img src="{{s.img}}" alt="{{s.alt}}" width="450" height="450" loading="lazy" style="width: 88%; height: 88%; object-fit: contain; display: block">
           </div>
           <div style="padding: 22px 24px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
             <h3 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500; letter-spacing: -0.015em">{{s.name}}</h3>
@@ -261,7 +303,7 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
   <div style="max-width: 1248px; margin: 32px auto 0; padding: 0 24px; box-sizing: border-box; display: flex; align-items: center; gap: 20px">
     <span style="font-size: 14px; font-weight: 500; color: #3A3A3F; font-variant-numeric: tabular-nums; min-width: 44px">{{counter}}</span>
     <div style="flex: 1; display: flex; gap: 4px">
-      <sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
+      <sc-for list="{{dots}}" as="d" hint-placeholder-count="4">
         <button type="button" aria-label="{{d.label}}" onClick="{{d.pick}}" style="flex: 1; height: 44px; border: 0; padding: 0; background: transparent; display: flex; align-items: center; cursor: pointer">
           <span style="{{d.dotStyle}}"></span>
         </button>
@@ -279,16 +321,21 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
         <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em">Less Guesswork.<br>More Groundwork.</h2>
         <p class="lm-lead" style="margin: 0; font-size: 18px; line-height: 29px; color: #DCE5FB; max-width: 540px; text-wrap: pretty">Designed around your business, rather than a standard playbook. We bring independent thinking backed by the experience and discipline to deliver.</p>
       </div>
-      <svg viewBox="0 0 420 260" style="flex: 0 1 400px; width: 100%; max-width: 400px; height: auto" aria-hidden="true">
-        <path d="M20 220 C90 220 80 140 150 140 S220 210 260 170 S230 60 290 70 S360 120 380 60" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"></path>
-        <path d="M150 140 C120 100 190 80 200 120" fill="none" stroke="#9DB5EE" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"></path>
-        <circle cx="20" cy="220" r="9" fill="#FFFFFF"></circle>
-        <circle cx="150" cy="140" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
-        <circle cx="260" cy="170" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
-        <circle cx="290" cy="70" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
-        <path d="M380 60 V0" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path>
-        <path d="M380 2 L414 14 L380 28 Z" fill="#F8F4EE"></path>
-        <g transform="translate(60 40)" fill="none" stroke="#FFFFFF" stroke-width="2.5"><circle cx="24" cy="24" r="22"></circle><path d="M24 8 L30 24 L24 40 L18 24 Z" fill="#FFFFFF"></path></g>
+      <svg class="lm-route" viewBox="0 0 420 260" style="flex: 0 1 400px; width: 100%; max-width: 400px; height: auto; overflow: visible" aria-hidden="true">
+        <defs>
+          <mask id="lm-route-m" maskUnits="userSpaceOnUse" x="0" y="0" width="420" height="260"><path class="lm-route-reveal" d="M20 220 C90 220 80 140 150 140 S220 210 260 170 S230 60 290 70 S360 120 380 60" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" pathLength="1"></path></mask>
+          <mask id="lm-branch-m" maskUnits="userSpaceOnUse" x="0" y="0" width="420" height="260"><path class="lm-branch-reveal" d="M150 140 C120 100 190 80 200 120" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" pathLength="1"></path></mask>
+        </defs>
+        <path d="M20 220 C90 220 80 140 150 140 S220 210 260 170 S230 60 290 70 S360 120 380 60" mask="url(#lm-route-m)" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"></path>
+        <path d="M150 140 C120 100 190 80 200 120" mask="url(#lm-branch-m)" fill="none" stroke="#9DB5EE" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"></path>
+        <circle class="lm-route-start" cx="20" cy="220" r="9" fill="#FFFFFF"></circle>
+        <circle class="lm-route-stop" style="--at: 860ms" cx="150" cy="140" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        <circle class="lm-route-stop" style="--at: 1140ms" cx="260" cy="170" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        <circle class="lm-route-stop" style="--at: 1440ms" cx="290" cy="70" r="7" fill="#1446C2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        <path class="lm-route-pole" d="M380 60 V0" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" pathLength="1"></path>
+        <path class="lm-route-flag" d="M380 2 L414 14 L380 28 Z" fill="#F8F4EE"></path>
+        <g transform="translate(60 40)" fill="none" stroke="#FFFFFF" stroke-width="2.5"><circle class="lm-route-dial" cx="24" cy="24" r="22" pathLength="1"></circle><path class="lm-route-needle" d="M24 8 L30 24 L24 40 L18 24 Z" fill="#FFFFFF"></path></g>
+        <circle class="lm-route-dot" cx="0" cy="0" r="5" fill="#FFFFFF"></circle>
       </svg>
     </div>
 
@@ -323,9 +370,8 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
     <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 48px 32px">
       <li style="display: flex; flex-direction: column; gap: 24px">
         <div style="display: flex; align-items: center; gap: 14px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #1446C2"></span></div>
-        <div style="aspect-ratio: 4 / 3; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
-          <span>Story image, 4:3</span>
+        <div style="aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+          <img src="./assets/story-01.png" alt="Illustration of three colleagues sharing a high-five" width="578" height="578" loading="lazy" style="width: 84%; height: 84%; object-fit: contain; display: block">
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
           <span style="font-size: 14px; font-weight: 500; color: #6B6B70">Chapter one</span>
@@ -334,9 +380,8 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
       </li>
       <li style="display: flex; flex-direction: column; gap: 24px">
         <div style="display: flex; align-items: center; gap: 14px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #1446C2"></span></div>
-        <div style="aspect-ratio: 4 / 3; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
-          <span>Story image, 4:3</span>
+        <div style="aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+          <img src="./assets/story-02.png" alt="Illustration of four people as interlocking puzzle pieces" width="578" height="578" loading="lazy" style="width: 84%; height: 84%; object-fit: contain; display: block">
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
           <span style="font-size: 14px; font-weight: 500; color: #6B6B70">Chapter two</span>
@@ -345,9 +390,8 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
       </li>
       <li style="display: flex; flex-direction: column; gap: 24px">
         <div style="display: flex; align-items: center; gap: 14px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #1446C2"></span><span style="flex: 1; height: 1px; background: #1446C2; opacity: .3"></span></div>
-        <div style="aspect-ratio: 4 / 3; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #E6E1D8; color: #5E5953; font-size: 13px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-9 8"></path></svg>
-          <span>Story image, 4:3</span>
+        <div style="aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+          <img src="./assets/story-03.png" alt="Illustration of a person climbing a ladder as two colleagues cheer them on" width="569" height="509" loading="lazy" style="width: 84%; height: 84%; object-fit: contain; display: block">
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
           <span style="font-size: 14px; font-weight: 500; color: #6B6B70">Chapter three</span>
@@ -368,8 +412,9 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
     </div>
     <div class="lm-team" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px">
       <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
-        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
-          <img src="./assets/partner-1.png" alt="Lakshmi Prasanna" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #E6E1D8">
+          <img class="lm-team-photo" src="./assets/partner-lakshmi.png" alt="Lakshmi Prasanna" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
+          <img class="lm-team-illo" src="./assets/partner-lakshmi-illustration.png" alt="" width="736" height="555" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFFF; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
@@ -381,8 +426,9 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
         </div>
       </article>
       <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
-        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
-          <img src="./assets/partner-2.png" alt="Monika Pathak" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #E6E1D8">
+          <img class="lm-team-photo" src="./assets/partner-monika.png" alt="Monika Pathak" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
+          <img class="lm-team-illo" src="./assets/partner-monika-illustration.png" alt="" width="736" height="736" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFFF; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
@@ -394,8 +440,9 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
         </div>
       </article>
       <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
-        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
-          <img src="./assets/partner-3.png" alt="Saba Alam" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #E6E1D8">
+          <img class="lm-team-photo" src="./assets/partner-saba.png" alt="Saba Alam" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
+          <img class="lm-team-illo" src="./assets/partner-saba-illustration.png" alt="" width="736" height="736" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFFF; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
@@ -407,8 +454,9 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
         </div>
       </article>
       <article style="border-radius: 8px; overflow: hidden; background: #D9E3FA; display: flex; flex-direction: column">
-        <div style="aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: #E6E1D8">
-          <img src="./assets/partner-4.png" alt="Panini Balaji" width="300" height="300" loading="lazy" style="width: 72%; height: auto; display: block">
+        <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: #E6E1D8">
+          <img class="lm-team-photo" src="./assets/partner-panini.png" alt="Panini Balaji" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
+          <img class="lm-team-illo" src="./assets/partner-panini-illustration.png" alt="" width="736" height="736" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFFF; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
@@ -436,8 +484,8 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 <section id="articles" class="lm-sec" style="padding: 128px 0 136px">
   <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px; align-items: center">
     <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; color: #1446C2">Our Clients</h2>
-    <div style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 50%), 1fr)); border-top: 1px solid #D9D3C9; border-left: 1px solid #D9D3C9">
-      <sc-for list="{{logos}}" as="l" hint-placeholder-count="20">
+    <div class="lm-logos" style="width: 100%; display: grid; border-top: 1px solid #D9D3C9; border-left: 1px solid #D9D3C9">
+      <sc-for list="{{logos}}" as="l" hint-placeholder-count="10">
         <div class="lm-logo-cell" style="height: 120px; border-right: 1px solid #D9D3C9; border-bottom: 1px solid #D9D3C9; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box">
           <div style="width: 100%; max-width: 140px; height: 44px; border-radius: 4px; background: #E6E1D8; color: #5E5953; display: flex; align-items: center; justify-content: center; font-size: 12px">Logo {{l.n}}</div>
         </div>
@@ -515,9 +563,10 @@ class Component extends DCLogic {
   }
   renderVals() {
     const services = [
-      { name: 'Executive Search' },
-      { name: 'Market Mapping' },
-      { name: '[Third service]' }
+      { name: 'Executive Search', img: './assets/service-executive-search.png', alt: 'Illustration of a skateboarder carrying a large box at speed' },
+      { name: 'Market Mapping', img: './assets/service-market-mapping.png', alt: 'Illustration of a box striding forward on long blue legs' },
+      { name: 'Bespoke Consulting', img: './assets/service-bespoke-consulting.png', alt: 'Illustration of a person juggling rings and shapes' },
+      { name: 'Diversity & Niche Searches', img: './assets/service-diversity.png', alt: 'Illustration of a woman on a stepladder looking through binoculars' }
     ];
     const n = services.length;
     const idx = this.state.idx;
@@ -545,7 +594,7 @@ class Component extends DCLogic {
         toggle: () => this.setState({ open: open ? -1 : i })
       };
     });
-    const logos = Array.from({ length: 20 }, (_, i) => ({ n: String(i + 1).padStart(2, '0') }));
+    const logos = Array.from({ length: 10 }, (_, i) => ({ n: String(i + 1).padStart(2, '0') }));
     return {
       services, idx, dots, steps, logos,
       menuOpen: this.state.menu,
@@ -653,7 +702,7 @@ class Component extends DCLogic {
   var proc = step && step.closest('section');
   if (proc) {
     head(proc);
-    mark(q('svg[viewBox="0 0 420 260"]', proc), 'clipx', 2);
+    mark(q('.lm-route', proc), 'route');
     mark($('.lm-step-btn', proc).map(function (b) { return b.parentElement; }), 'up', 3);
     var ps = $('p', proc); mark(ps[ps.length - 1], 'fade', 6);
   }
