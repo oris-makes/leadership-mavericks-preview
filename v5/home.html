@@ -27,12 +27,8 @@ body{margin:0;background:#FFFFF4}
 /* Headings are one colour: emphasised words (<em class="lm-serif">, .lm-sig) take the heading's own font and colour */
 .lm-serif{font:inherit;font-style:normal;letter-spacing:inherit;color:inherit}
 :is(h1,h2,h3) .lm-sig{color:inherit}
-:root{--lm-wash:#ECE8E2;--lm-tint:#FFE4D9;--lm-strong:#FFD3C2;--lm-line:#D9D3C9;--lm-ph:#E6E1D8}
-/* review toggle: tint palettes. A signal peach, B apricot, C signal blocks */
-html[data-palette=a]{--lm-wash:#FFE9DE;--lm-tint:#FFD9C7;--lm-strong:#FFC2A8;--lm-line:#F5C9B4;--lm-ph:#FFE0D2}
-html[data-palette=b]{--lm-wash:#FFEEDC;--lm-tint:#FFDDB8;--lm-strong:#FFC48A;--lm-line:#F2D2AE;--lm-ph:#FFE6CC}
-html[data-palette=c]{--lm-wash:#FFFFF4;--lm-tint:#FFE2CF;--lm-strong:#FFB894;--lm-line:#F0B9A3;--lm-ph:#FFE8D9;--lm-team-bg:#FC4E2B}
-html[data-palette=c] #team .lm-team > article{background:#FFFFF4 !important}
+/* tint palette A (signal peach) */
+:root{--lm-wash:#FFE9DE;--lm-tint:#FFD9C7;--lm-strong:#FFC2A8;--lm-line:#F5C9B4;--lm-ph:#FFE0D2}
 :root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1);--ease-drawer:cubic-bezier(.32,.72,0,1)}
 a{transition:color 150ms ease}
 a{color:#1B181A}
@@ -264,13 +260,6 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 }
 @media (prefers-reduced-motion: reduce){.lm-svc-mark,.lm-svc-mark img,.lm-svc-art img{transition:none}.lm-svc-d[data-s=off] .lm-svc-art img{transform:none}}
 
-.lm-review{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-.lm-fonttoggle{display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:rgba(27,24,26,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 6px 20px rgba(27,24,26,.18);font-family:Inter,system-ui,sans-serif}
-.lm-fonttoggle span{padding:0 10px 0 12px;font-size:12px;font-weight:500;color:#A9A497}
-.lm-fonttoggle button{min-height:36px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:#D8D5C9;font-size:15px;cursor:pointer;transition:background-color 150ms ease,color 150ms ease}
-.lm-fonttoggle button[aria-pressed=true]{background:#FFFFF4;color:#1B181A}
-.lm-fonttoggle button:focus-visible{outline:2px solid #FC4E2B;outline-offset:2px}
-@media (prefers-reduced-transparency: reduce){.lm-fonttoggle{background:#1B181A;-webkit-backdrop-filter:none;backdrop-filter:none}}
 
 /* signal: focus words in headings. Darker signal on the beige sections keeps large-text contrast above 3:1 */
 .lm-sig{color:#FC4E2B}
@@ -496,7 +485,7 @@ section[id]{scroll-margin-top:72px}
 </section>
 
 <!-- 03 MEET THE MAVERICKS -->
-<section id="team" class="lm-sec" style="background: var(--lm-team-bg, var(--lm-wash)); padding: 128px 0">
+<section id="team" class="lm-sec" style="background: var(--lm-wash); padding: 128px 0">
   <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 64px">
     <div style="display: flex; flex-direction: column; gap: 20px; max-width: 820px">
       <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">Different Perspectives, <em class="lm-serif lm-serif-d">Shared Conviction</em></h2>
@@ -748,38 +737,6 @@ class Component extends DCLogic {
     };
   }
 }
-</script>
-<script>
-/* Design-review only: switch the tint palette. Remove before launch. */
-(function () {
-  var root = document.documentElement;
-  function get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
-  function put(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-  var groups = [
-    { key: 'lm-palette', attr: 'data-palette', label: 'Tints', def: 'current',
-      opts: [['current', 'Now', ''], ['a', 'A', ''], ['b', 'B', ''], ['c', 'C', '']] }
-  ];
-  var wrap = document.createElement('div');
-  wrap.className = 'lm-review';
-  groups.forEach(function (g) {
-    var bar = document.createElement('div');
-    bar.className = 'lm-fonttoggle';
-    bar.setAttribute('role', 'group');
-    bar.setAttribute('aria-label', g.label);
-    bar.innerHTML = '<span>' + g.label + '</span>' + g.opts.map(function (o) {
-      return '<button type="button" class="' + o[2] + '" data-v="' + o[0] + '">' + o[1] + '</button>';
-    }).join('');
-    function apply(v) {
-      if (v === g.def) root.removeAttribute(g.attr); else root.setAttribute(g.attr, v);
-      put(g.key, v);
-      bar.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
-    }
-    bar.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) apply(b.getAttribute('data-v')); });
-    apply(get(g.key, g.def));
-    wrap.appendChild(bar);
-  });
-  document.body.appendChild(wrap);
-})();
 </script>
 <script>
 (function () {
