@@ -41,10 +41,9 @@ The copy now uses one repeated brand line: **"The partner you meet is the partne
 - [ ] **The chapter text is DUMMY copy.** It claims more than a decade working together, a 2018 founding, and 100+ hires across eight sectors. The partners need to confirm or rewrite all of it.
 
 ## 7. Pages to build (the homepage already links to these)
-- [ ] `about.html`: full story (linked from "Read Our Story")
+- [ ] `about.html`: full story (the homepage no longer links to it; add a link once it exists)
 - [ ] `services.html`: one section per service, with anchors `#executive-search`, `#market-mapping`, `#bespoke-consulting`, `#diversity-niche`
 - [ ] `leaders.html`: for executives open to a move (what you do with profiles, how to send one, confidentiality)
-- [ ] `privacy.html`: privacy policy (needed for both forms)
 - [ ] Once those pages exist, point the top nav (About Us, Services) at them instead of the section anchors on this page
 
 ## 8. Contact details and links
@@ -55,7 +54,6 @@ The copy now uses one repeated brand line: **"The partner you meet is the partne
 
 ## 9. Forms (need a developer or form service)
 - [ ] Contact form: connect to email or a CRM. It currently only shows the thank-you message.
-- [ ] Newsletter sign-up: connect to a mailing tool (for example Mailchimp or Brevo). It currently does nothing.
 - [ ] The contact heading promises "Meet Your Partner This Week." Confirm a partner can meet every new enquiry within the week.
 - [ ] Decide who receives contact-form messages
 
