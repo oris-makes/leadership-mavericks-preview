@@ -33,7 +33,6 @@ html[data-palette=a]{--lm-wash:#FFE9DE;--lm-tint:#FFD9C7;--lm-strong:#FFC2A8;--l
 html[data-palette=b]{--lm-wash:#FFEEDC;--lm-tint:#FFDDB8;--lm-strong:#FFC48A;--lm-line:#F2D2AE;--lm-ph:#FFE6CC}
 html[data-palette=c]{--lm-wash:#FFFFF4;--lm-tint:#FFE2CF;--lm-strong:#FFB894;--lm-line:#F0B9A3;--lm-ph:#FFE8D9;--lm-team-bg:#FC4E2B}
 html[data-palette=c] #team .lm-team > article{background:#FFFFF4 !important}
-html[data-palette=c] #articles{border-top:1px solid var(--lm-line)}
 :root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1);--ease-drawer:cubic-bezier(.32,.72,0,1)}
 a{transition:color 150ms ease}
 a{color:#1B181A}
@@ -47,12 +46,10 @@ a:hover{color:#C93617}
 .lm-mlink:hover{color:#FFFFF4 !important;background:rgba(255,255,255,.08)}
 .lm-ghost-d:hover{background:#1B181A !important;color:#FFFFF4 !important}
 .lm-ghost-d:hover svg{transform:translateX(4px)}
-.lm-post:hover h3{color:#C93617}
 }
 .lm-ghost-d{transition:background-color 200ms ease,color 200ms ease,transform 160ms var(--ease-out)}
 .lm-ghost-d svg{transition:transform 200ms var(--ease-out)}
 .lm-ghost-d:active{transform:scale(.97)}
-.lm-post h3{transition:color 150ms ease}
 @keyframes lmRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes lmFade{from{opacity:0}to{opacity:1}}
 .lm-rise{animation:lmRise 600ms var(--ease-out) both}
@@ -227,36 +224,6 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 .lm-foot-nav a{display:flex !important;align-items:center;min-height:44px;box-sizing:border-box}
 .lm-logo-cell{height:96px !important;padding:16px !important}
 }
-/* capabilities: hairline lists in a dark panel */
-.lm-cap-list{list-style:none;margin:0;padding:0}
-.lm-cap-list li{padding:9px 0 10px;border-bottom:1px solid rgba(255,255,244,.32);font-size:16px;line-height:24px;font-weight:450;color:#E9E6DC}
-@media (max-width: 640px){.lm-cap-list li{font-size:15px;line-height:22px}}
-
-/* testimonials carousel: the outgoing quote drifts away and blurs, the next one arrives from the direction of travel */
-.lm-q[data-s=off]{opacity:0;visibility:hidden}
-.lm-q[data-s^=out]{visibility:hidden;transition:visibility 0s linear 420ms}
-.lm-q[data-s^=out] blockquote,.lm-q[data-s^=out] figcaption{animation:lmQOut 380ms cubic-bezier(.4,0,1,1) both}
-.lm-q[data-s^=out] figcaption{animation-delay:40ms}
-.lm-q[data-s=out-next]{--qx:-36px}.lm-q[data-s=out-prev]{--qx:36px}
-.lm-q[data-s=in-next]{--qx:48px}.lm-q[data-s=in-prev]{--qx:-48px}
-.lm-q[data-s^=in] blockquote{animation:lmQIn 700ms var(--ease-out) 140ms both}
-.lm-q[data-s^=in] figcaption{animation:lmQIn 700ms var(--ease-out) 260ms both}
-@keyframes lmQOut{from{opacity:1;transform:none;filter:blur(0)}to{opacity:0;transform:translateX(var(--qx));filter:blur(6px)}}
-@keyframes lmQIn{from{opacity:0;transform:translateX(var(--qx));filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
-/* progress bars: the active one fills over 5s and moves the carousel on when full */
-.lm-fill{transform:scaleX(0)}
-.lm-fill-done{transform:scaleX(1);opacity:.35}
-.lm-fill-on{animation:lmFill 5s linear both}
-@keyframes lmFill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-#testimonial[data-paused=true] .lm-fill-on,#testimonial:has(:focus-visible) .lm-fill-on,#testimonial[data-off] .lm-fill-on{animation-play-state:paused}
-@media (hover:hover) and (pointer:fine){#testimonial:has(.lm-q-stage:hover) .lm-fill-on{animation-play-state:paused}}
-#testimonial .lm-q-stage{touch-action:pan-y}
-@media (prefers-reduced-motion: reduce){
-  .lm-q[data-s^=in] blockquote,.lm-q[data-s^=in] figcaption{animation:lmFade 300ms ease-out both}
-  .lm-q[data-s^=out] blockquote,.lm-q[data-s^=out] figcaption{animation:none;opacity:0}
-  .lm-q[data-s^=out]{transition:none}
-  .lm-fill-on{animation:none;transform:scaleX(1)}
-}
 
 /* services index: large names on the left, the active service's detail on the right (an accordion on phones) */
 .lm-svc{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-rows:repeat(4,auto) 1fr;column-gap:clamp(40px,7vw,112px)}
@@ -314,6 +281,8 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 .lm-rot{display:block;width:max-content;max-width:100%;font:inherit;font-size:min(1em,6.4vw);letter-spacing:inherit;height:1.3em;margin-bottom:-.18em;overflow:hidden;color:inherit;white-space:nowrap}
 .lm-rot-in{display:flex;flex-direction:column;align-items:flex-start;transition:transform 650ms cubic-bezier(.65,0,.35,1)}
 .lm-rot-in>span{display:block;height:1.6em;line-height:1.3em}
+#capabilities .lm-rot{margin-left:auto;margin-right:auto}
+#capabilities .lm-rot-in{align-items:center}
 @media (prefers-reduced-motion: reduce){.lm-rot-in{transition:none}}
 
 /* ---------- apple-design refinements ---------- */
@@ -357,7 +326,6 @@ section[id]{scroll-margin-top:72px}
         <nav class="lm-desk" aria-label="Sections" style="display: flex; align-items: center">
           <a class="lm-bar-link" href="#services">Services</a>
           <a class="lm-bar-link" href="#story">About Us</a>
-          <a class="lm-bar-link" href="#articles">Articles</a>
         </nav>
         <a class="lm-primary" href="#contact" style="margin-left: 8px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #FFFFF4; color: #FC4E2B; text-decoration: none; font-size: 14px; font-weight: 600; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1)">Contact Us</a>
       </div>
@@ -385,7 +353,6 @@ section[id]{scroll-margin-top:72px}
       <nav id="lm-mobile-menu" aria-label="Mobile" style="display: flex; flex-direction: column; padding: 4px 20px 28px; border-top: 1px solid rgba(255,255,255,.25)">
         <a class="lm-mlink" href="#story" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #D8D5C9; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">About Us</a>
         <a class="lm-mlink" href="#services" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #D8D5C9; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">Services</a>
-        <a class="lm-mlink" href="#articles" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,.2); color: #D8D5C9; text-decoration: none; font-size: 20px; font-weight: 450; letter-spacing: -0.01em">Articles</a>
         <a href="#contact" onClick="{{closeMenu}}" style="margin-top: 24px; min-height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #FFFFF4; color: #FC4E2B; text-decoration: none; font-size: 16px; font-weight: 600">Contact Us</a>
       </nav>
     </sc-if>
@@ -411,7 +378,6 @@ section[id]{scroll-margin-top:72px}
     <nav class="lm-desk" aria-label="Primary" style="position: relative; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 4px">
       <a class="lm-nav" href="#story" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1B181A">About Us</a>
       <a class="lm-nav" href="#services" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1B181A">Services</a>
-      <a class="lm-nav" href="#articles" style="padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #1B181A">Articles</a>
       <a class="lm-nav" href="#contact" style="margin-left: 10px; padding: 12px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: #FC4E2B">Contact Us</a>
     </nav>
     <div class="lm-fade" style="position: relative; flex: 1; display: flex; align-items: center; justify-content: center">
@@ -519,105 +485,13 @@ section[id]{scroll-margin-top:72px}
       </sc-for>
     </div>
 
-    <p style="margin: 0; font-size: 15px; line-height: 24px; color: #D8D5C9"><strong style="color: #FFFFF4; font-weight: 600">Our forte:</strong> confidential, niche and diversity searches.</p>
   </div>
 </section>
 
-<!-- TESTIMONIALS (carousel) -->
-<section id="testimonial" class="lm-sec" aria-roledescription="carousel" aria-label="Client testimonials" data-paused="{{tPausedAttr}}" style="padding: 128px 0">
-  <div style="max-width: 1040px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
-    <p style="margin: 0; display: flex; align-items: center; gap: 14px; font-size: 14px; line-height: 20px; font-weight: 500; color: #3A3A3F"><span style="width: 32px; height: 1px; background: #1B181A"></span>In our clients’ words</p>
-
-    <div class="lm-q-stage" aria-live="{{tLive}}" style="display: grid">
-      <sc-for list="{{quotes}}" as="t" hint-placeholder-count="6">
-        <figure class="lm-q" data-s="{{t.state}}" role="group" aria-roledescription="slide" aria-label="{{t.label}}" aria-hidden="{{t.hidden}}" style="grid-area: 1 / 1; margin: 0; display: flex; flex-direction: column; gap: 40px">
-          <blockquote style="margin: 0; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.2; font-weight: 450; letter-spacing: -0.025em; color: #1B181A; text-wrap: pretty">
-            <span aria-hidden="true" style="color: #FC4E2B">“</span>{{t.pre}}<span class="lm-sig">{{t.hl}}</span>{{t.post}}<span aria-hidden="true" style="color: #FC4E2B">”</span>
-          </blockquote>
-          <figcaption style="display: flex; align-items: center; gap: 16px">
-            <img src="{{t.img}}" alt="" width="56" height="56" loading="lazy" style="width: 56px; height: 56px; flex: none; border-radius: 999px; background: var(--lm-ph); display: block; object-fit: cover">
-            <div style="display: flex; flex-direction: column; gap: 2px">
-              <span style="font-size: 17px; line-height: 24px; font-weight: 600; color: #1B181A">{{t.name}}</span>
-              <span style="font-size: 15px; line-height: 22px; color: #3A3A3F">{{t.role}}</span>
-            </div>
-          </figcaption>
-        </figure>
-      </sc-for>
-    </div>
-
-    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
-      <span style="font-size: 14px; font-weight: 500; color: #3A3A3F; font-variant-numeric: tabular-nums; min-width: 44px">{{tCounter}}</span>
-      <div style="flex: 1 1 200px; display: flex; gap: 4px">
-        <sc-for list="{{tDots}}" as="d" hint-placeholder-count="6">
-          <button type="button" class="lm-tdot" aria-label="{{d.label}}" aria-current="{{d.current}}" onClick="{{d.pick}}" style="flex: 1; height: 44px; border: 0; padding: 0; background: transparent; display: flex; align-items: center; cursor: pointer">
-            <span style="position: relative; display: block; width: 100%; height: 3px; overflow: hidden; background: var(--lm-line)">
-              <span class="{{d.fillClass}}" style="position: absolute; inset: 0; background: #FC4E2B; transform-origin: left center"></span>
-            </span>
-          </button>
-        </sc-for>
-      </div>
-      <div style="display: flex; gap: 12px">
-        <button type="button" class="lm-press" aria-label="{{tPauseLabel}}" onClick="{{tTogglePause}}" style="width: 52px; height: 52px; border-radius: 999px; border: 1px solid #BDB6AB; background: transparent; color: #1B181A; display: flex; align-items: center; justify-content: center; cursor: pointer">
-          <sc-if value="{{tPaused}}" hint-placeholder-val="{{false}}">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>
-          </sc-if>
-          <sc-if value="{{tPlaying}}" hint-placeholder-val="{{true}}">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="3.5" height="14" rx="1"></rect><rect x="14" y="5" width="3.5" height="14" rx="1"></rect></svg>
-          </sc-if>
-        </button>
-        <button type="button" class="lm-press lm-tprev" aria-label="Previous testimonial" onClick="{{tPrev}}" style="width: 52px; height: 52px; border-radius: 999px; border: 1px solid #1B181A; background: transparent; color: #1B181A; display: flex; align-items: center; justify-content: center; cursor: pointer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
-        </button>
-        <button type="button" class="lm-primary lm-tnext" aria-label="Next testimonial" onClick="{{tNext}}" style="width: 52px; height: 52px; border-radius: 999px; border: 0; background: #FFFFF4; color: #FC4E2B; box-shadow: inset 0 0 0 1px #FC4E2B; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 200ms ease, transform 160ms cubic-bezier(.23,1,.32,1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CAPABILITIES -->
-<section id="capabilities" aria-labelledby="lm-cap-h" style="padding: 0 clamp(12px, 2vw, 24px) clamp(64px, 8vw, 112px)">
-  <div class="lm-cap" style="max-width: 1400px; margin: 0 auto; background: #1B181A; color: #FFFFF4; border-radius: 8px; padding: clamp(36px, 6vw, 80px) clamp(24px, 5vw, 72px) clamp(40px, 6vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; gap: clamp(64px, 10vw, 128px)">
-    <h2 id="lm-cap-h" class="lm-h2" style="margin: 0; max-width: 820px; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.12; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">Four partners. <span class="lm-sig">25+ years</span> of combined search experience. <span class="lm-sig">89 CXO placements</span> across <span class="lm-rot" aria-hidden="true"><span class="lm-rot-in"><span>Technology.</span><span>Financial Services.</span><span>Healthcare.</span><span>Pharma &amp; Life Sciences.</span><span>Manufacturing.</span><span>Consumer &amp; Retail.</span><span>Energy &amp; Infrastructure.</span><span>Private Equity.</span><span>Technology.</span></span></span><span class="lm-sr">technology, financial services, healthcare, pharma and life sciences, manufacturing, consumer and retail, energy and infrastructure, and private equity.</span></h2>
-    <div style="display: flex; flex-direction: column; gap: 32px">
-      <p style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 600; letter-spacing: 0.01em">Capabilities</p>
-      <div class="lm-cap-cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 40px clamp(24px, 3vw, 40px); align-items: start">
-        <div>
-          <h3 style="margin: 0 0 12px; font-size: 15px; line-height: 22px; font-weight: 600; color: #FFFFF4">Executive Search</h3>
-          <ul class="lm-cap-list">
-            <li>CXO &amp; Board Appointments</li>
-            <li>Senior Leadership Hiring</li>
-            <li>Confidential Replacements</li>
-            <li>Diversity Mandates</li>
-            <li>Niche &amp; Rare Skill Sets</li>
-            <li>Leadership Assessment</li>
-          </ul>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 12px; font-size: 15px; line-height: 22px; font-weight: 600; color: #FFFFF4">Market Intelligence</h3>
-          <ul class="lm-cap-list">
-            <li>Market Mapping</li>
-            <li>Talent Benchmarking</li>
-            <li>Competitor Org Mapping</li>
-            <li>Compensation Insights</li>
-            <li>Succession Pipelines</li>
-          </ul>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 12px; font-size: 15px; line-height: 22px; font-weight: 600; color: #FFFFF4">Leadership Advisory</h3>
-          <ul class="lm-cap-list">
-            <li>Role &amp; Brief Definition</li>
-            <li>Org Design</li>
-            <li>Succession Planning</li>
-            <li>Leadership Onboarding</li>
-            <li>Board &amp; Founder Advisory</li>
-            <li>Hiring Process Review</li>
-            <li>Diversity Strategy</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<!-- TRACK RECORD STATEMENT (where the testimonials were) -->
+<section id="capabilities" class="lm-sec" aria-labelledby="lm-cap-h" style="padding: 128px 0">
+  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box">
+    <h2 id="lm-cap-h" class="lm-h2" style="margin: 0 auto; text-align: center; max-width: 980px; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.12; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">Four partners. <span class="lm-sig">25+ years</span> of combined search experience. <span class="lm-sig">89 CXO placements</span> across <span class="lm-rot" aria-hidden="true"><span class="lm-rot-in"><span>Technology.</span><span>Financial Services.</span><span>Healthcare.</span><span>Pharma &amp; Life Sciences.</span><span>Manufacturing.</span><span>Consumer &amp; Retail.</span><span>Energy &amp; Infrastructure.</span><span>Private Equity.</span><span>Technology.</span></span></span><span class="lm-sr">technology, financial services, healthcare, pharma and life sciences, manufacturing, consumer and retail, energy and infrastructure, and private equity.</span></h2>
   </div>
 </section>
 
@@ -741,34 +615,6 @@ section[id]{scroll-margin-top:72px}
   </div>
 </section>
 
-<!-- 05 ARTICLES -->
-<section id="articles" class="lm-sec" style="background: var(--lm-wash); padding: 128px 0">
-  <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
-    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px">
-      <div style="display: flex; flex-direction: column; gap: 20px; max-width: 720px">
-        <h2 class="lm-h2" style="margin: 0; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.08; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">What We’ve Learned From <em class="lm-serif lm-serif-d">100+ Leadership Searches</em></h2>
-        <p class="lm-lead" style="margin: 0; font-size: 19px; line-height: 30px; color: #1B181A">Practical notes on briefing, assessing and onboarding senior leaders, from the partners who run the searches.</p>
-      </div>
-      <a class="lm-ghost-d" href="./articles.html" style="display: inline-flex; align-items: center; gap: 28px; min-height: 52px; padding: 0 22px 0 26px; border-radius: 999px; border: 1px solid #1B181A; color: #1B181A; text-decoration: none; font-size: 15px; font-weight: 600">All Articles
-        <svg width="28" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg>
-      </a>
-    </div>
-    <div class="lm-posts" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px">
-      <sc-for list="{{posts}}" as="post" hint-placeholder-count="3">
-        <a class="lm-post" href="{{post.href}}" style="display: flex; flex-direction: column; border-radius: 8px; overflow: hidden; background: #FFFFF4; color: #1B181A; text-decoration: none">
-          <div style="aspect-ratio: 3 / 2; background: var(--lm-ph); display: flex; align-items: center; justify-content: center; color: #5E5953; font-size: 13px">[Article image]</div>
-          <div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1">
-            <span style="font-size: 13px; line-height: 20px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #C93617">{{post.topic}}</span>
-            <h3 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500; letter-spacing: -0.015em; text-wrap: balance">{{post.title}}</h3>
-            <p style="margin: 0; font-size: 16px; line-height: 25px; color: #3A3A3F; text-wrap: pretty">{{post.excerpt}}</p>
-            <span style="margin-top: auto; padding-top: 8px; font-size: 14px; line-height: 20px; color: #6B6B70">{{post.meta}}</span>
-          </div>
-        </a>
-      </sc-for>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section id="contact" class="lm-sec" style="padding: 144px 24px 128px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 28px">
   <h2 class="lm-cta-h" style="margin: 0; font-size: clamp(40px, 5vw, 72px); line-height: 1.04; font-weight: 450; letter-spacing: -0.035em; color: #1B181A; max-width: 900px; text-wrap: balance">Ready To Look Beyond <em class="lm-serif">The Obvious?</em></h2>
@@ -822,7 +668,6 @@ section[id]{scroll-margin-top:72px}
         <nav class="lm-foot-nav" aria-label="Footer" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 24px; align-content: start">
           <a class="lm-foot" href="#services" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Services</a>
           <a class="lm-foot" href="#story" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">About Us</a>
-          <a class="lm-foot" href="#articles" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Articles</a>
           <a class="lm-foot" href="./leaders.html" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">For Leaders</a>
           <a class="lm-foot" href="#contact" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Contact Us</a>
           <a class="lm-foot" href="#" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">LinkedIn</a>
@@ -843,7 +688,7 @@ section[id]{scroll-margin-top:72px}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { svc: 0, open: 0, menu: false, sent: false, sub: false, t: 0, tPrev: -1, tDir: 1, tPaused: false };
+    this.state = { svc: 0, open: 0, menu: false, sent: false, sub: false };
   }
   renderVals() {
     const svcData = [
@@ -851,12 +696,6 @@ class Component extends DCLogic {
       { name: 'Market Mapping', icon: './assets/icon-market-mapping.svg', href: './services.html#market-mapping', cta: 'Explore market mapping', best: 'Best when you’re planning a hire, a new function or a move into a new market.', desc: 'Know who could lead your function, and what it will take to hire them, before you open a search.', img: './assets/service-market-mapping.png', alt: 'Illustration of a box striding forward on long blue legs' },
       { name: 'Bespoke Consulting', icon: './assets/icon-bespoke-consulting.svg', href: './services.html#bespoke-consulting', cta: 'Explore bespoke consulting', best: 'Best when the role itself is still taking shape.', desc: 'Get the brief, the structure and the succession plan right before you hire.', img: './assets/service-bespoke-consulting.png', alt: 'Illustration of a person juggling rings and shapes' },
       { name: 'Diversity & Niche Searches', icon: './assets/icon-diversity-niche.svg', href: './services.html#diversity-niche', cta: 'Explore diversity and niche searches', best: 'Best when the usual networks keep giving you the same names.', desc: 'Rare skill sets and diverse leaders, on the longlist from day one, not added at the end.', img: './assets/service-diversity.png', alt: 'Illustration of a woman on a stepladder looking through binoculars' }
-    ];
-    // DUMMY articles for design review only. Replace with real articles before launch.
-    const posts = [
-      { href: './articles.html', topic: 'Confidential search', title: 'How to Replace a CXO Without the Market Finding Out', excerpt: 'The five points where confidential searches usually leak, and what to do at each one.', meta: 'Lakshmi Prasanna · 6 min read' },
-      { href: './articles.html', topic: 'Diversity hiring', title: 'Diverse Shortlists Start at the Longlist', excerpt: 'Diverse candidates added at the end rarely get hired. Here is how to build them into a search from day one.', meta: 'Monika Pathak · 5 min read' },
-      { href: './articles.html', topic: 'Onboarding', title: 'The First 90 Days Decide Whether a New Leader Stays', excerpt: 'Around 40% of senior hires leave or fail within 18 months. Most of the warning signs show up in the first quarter.', meta: 'Saba Alam · 7 min read' }
     ];
     const svcI = this.state.svc;
     const services = svcData.map((s, i) => ({
@@ -886,49 +725,13 @@ class Component extends DCLogic {
         toggle: () => this.setState({ open: open ? -1 : i })
       };
     });
-    // DUMMY testimonials for design review only: invented quotes, people and companies. Replace every one with a real, approved client quote before launch.
-    const quoteData = [
-      { quote: 'We had to replace our CFO without the market hearing a word. Our partner ran every conversation personally, and the first anyone knew was our announcement.', key: 'replace our CFO', name: 'Rohan Mehta', img: './assets/testimonial-01.svg', role: 'Managing Director, Tarvel Industries' },
-      { quote: 'Our board wanted a more diverse leadership team, not a token shortlist. Half the final slate were women, and every one of them was a genuine contender.', key: 'diverse leadership', name: 'Ananya Iyer', img: './assets/testimonial-02.svg', role: 'CHRO, Ostra Capital' },
-      { quote: 'Two firms had failed to find us a head of AI with healthcare experience. Leadership Mavericks brought us four strong candidates in five weeks.', key: 'head of AI', name: 'Vikram Rao', img: './assets/testimonial-03.svg', role: 'Founder & CEO, Medivo Health' },
-      { quote: 'The shortlist arrived in three weeks, and we would have hired any of the three. That has never happened to us before.', key: 'The shortlist arrived in three weeks', name: 'Priya Nair', img: './assets/testimonial-04.svg', role: 'CEO, Kumo Foods' },
-      { quote: 'The partner who pitched us was on every call and in every final interview. That is why we came back for our next two leadership hires.', key: 'on every call and in every final interview', name: 'Arjun Malhotra', img: './assets/testimonial-05.svg', role: 'Chief People Officer, Lumora Systems' },
-      { quote: 'Before we opened the search, they showed us who led the function at every competitor and what it would take to move them. It changed our brief.', key: 'they showed us who led the function at every competitor', name: 'Kavita Sharma', img: './assets/testimonial-06.svg', role: 'COO, Verant Life Sciences' }
-    ];
-    const tn = quoteData.length, t = this.state.t, tPrevI = this.state.tPrev, tDir = this.state.tDir > 0 ? 'next' : 'prev';
-    const goT = (i, dir) => { const to = (i + tn) % tn; if (to === t) return; this.setState({ t: to, tPrev: t, tDir: dir }); };
-    const quotes = quoteData.map((q, i) => ({
-      ...q,
-      pre: q.key ? q.quote.slice(0, q.quote.indexOf(q.key)) : q.quote,
-      hl: q.key || '',
-      post: q.key ? q.quote.slice(q.quote.indexOf(q.key) + q.key.length) : '',
-      label: (i + 1) + ' of ' + tn,
-      hidden: i === t ? 'false' : 'true',
-      state: i === t ? (tPrevI < 0 ? 'on' : 'in-' + tDir) : (i === tPrevI ? 'out-' + tDir : 'off')
-    }));
-    const tDots = quoteData.map((q, i) => ({
-      label: 'Show testimonial ' + (i + 1),
-      current: i === t ? 'true' : 'false',
-      fillClass: i === t ? 'lm-fill lm-fill-on' : (i < t ? 'lm-fill lm-fill-done' : 'lm-fill'),
-      pick: () => goT(i, i > t ? 1 : -1)
-    }));
     // DUMMY client logos for design review only: invented companies. Replace with real, approved logos before launch.
     const logos = [
       ['tarvel', 'Tarvel Industries'], ['ostra', 'Ostra Capital'], ['medivo', 'Medivo Health'], ['kumo', 'Kumo Foods'], ['lumora', 'Lumora Systems'],
       ['verant', 'Verant Life Sciences'], ['zentra', 'Zentra Energy'], ['pellmark', 'Pellmark Retail'], ['qorvane', 'Qorvane Logistics'], ['northpeak', 'Northpeak Infra']
     ].map(([f, name]) => ({ name, src: './assets/logo-' + f + '.svg' }));
     return {
-      services, steps, logos, posts,
-      quotes, tDots,
-      tCounter: String(t + 1).padStart(2, '0') + ' / ' + String(tn).padStart(2, '0'),
-      tNext: () => goT(t + 1, 1),
-      tPrev: () => goT(t - 1, -1),
-      tPaused: this.state.tPaused,
-      tPlaying: !this.state.tPaused,
-      tPausedAttr: this.state.tPaused ? 'true' : 'false',
-      tPauseLabel: this.state.tPaused ? 'Play testimonials' : 'Pause testimonials',
-      tLive: this.state.tPaused ? 'polite' : 'off',
-      tTogglePause: () => this.setState({ tPaused: !this.state.tPaused }),
+      services, steps, logos,
       menuOpen: this.state.menu,
       menuClosed: !this.state.menu,
       menuExpanded: this.state.menu ? 'true' : 'false',
@@ -1068,7 +871,6 @@ class Component extends DCLogic {
     head(proc);
     mark(q('.lm-route', proc), 'route');
     mark($('.lm-step-btn', proc).map(function (b) { return b.parentElement; }), 'up', 3);
-    var ps = $('p', proc); mark(ps[ps.length - 1], 'fade', 6);
   }
 
   var story = q('#story');
@@ -1097,42 +899,14 @@ class Component extends DCLogic {
   if (cl) { mark(q('h2', cl), 'up'); mark($('.lm-logo-cell', cl), 'up', 1); }
 
   var cap = q('#capabilities');
-  if (cap) { mark(q('h2', cap), 'up'); mark($('.lm-cap-cols > div', cap), 'up', 1); }
+  if (cap) mark(q('h2', cap), 'up');
 
-  var tm = q('#testimonial');
-  if (tm) mark(tm.firstElementChild.children, 'up');
-
-  var art = q('#articles');
-  if (art) { head(art); mark(q('.lm-ghost-d', art), 'pop', 3); mark($('.lm-post', art), 'up', 2); }
 
   mark($('footer > div > div:first-child > *'), 'up');
 })(q, $, mark, head); } catch (err) { if (window.console) console.warn('motion setup', err); }
     try { stickyBar(); } catch (err) { if (window.console) console.warn('sticky bar', err); }
     try { servicesHover(); } catch (err) { if (window.console) console.warn('services hover', err); }
-    try { quotes(); } catch (err) { if (window.console) console.warn('testimonials', err); }
     try { sectors(); } catch (err) { if (window.console) console.warn('sector rotator', err); }
-  }
-
-  /* Testimonials: autoplay is driven by the progress bar's CSS animation, so pausing the bar pauses the carousel.
-     Pauses on hover, keyboard focus, the pause button and while off screen. Swipe left or right to move. */
-  function quotes() {
-    var sec = q('#testimonial');
-    if (!sec || sec.__lmQ) return;
-    sec.__lmQ = true;
-    function next() { var b = q('.lm-tnext', sec); if (b) b.click(); }
-    function prev() { var b = q('.lm-tprev', sec); if (b) b.click(); }
-    sec.addEventListener('animationend', function (e) { if (e.animationName === 'lmFill') next(); });
-    new IntersectionObserver(function (es) {
-      if (es[0].isIntersecting) sec.removeAttribute('data-off'); else sec.setAttribute('data-off', '');
-    }, { threshold: 0.35 }).observe(sec);
-    var stage = q('.lm-q-stage', sec), sx = null, sy = 0;
-    stage.addEventListener('pointerdown', function (e) { sx = e.clientX; sy = e.clientY; });
-    stage.addEventListener('pointerup', function (e) {
-      if (sx === null) return;
-      var dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
-      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) { if (dx < 0) next(); else prev(); }
-    });
-    stage.addEventListener('pointercancel', function () { sx = null; });
   }
 
   /* Sector rotator: every 2.2s the next sector scrolls up into place. The box is as wide as the longest sector, so nothing reflows.

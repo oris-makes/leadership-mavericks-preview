@@ -28,12 +28,8 @@ The copy now uses one repeated brand line: **"The partner you meet is the partne
 
 ## 2. Proof
 - [ ] **Client logos are DUMMY.** The 10 logos (`assets/logo-*.svg`) are invented companies for design review. Replace them with 10 real logos (SVG preferred, or PNG on a transparent background), single colour or greyscale, with written permission to show each, and update the `logos` list in the page data.
-- [ ] **Testimonials are DUMMY copy.** The six quotes, names (Rohan Mehta, Ananya Iyer, Vikram Rao, Priya Nair, Arjun Malhotra, Kavita Sharma) and companies (Tarvel Industries, Ostra Capital, Medivo Health, Kumo Foods, Lumora Systems, Verant Life Sciences) are invented for design review and must not go live. Replace each with a real, approved quote.
-- [ ] Testimonials: 6 client quotes for the carousel (each placeholder suggests a theme: confidential replacement, diversity mandate, niche skill set, speed, partner involvement, market mapping), with name, role, company, permission to use, and a headshot (optional)
 
 ## 3. Images (you're adding these)
-- [ ] 6 testimonial headshots (square, at least 112×112 px; shown as a circle). Replace the dummy illustrated avatars `assets/testimonial-01.svg` to `testimonial-06.svg` and update the `img` paths in the testimonial data.
-- [ ] 3 article images, 3:2 ratio (for example 1200×800), replace the "[Article image]" boxes
 - [ ] Social share image `assets/og-image.png`, 1200×630
 - [ ] Check that the hero, services, story and partner images are final
 
@@ -44,18 +40,12 @@ The copy now uses one repeated brand line: **"The partner you meet is the partne
 ## 5. Story section
 - [ ] **The chapter text is DUMMY copy.** It claims more than a decade working together, a 2018 founding, and 100+ hires across eight sectors. The partners need to confirm or rewrite all of it.
 
-## 6. Articles
-- [ ] **Articles are DUMMY copy.** The three topics, titles and summaries are invented, and each is credited to a real partner (Lakshmi, Monika, Saba). Replace them, or get the partners' approval, before launch.
-- [ ] 3 real articles: topic, title, summary, author partner, read time, link
-- [ ] Ideas if you need them: hiring for a confidential replacement; how a diversity mandate changes a search; reading a market map; the first 90 days of a new leader
-
 ## 7. Pages to build (the homepage already links to these)
 - [ ] `about.html`: full story (linked from "Read Our Story")
 - [ ] `services.html`: one section per service, with anchors `#executive-search`, `#market-mapping`, `#bespoke-consulting`, `#diversity-niche`
-- [ ] `articles.html`: article list, plus one page template per article
 - [ ] `leaders.html`: for executives open to a move (what you do with profiles, how to send one, confidentiality)
 - [ ] `privacy.html`: privacy policy (needed for both forms)
-- [ ] Once those pages exist, point the top nav (About Us, Services, Articles) at them instead of the section anchors on this page
+- [ ] Once those pages exist, point the top nav (About Us, Services) at them instead of the section anchors on this page
 
 ## 8. Contact details and links
 - [ ] Office address and city
