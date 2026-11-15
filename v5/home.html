@@ -270,6 +270,7 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 /* ---------- apple-design refinements ---------- */
 /* anchors land below the sticky bar */
 section[id]{scroll-margin-top:72px}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 
 /* sticky bar: a dark translucent layer that slides down once the hero has gone, and back up the same way */
 .lm-bar{position:fixed;top:0;left:0;right:0;z-index:50;transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform 400ms var(--ease-drawer),opacity 250ms ease}
@@ -628,13 +629,12 @@ section[id]{scroll-margin-top:72px}
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 56px">
       <div style="flex: 1 1 380px; max-width: 480px; display: flex; flex-direction: column; gap: 32px">
         <img src="./assets/logo.png" alt="Leadership Mavericks" style="height: 52px; width: auto; align-self: flex-start">
-        <p style="margin: 0; font-size: 15px; line-height: 24px; color: #D8D5C9">Open to your next leadership role? <a class="lm-foot" href="./leaders.html" style="color: #FFFFF4; font-weight: 500; text-decoration: underline; text-underline-offset: 5px">Share your profile with us</a></p>
+        <p style="margin: 0; font-size: 15px; line-height: 24px; color: #D8D5C9">Open to your next leadership role? <a class="lm-foot" href="#contact" style="color: #FFFFF4; font-weight: 500; text-decoration: underline; text-underline-offset: 5px">Share your profile with us</a></p>
       </div>
       <div style="flex: 1 1 360px; max-width: 520px; display: flex; flex-direction: column; gap: 32px">
         <nav class="lm-foot-nav" aria-label="Footer" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 24px; align-content: start">
           <a class="lm-foot" href="#services" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Services</a>
           <a class="lm-foot" href="#story" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">About Us</a>
-          <a class="lm-foot" href="./leaders.html" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">For Leaders</a>
           <a class="lm-foot" href="#contact" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Contact Us</a>
           <a class="lm-foot" href="#" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">LinkedIn</a>
         </nav>

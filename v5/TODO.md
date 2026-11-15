@@ -43,7 +43,6 @@ The copy now uses one repeated brand line: **"The partner you meet is the partne
 ## 7. Pages to build (the homepage already links to these)
 - [ ] `about.html`: full story (the homepage no longer links to it; add a link once it exists)
 - [ ] `services.html`: one section per service, with anchors `#executive-search`, `#market-mapping`, `#bespoke-consulting`, `#diversity-niche`
-- [ ] `leaders.html`: for executives open to a move (what you do with profiles, how to send one, confidentiality)
 - [ ] Once those pages exist, point the top nav (About Us, Services) at them instead of the section anchors on this page
 
 ## 8. Contact details and links
