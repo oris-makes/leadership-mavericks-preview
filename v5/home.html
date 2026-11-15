@@ -24,14 +24,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#FFFFF4}
-/* Focus text: emphasised words in headings (<em class="lm-serif">) keep the heading's Inter and change colour only */
-.lm-serif{font:inherit;font-style:normal;letter-spacing:inherit;color:#FC4E2B}
+/* Headings are one colour: emphasised words (<em class="lm-serif">, .lm-sig) take the heading's own font and colour */
+.lm-serif{font:inherit;font-style:normal;letter-spacing:inherit;color:inherit}
+:is(h1,h2,h3) .lm-sig{color:inherit}
 :root{--lm-wash:#ECE8E2;--lm-tint:#FFE4D9;--lm-strong:#FFD3C2;--lm-line:#D9D3C9;--lm-ph:#E6E1D8}
 /* review toggle: tint palettes. A signal peach, B apricot, C signal blocks */
 html[data-palette=a]{--lm-wash:#FFE9DE;--lm-tint:#FFD9C7;--lm-strong:#FFC2A8;--lm-line:#F5C9B4;--lm-ph:#FFE0D2}
 html[data-palette=b]{--lm-wash:#FFEEDC;--lm-tint:#FFDDB8;--lm-strong:#FFC48A;--lm-line:#F2D2AE;--lm-ph:#FFE6CC}
 html[data-palette=c]{--lm-wash:#FFFFF4;--lm-tint:#FFE2CF;--lm-strong:#FFB894;--lm-line:#F0B9A3;--lm-ph:#FFE8D9;--lm-team-bg:#FC4E2B}
-html[data-palette=c] #team .lm-serif-d{color:#FFFFF4}
 html[data-palette=c] #team .lm-team > article{background:#FFFFF4 !important}
 html[data-palette=c] #articles{border-top:1px solid var(--lm-line)}
 :root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1);--ease-drawer:cubic-bezier(.32,.72,0,1)}
@@ -297,10 +297,6 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 }
 @media (prefers-reduced-motion: reduce){.lm-svc-mark,.lm-svc-mark img,.lm-svc-art img{transition:none}.lm-svc-d[data-s=off] .lm-svc-art img{transform:none}}
 
-/* focus text colour variants */
-.lm-serif.lm-serif-ink{color:#1B181A}
-.lm-serif.lm-serif-light{color:#FFFFF4}
-.lm-serif.lm-serif-d{color:#C93617}
 .lm-review{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 .lm-fonttoggle{display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:rgba(27,24,26,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 6px 20px rgba(27,24,26,.18);font-family:Inter,system-ui,sans-serif}
 .lm-fonttoggle span{padding:0 10px 0 12px;font-size:12px;font-weight:500;color:#A9A497}
