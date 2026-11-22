@@ -180,4 +180,5 @@ html.js [data-reveal]:not([data-in]){opacity:0;transform:translateY(20px)}
   .p-cta h2{font-size:40px}
   .f-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
   .f-nav a{display:flex;align-items:center;min-height:44px}
+  address br{display:none}
 }

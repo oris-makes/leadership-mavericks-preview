@@ -246,7 +246,7 @@ def page(p):
           <a href="{HOME}#contact">Contact Us</a>
           <a href="https://in.linkedin.com/company/leadership-mavericks" target="_blank" rel="noopener" class="f-li">{LI}LinkedIn<span class="sr"> (opens in a new tab)</span></a>
         </nav>
-        <address>Flat No. 99, Educational CGHS, Medha Apartments,<br>Mayur Vihar-Phase 1 Extension, New Delhi - 110091</address>
+        <address>Flat No. 99, Educational CGHS, Medha Apartments, <br>Mayur Vihar-Phase 1 Extension, New Delhi - 110091</address>
       </div>
     </div>
     <div class="f-base"><span>© 2026 Leadership Mavericks</span><span>Executive search. Independent thinking.</span></div>

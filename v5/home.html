@@ -151,6 +151,7 @@ html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scale
   .lm-team>article:hover .lm-email{border-top-color:rgba(27,24,26,.12)!important}
   .lm-team>article:hover .lm-team-info a:hover{text-decoration:underline;text-underline-offset:4px}
 }
+.lm-email-short{display:none}
 /* clients: 10 logos, two rows of five; two a row on phones */
 .lm-logos{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media (max-width:640px){.lm-logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -221,7 +222,10 @@ html.lm-js .lm-hide-m[data-reveal]{transform-origin:center}
 .lm-team-info{padding:14px 12px 4px !important}
 .lm-team-name{font-size:16px !important;line-height:22px !important}
 .lm-team-role{font-size:14px !important;line-height:20px !important}
-.lm-email{display:block !important;padding:12px 0 !important;font-size:12px !important;line-height:20px !important}
+.lm-email{display:block !important;padding:12px 0 !important;font-size:13px !important;line-height:20px !important}
+.lm-email-full{display:none}
+.lm-email-short{display:inline-flex;align-items:center;gap:6px}
+footer address br{display:none}
 .lm-stats{flex-direction:column !important;gap:20px !important}
 .lm-stat-n{font-size:44px !important}
 .lm-foot-nav{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
@@ -511,7 +515,7 @@ section[id]{scroll-margin-top:72px}
             <a href="https://www.linkedin.com/in/mavericklakshmi" target="_blank" rel="noopener" aria-label="Lakshmi Prasanna on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Founding Partner</p>
-          <a class="lm-email" href="mailto:lakshmi@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">lakshmi@leadershipmavericks.com</a>
+          <a class="lm-email" href="mailto:lakshmi@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere"><span class="lm-email-full">lakshmi@leadershipmavericks.com</span><span class="lm-email-short"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5L12 13l8.5-6.5"></path></svg>Email Lakshmi</span></a>
         </div>
       </article>
       <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
@@ -525,7 +529,7 @@ section[id]{scroll-margin-top:72px}
             <a href="https://www.linkedin.com/in/maverickmonika" target="_blank" rel="noopener" aria-label="Monika Pathak on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Founding Partner</p>
-          <a class="lm-email" href="mailto:monika@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">monika@leadershipmavericks.com</a>
+          <a class="lm-email" href="mailto:monika@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere"><span class="lm-email-full">monika@leadershipmavericks.com</span><span class="lm-email-short"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5L12 13l8.5-6.5"></path></svg>Email Monika</span></a>
         </div>
       </article>
       <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
@@ -539,7 +543,7 @@ section[id]{scroll-margin-top:72px}
             <a href="https://www.linkedin.com/in/noorussaba" target="_blank" rel="noopener" aria-label="Saba Alam on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Senior Partner</p>
-          <a class="lm-email" href="mailto:saba@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">saba@leadershipmavericks.com</a>
+          <a class="lm-email" href="mailto:saba@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere"><span class="lm-email-full">saba@leadershipmavericks.com</span><span class="lm-email-short"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5L12 13l8.5-6.5"></path></svg>Email Saba</span></a>
         </div>
       </article>
       <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
@@ -553,7 +557,7 @@ section[id]{scroll-margin-top:72px}
             <a href="https://www.linkedin.com/in/paninibalaji" target="_blank" rel="noopener" aria-label="Panini Balaji on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Senior Partner</p>
-          <a class="lm-email" href="mailto:panini@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">panini@leadershipmavericks.com</a>
+          <a class="lm-email" href="mailto:panini@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere"><span class="lm-email-full">panini@leadershipmavericks.com</span><span class="lm-email-short"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5L12 13l8.5-6.5"></path></svg>Email Panini</span></a>
         </div>
       </article>
     </div>
@@ -649,7 +653,7 @@ section[id]{scroll-margin-top:72px}
           <a class="lm-foot" href="#contact" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Contact Us</a>
           <a class="lm-foot" href="https://in.linkedin.com/company/leadership-mavericks" target="_blank" rel="noopener" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0; display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg>LinkedIn<span class="lm-sr"> (opens in a new tab)</span></a>
         </nav>
-        <address style="font-style: normal; font-size: 15px; line-height: 24px; color: #D8D5C9">Flat No. 99, Educational CGHS, Medha Apartments,<br>Mayur Vihar-Phase 1 Extension, New Delhi - 110091</address>
+        <address style="font-style: normal; font-size: 15px; line-height: 24px; color: #D8D5C9">Flat No. 99, Educational CGHS, Medha Apartments, <br>Mayur Vihar-Phase 1 Extension, New Delhi - 110091</address>
       </div>
     </div>
     <div style="border-top: 1px solid rgba(255,255,255,.3); padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #A9A497">
