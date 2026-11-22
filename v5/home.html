@@ -136,6 +136,11 @@ html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scale
   .lm-team>article:hover .lm-team-illo{opacity:1;transform:none}
 }
 @media (prefers-reduced-motion: reduce){.lm-team-photo,.lm-team-illo{transform:none!important}}
+/* team: the name opens the partner page; the whole card is the hit area */
+.lm-team>article{position:relative}
+.lm-team-link::after{content:"";position:absolute;inset:0;z-index:1}
+.lm-team-info a[aria-label],.lm-email{position:relative;z-index:2}
+@media (hover:hover) and (pointer:fine){.lm-team>article:hover .lm-team-link{color:#C93617}}
 /* clients: 10 logos, two rows of five; two a row on phones */
 .lm-logos{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media (max-width:640px){.lm-logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -492,8 +497,8 @@ section[id]{scroll-margin-top:72px}
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A">Lakshmi Prasanna</h3>
-            <a href="#" aria-label="Lakshmi Prasanna on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/lakshmi-prasanna/index.html" style="color: inherit; text-decoration: none">Lakshmi Prasanna</a></h3>
+            <a href="https://www.linkedin.com/in/mavericklakshmi" target="_blank" rel="noopener" aria-label="Lakshmi Prasanna on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Founding Partner</p>
           <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
@@ -503,12 +508,12 @@ section[id]{scroll-margin-top:72px}
       <article style="border-radius: 8px; overflow: hidden; background: var(--lm-tint); display: flex; flex-direction: column">
         <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--lm-ph)">
           <img class="lm-team-photo" src="./assets/partner-monika.png" alt="Monika Pathak" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
-          <img class="lm-team-illo" src="./assets/partner-monika-illustration.svg" alt="" width="878" height="901" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
+          <img class="lm-team-illo" src="./assets/partner-monika-illustration.svg" alt="" width="827" height="764" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A">Monika Pathak</h3>
-            <a href="#" aria-label="Monika Pathak on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/monika-pathak/index.html" style="color: inherit; text-decoration: none">Monika Pathak</a></h3>
+            <a href="https://www.linkedin.com/in/maverickmonika" target="_blank" rel="noopener" aria-label="Monika Pathak on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Founding Partner</p>
           <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
@@ -518,12 +523,12 @@ section[id]{scroll-margin-top:72px}
       <article style="border-radius: 8px; overflow: hidden; background: var(--lm-tint); display: flex; flex-direction: column">
         <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--lm-ph)">
           <img class="lm-team-photo" src="./assets/partner-saba.png" alt="Saba Alam" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
-          <img class="lm-team-illo" src="./assets/partner-saba-illustration.svg" alt="" width="827" height="764" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
+          <img class="lm-team-illo" src="./assets/partner-saba-illustration.svg" alt="" width="878" height="901" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A">Saba Alam</h3>
-            <a href="#" aria-label="Saba Alam on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/saba-alam/index.html" style="color: inherit; text-decoration: none">Saba Alam</a></h3>
+            <a href="https://www.linkedin.com/in/noorussaba" target="_blank" rel="noopener" aria-label="Saba Alam on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Senior Partner</p>
           <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
@@ -537,8 +542,8 @@ section[id]{scroll-margin-top:72px}
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A">Panini Balaji</h3>
-            <a href="#" aria-label="Panini Balaji on LinkedIn" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/panini-balaji/index.html" style="color: inherit; text-decoration: none">Panini Balaji</a></h3>
+            <a href="https://www.linkedin.com/in/paninibalaji" target="_blank" rel="noopener" aria-label="Panini Balaji on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
           <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Senior Partner</p>
           <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
