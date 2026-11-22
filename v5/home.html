@@ -54,7 +54,7 @@ a:hover{color:#C93617}
 .lm-primary svg,.lm-ghost svg,.lm-scard h3+svg,.lm-team-info a svg{transition:transform 200ms var(--ease-out)}
 @media (hover:hover) and (pointer:fine){
   .lm-primary:hover>svg[width="36"],.lm-ghost:hover>svg{transform:translateX(4px)}
-  .lm-scard:hover h3+svg,.lm-team-info a:hover svg{transform:translate(2px,-2px)}
+  .lm-scard:hover h3+svg{transform:translate(2px,-2px)}
 }
 /* accordion body + mobile menu enter */
 .lm-step-body{transition:opacity 250ms var(--ease-out),transform 250ms var(--ease-out)}
@@ -140,7 +140,17 @@ html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scale
 .lm-team>article{position:relative}
 .lm-team-link::after{content:"";position:absolute;inset:0;z-index:1}
 .lm-team-info a[aria-label],.lm-email{position:relative;z-index:2}
-@media (hover:hover) and (pointer:fine){.lm-team>article:hover .lm-team-link{color:#C93617}}
+/* dark cards turn white on hover (or keyboard focus); text flips to ink */
+.lm-team>article,.lm-team-info,.lm-team-info *{transition:background-color 250ms ease,color 200ms ease,border-color 200ms ease}
+.lm-team>article:focus-within{background:#FFFFFF!important}
+.lm-team>article:focus-within .lm-team-info :is(h3,a,p){color:#1B181A!important}
+.lm-team>article:focus-within .lm-email{border-top-color:rgba(27,24,26,.12)!important}
+@media (hover:hover) and (pointer:fine){
+  .lm-team>article:hover{background:#FFFFFF!important}
+  .lm-team>article:hover .lm-team-info :is(h3,a,p){color:#1B181A!important}
+  .lm-team>article:hover .lm-email{border-top-color:rgba(27,24,26,.12)!important}
+  .lm-team>article:hover .lm-team-info a:hover{text-decoration:underline;text-underline-offset:4px}
+}
 /* clients: 10 logos, two rows of five; two a row on phones */
 .lm-logos{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media (max-width:640px){.lm-logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -490,64 +500,60 @@ section[id]{scroll-margin-top:72px}
       <p class="lm-lead" style="margin: 0; font-size: 19px; line-height: 30px; color: #1B181A">The people behind the search.</p>
     </div>
     <div class="lm-team" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px">
-      <article style="border-radius: 8px; overflow: hidden; background: var(--lm-tint); display: flex; flex-direction: column">
+      <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
         <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--lm-ph)">
           <img class="lm-team-photo" src="./assets/partner-lakshmi.png" alt="Lakshmi Prasanna" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
           <img class="lm-team-illo" src="./assets/partner-lakshmi-illustration.svg" alt="" width="757" height="921" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/lakshmi-prasanna/index.html" style="color: inherit; text-decoration: none">Lakshmi Prasanna</a></h3>
-            <a href="https://www.linkedin.com/in/mavericklakshmi" target="_blank" rel="noopener" aria-label="Lakshmi Prasanna on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #FFFFF4"><a class="lm-team-link" href="./team/lakshmi-prasanna/index.html" style="color: inherit; text-decoration: none">Lakshmi Prasanna</a></h3>
+            <a href="https://www.linkedin.com/in/mavericklakshmi" target="_blank" rel="noopener" aria-label="Lakshmi Prasanna on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
-          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Founding Partner</p>
-          <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
-          <a class="lm-email" href="mailto:lakshmi@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(252,78,43,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">lakshmi@leadershipmavericks.com</a>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Founding Partner</p>
+          <a class="lm-email" href="mailto:lakshmi@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">lakshmi@leadershipmavericks.com</a>
         </div>
       </article>
-      <article style="border-radius: 8px; overflow: hidden; background: var(--lm-tint); display: flex; flex-direction: column">
+      <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
         <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--lm-ph)">
           <img class="lm-team-photo" src="./assets/partner-monika.png" alt="Monika Pathak" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
           <img class="lm-team-illo" src="./assets/partner-monika-illustration.svg" alt="" width="827" height="764" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/monika-pathak/index.html" style="color: inherit; text-decoration: none">Monika Pathak</a></h3>
-            <a href="https://www.linkedin.com/in/maverickmonika" target="_blank" rel="noopener" aria-label="Monika Pathak on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #FFFFF4"><a class="lm-team-link" href="./team/monika-pathak/index.html" style="color: inherit; text-decoration: none">Monika Pathak</a></h3>
+            <a href="https://www.linkedin.com/in/maverickmonika" target="_blank" rel="noopener" aria-label="Monika Pathak on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
-          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Founding Partner</p>
-          <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
-          <a class="lm-email" href="mailto:monika@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(252,78,43,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">monika@leadershipmavericks.com</a>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Founding Partner</p>
+          <a class="lm-email" href="mailto:monika@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">monika@leadershipmavericks.com</a>
         </div>
       </article>
-      <article style="border-radius: 8px; overflow: hidden; background: var(--lm-tint); display: flex; flex-direction: column">
+      <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
         <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--lm-ph)">
           <img class="lm-team-photo" src="./assets/partner-saba.png" alt="Saba Alam" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
           <img class="lm-team-illo" src="./assets/partner-saba-illustration.svg" alt="" width="878" height="901" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/saba-alam/index.html" style="color: inherit; text-decoration: none">Saba Alam</a></h3>
-            <a href="https://www.linkedin.com/in/noorussaba" target="_blank" rel="noopener" aria-label="Saba Alam on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #FFFFF4"><a class="lm-team-link" href="./team/saba-alam/index.html" style="color: inherit; text-decoration: none">Saba Alam</a></h3>
+            <a href="https://www.linkedin.com/in/noorussaba" target="_blank" rel="noopener" aria-label="Saba Alam on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
-          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Senior Partner</p>
-          <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
-          <a class="lm-email" href="mailto:saba@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(252,78,43,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">saba@leadershipmavericks.com</a>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Senior Partner</p>
+          <a class="lm-email" href="mailto:saba@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">saba@leadershipmavericks.com</a>
         </div>
       </article>
-      <article style="border-radius: 8px; overflow: hidden; background: var(--lm-tint); display: flex; flex-direction: column">
+      <article style="border-radius: 8px; overflow: hidden; background: #1B181A; display: flex; flex-direction: column">
         <div class="lm-team-media" style="aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--lm-ph)">
           <img class="lm-team-photo" src="./assets/partner-panini.png" alt="Panini Balaji" width="360" height="288" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block">
           <img class="lm-team-illo" src="./assets/partner-panini-illustration.svg" alt="" width="772" height="849" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #FFFFF4; display: block">
         </div>
         <div class="lm-team-info" style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 4px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #1B181A"><a class="lm-team-link" href="./team/panini-balaji/index.html" style="color: inherit; text-decoration: none">Panini Balaji</a></h3>
-            <a href="https://www.linkedin.com/in/paninibalaji" target="_blank" rel="noopener" aria-label="Panini Balaji on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #1B181A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+            <h3 class="lm-team-name" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.015em; color: #FFFFF4"><a class="lm-team-link" href="./team/panini-balaji/index.html" style="color: inherit; text-decoration: none">Panini Balaji</a></h3>
+            <a href="https://www.linkedin.com/in/paninibalaji" target="_blank" rel="noopener" aria-label="Panini Balaji on LinkedIn (opens in a new tab)" style="width: 44px; height: 44px; margin: -10px -12px -10px 0; display: flex; align-items: center; justify-content: center; color: #FFFFF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></a>
           </div>
-          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #3A3A3F">Senior Partner</p>
-          <p class="lm-team-role" style="margin: 0; font-size: 14px; line-height: 21px; color: #6B6B70">[Placed N leaders in sector since year]</p>
-          <a class="lm-email" href="mailto:panini@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(252,78,43,.18); font-size: 13px; line-height: 20px; color: #3A3A3F; text-decoration: none; overflow-wrap: anywhere">panini@leadershipmavericks.com</a>
+          <p class="lm-team-role" style="margin: 0; font-size: 15px; line-height: 22px; color: #D8D5C9">Senior Partner</p>
+          <a class="lm-email" href="mailto:panini@leadershipmavericks.com" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; line-height: 20px; color: #D8D5C9; text-decoration: none; overflow-wrap: anywhere">panini@leadershipmavericks.com</a>
         </div>
       </article>
     </div>
@@ -641,9 +647,9 @@ section[id]{scroll-margin-top:72px}
           <a class="lm-foot" href="#services" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Services</a>
           <a class="lm-foot" href="#team" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">About Us</a>
           <a class="lm-foot" href="#contact" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">Contact Us</a>
-          <a class="lm-foot" href="#" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0">LinkedIn</a>
+          <a class="lm-foot" href="https://in.linkedin.com/company/leadership-mavericks" target="_blank" rel="noopener" style="color: #D8D5C9; text-decoration: none; font-size: 15px; padding: 10px 0; display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg>LinkedIn<span class="lm-sr"> (opens in a new tab)</span></a>
         </nav>
-        <address style="font-style: normal; font-size: 15px; line-height: 24px; color: #D8D5C9">[Office address, City]<br>[Phone number] <span aria-hidden="true" style="margin: 0 6px">·</span> <a class="lm-foot" href="mailto:[hello@leadershipmavericks.com]" style="color: #D8D5C9">[hello@leadershipmavericks.com]</a></address>
+        <address style="font-style: normal; font-size: 15px; line-height: 24px; color: #D8D5C9">Flat No. 99, Educational CGHS, Medha Apartments,<br>Mayur Vihar-Phase 1 Extension, New Delhi - 110091</address>
       </div>
     </div>
     <div style="border-top: 1px solid rgba(255,255,255,.3); padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #A9A497">
@@ -695,11 +701,11 @@ class Component extends DCLogic {
         toggle: () => this.setState({ open: open ? -1 : i })
       };
     });
-    // DUMMY client logos for design review only: invented companies. Replace with real, approved logos before launch.
+    // Client logos: 640x176 PNGs (4x the 160x44 slot), one per cell.
     const logos = [
-      ['tarvel', 'Tarvel Industries'], ['ostra', 'Ostra Capital'], ['medivo', 'Medivo Health'], ['kumo', 'Kumo Foods'], ['lumora', 'Lumora Systems'],
-      ['verant', 'Verant Life Sciences'], ['zentra', 'Zentra Energy'], ['pellmark', 'Pellmark Retail'], ['qorvane', 'Qorvane Logistics'], ['northpeak', 'Northpeak Infra']
-    ].map(([f, name]) => ({ name, src: './assets/logo-' + f + '.svg' }));
+      ['nykaa', 'Nykaa'], ['healthify', 'Healthify'], ['82e', '82°E'], ['cubic', 'Cubic'],
+      ['oski-technology', 'Oski Technology'], ['cohnreznick', 'CohnReznick'], ['dreamworks', 'DreamWorks'], ['dentsu', 'dentsu'], ['jll', 'JLL'], ['teal', 'TEAL']
+    ].map(([f, name]) => ({ name, src: './assets/logo-' + f + '.png' }));
     return {
       services, steps, logos,
       menuOpen: this.state.menu,

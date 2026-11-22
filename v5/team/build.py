@@ -19,10 +19,12 @@ PARTNERS = [
         linkedin='https://www.linkedin.com/in/mavericklakshmi',
         quote='Being a maverick is mastering your skills to such an extent that you are ready for any challenge.',
         bio=[
-            'Lakshmi is a strategic partner to her clients on succession planning and executive search, with more than two decades of data-driven search behind her.',
-            'She began her career as an entrepreneur before moving into search with Korn Ferry International and Heidrick &amp; Struggles. Before co-founding Leadership Mavericks, she led the Technology Practice for India at Stanton Chase.',
-            'Her searches span telecom, semiconductors, e-commerce and hardware, and her practice keeps growing into new sectors.',
-            'She holds dual degrees in sociology and psychology and is an alumna of the Symbiosis Centre for Management and Human Resource Development (SCMHRD).',
+            'Lakshmi is your strategic partner and trusted advisor for succession planning and executive search.',
+            'A career leadership hiring professional, Lakshmi understands the nuances of the industry and has mastered the art of tenaciously pursuing a project to its conclusion.',
+            'She began her career as an entrepreneur and went on to be a part of teams for leading search firms in the industry, such as Korn Ferry International and Heidrick &amp; Struggles. Prior to co-founding Leadership Mavericks, she led the Technology Practice, India, at Stanton Chase.',
+            'It is this journey that has taught her to take the phrase “client delight” to heart. She is the perfect ally in your talent search, particularly skilled at helping organizations set intentional and strategic succession planning goals.',
+            'With over two decades of experience in highly competitive, data-driven executive search environments, Lakshmi has helmed projects for many of the biggest players in the telecom, semiconductor, e-commerce, and hardware industries. Her area of influence has grown to include a diverse range of sectors that go beyond the tech ecosystem.',
+            'Lakshmi has dual degrees in sociology and psychology. She is an alumnus of the Symbiosis Centre for Management and Human Resource Development (SCMHRD).',
         ],
         focus=['Succession planning', 'Executive search'],
         previously=['Stanton Chase, Technology Practice India', 'Heidrick &amp; Struggles', 'Korn Ferry International'],
@@ -36,14 +38,16 @@ PARTNERS = [
         linkedin='https://www.linkedin.com/in/maverickmonika',
         quote='As a boutique search firm, our strength is personalized, high-quality search with faster turnaround times.',
         bio=[
-            'Monika is a talent advisor with more than two decades in leadership search, and she backs every search with clear evaluation frameworks and data.',
-            'At Cisco she led leadership hiring across Engineering, Sales and Services, including talent strategy and demand planning. Before Cisco, she led the global technology practice at Heidrick &amp; Struggles and at Stanton Chase.',
-            'Her work covers IT, IT services, telecom, consulting and e-commerce. She co-founded Leadership Mavericks to offer search that is hands-on and built around each client.',
-            'She holds a bachelor’s degree in philosophy from Lady Shri Ram College, Delhi University.',
+            'Monika believes that executive searches need to go beyond resumes and interviews.',
+            'With over two decades of experience as a talent advisor, Monika has developed the process of making connections between clients and candidates into an artform. Monika believes that it is difficult to catch the key qualities of a candidate without the trained eye of an executive search expert, particularly while evaluating the attributes of a potential leader. Monika’s strong suit is to helm leadership searches backed by solid evaluation frameworks and data. The talent mapping process demands a high degree of preparation before every assignment.',
+            'Monika is no stranger to the struggles of a Hiring Manager. She has been a client before, while she was heading leadership hiring for Cisco across all business units: Engineering, Sales and Services. Monika was responsible for putting together guideline processes for Cisco’s talent strategy, demand planning and business engagement. This gives her an edge when it comes to balancing the dynamics of the internal hiring process within big conglomerates with the rigour that a thorough executive search demands.',
+            'Prior to Cisco, Monika guided the global technology practice at executive search firms such as Heidrick &amp; Struggles and Stanton Chase. She has worked extensively across a wide range of sectors including IT, IT Services, Telecom, Consulting and E-Commerce.',
+            'Monika is passionate about offering clients a transformative experience and this is why she co-founded Leadership Mavericks. She believes in a hands-on, bespoke and human approach to executive searching. Therefore, she stands by her clients and candidates every step of the way, helping them navigate the delicate balance of the search process.',
+            'Monika has a Bachelor’s Degree in Philosophy from Lady Sriram College, Delhi University.',
         ],
         focus=['Leadership search', 'Talent strategy'],
         previously=['Cisco, leadership hiring', 'Heidrick &amp; Struggles, global technology practice', 'Stanton Chase'],
-        education=['BA Philosophy, Lady Shri Ram College, Delhi University'],
+        education=['BA Philosophy, Lady Sriram College, Delhi University'],
         sectors=['IT', 'IT Services', 'Telecom', 'Consulting', 'E-commerce'],
     ),
     dict(
@@ -51,16 +55,19 @@ PARTNERS = [
         photo='partner-saba.png', illo=('partner-saba-illustration.svg', 878, 901),
         email='saba@leadershipmavericks.com', phone='+91 99717 19776',
         linkedin='https://www.linkedin.com/in/noorussaba',
-        quote='To me, being a maverick means being a critical thinker who doesn’t just go with the crowd.',
+        quote='To me, being a maverick means being a critical thinker who doesn’t just go with the crowd. When I partner with clients, I don’t go just by my past experiences alone, I let their context guide my strategy, research, outreach and assessments, and also get the courage to go against the grain to find them the right talent.',
         bio=[
-            'Saba has spent more than two decades in talent hiring, much of it on CXO roles in finance and HR.',
-            'Before Leadership Mavericks she worked at Egon Zehnder, LinkedIn and Heidrick &amp; Struggles.',
-            'She is a leadership hiring generalist across start-ups, technology and non-technology businesses, education and social enterprise, with a particular focus on the start-up and ed-tech ecosystems.',
-            'She holds a bachelor’s degree in commerce and an MBA from Devi Ahilya Vishwavidyalaya, Indore.',
+            'Saba believes in the power of connections and can help you find the talent to fuel your vision.',
+            'As a Partner at Leadership Mavericks, Saba is highly sought after for her ability to connect market and macro trends with what could be influencing the client situation, thus helping her find optimal solutions.',
+            'Saba brings her expertise to the start-up and Ed-Tech ecosystem as she is comfortable dealing with the ambiguous; with new worlds and domains. If you have a business venture that is taking its first steps in the world, Saba can help you find your balance. She believes in your vision and has the experience and expertise to help you find the leadership to help your big idea soar.',
+            'She has over two decades of experience in the talent hiring industry including distinguished tenures at Egon Zehnder, LinkedIn Corporation and Heidrick &amp; Struggles, among others.',
+            'A leadership hiring generalist, she has worked in the most eclectic range of sectors—tech and non-tech start-ups, education and social enterprise. She has also worked with clients for varied functional CXO positions, primarily in the finance and human resources functions.',
+            'At her core, Saba wants to see others succeed—clients, candidates, colleagues and ultimately civil society. This drives her desire to be a detail-oriented, deep-diver, who unearths key insights that can help transform your executive search.',
+            'Saba has completed her Bachelor’s degree in Commerce and her Master’s degree in Business Administration from Devi Ahilya Vishwavidhyalaya, Indore.',
         ],
         focus=['CXO hiring in finance and HR', 'Leadership hiring'],
         previously=['Egon Zehnder', 'LinkedIn', 'Heidrick &amp; Struggles'],
-        education=['B.Com and MBA, Devi Ahilya Vishwavidyalaya, Indore'],
+        education=['B.Com and MBA, Devi Ahilya Vishwavidhyalaya, Indore'],
         sectors=['Start-ups', 'Ed-tech', 'Technology', 'Education', 'Social enterprise'],
     ),
     dict(
@@ -68,19 +75,23 @@ PARTNERS = [
         photo='partner-panini.png', illo=('partner-panini-illustration.svg', 772, 849),
         email='panini@leadershipmavericks.com', phone='+91 97409 06487',
         linkedin='https://www.linkedin.com/in/paninibalaji',
-        quote='In a transactional world, I choose relationships.',
+        quote='In a transactional world, I choose relationships. I believe enduring connections are rooted in authenticity, trust, and honest interactions.',
         bio=[
-            'Panini is a talent evangelist, a diversity and inclusion advocate and a connector, with more than 20 years in talent.',
-            'She spent fourteen years at Allegis, including as Head of HR, and helped establish Allegis Partners in India. Earlier in her career she worked in Silicon Valley.',
-            'She grew up in Banaras and is an alumna of Banaras Hindu University (BHU). She joined Leadership Mavericks as a partner.',
+            'Panini Balaji is a dynamic Talent Evangelist, Diversity and Inclusion advocate, and Connector with 20+ years of experience shaping successful careers and driving organizational growth. From founding and expanding businesses to leading HR departments, Panini’s expertise lies in Talent Spotting, Management, and Retention.',
+            'Passionate about forging genuine connections and fostering positive change, Panini believes in the power of aligning individuals with the right opportunities. Her integrity and authenticity are evident in every interaction, earning trust from both candidates and clients alike.',
+            'During her fourteen-year tenure at Allegis, Panini held various leadership roles, including Head of HR, and played a pivotal role in establishing the executive search brand, Allegis Partners, in India. Now, as a partner with Leadership Mavericks, she continues to leverage her extensive experience to drive impactful talent strategies.',
+            'Panini’s journey from the idyllic streets of Banaras to the dynamic landscape of Silicon Valley in the USA, and finally to the bustling tech hub of Bangalore, has enriched her perspective, enabling seamless collaboration across diverse cultures and environments.',
+            'As someone who grew up in Banaras and is a proud alumna of BHU, Panini is shaped by the timeless essence of the city. Her all-time favourite vacation is to sit by the ghats, savouring a steaming cup of chai, while waiting for the sun to rise.',
+            'With Panini representing you, anticipate personalized attention and strategic support that is tailored to your unique needs and aspirations.',
         ],
-        focus=['Diversity &amp; inclusion', 'Talent advisory'],
+        focus=['Talent spotting', 'Management &amp; retention', 'Diversity &amp; inclusion'],
         previously=['Allegis, Head of HR', 'Allegis Partners India', 'Silicon Valley, USA'],
         education=['Banaras Hindu University (BHU)'],
         sectors=[],
     ),
 ]
 
+LI = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg>'
 ARROW = '<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg>'
 OUT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>'
 OUT18 = OUT.replace('width="16" height="16"', 'width="18" height="18"')
@@ -172,7 +183,7 @@ def page(p):
     </figure>
     <div class="p-actions rise" style="--d:240ms">
       <a class="btn btn-ink" href="mailto:{p['email']}">Email {p['first']}{ARROW}</a>
-      <a class="btn btn-line" href="{p['linkedin']}" target="_blank" rel="noopener">LinkedIn{OUT}<span class="sr"> (opens in a new tab)</span></a>
+      <a class="btn btn-line" href="{p['linkedin']}" target="_blank" rel="noopener">{LI}LinkedIn<span class="sr"> (opens in a new tab)</span></a>
     </div>
   </div>
 </section>
@@ -233,9 +244,9 @@ def page(p):
           <a href="{HOME}#services">Services</a>
           <a href="{HOME}#team">About Us</a>
           <a href="{HOME}#contact">Contact Us</a>
-          <a href="#">LinkedIn</a>
+          <a href="https://in.linkedin.com/company/leadership-mavericks" target="_blank" rel="noopener" class="f-li">{LI}LinkedIn<span class="sr"> (opens in a new tab)</span></a>
         </nav>
-        <address>[Office address, City]<br>[Phone number] <span aria-hidden="true" style="margin:0 6px">·</span> <a href="mailto:[hello@leadershipmavericks.com]">[hello@leadershipmavericks.com]</a></address>
+        <address>Flat No. 99, Educational CGHS, Medha Apartments,<br>Mayur Vihar-Phase 1 Extension, New Delhi - 110091</address>
       </div>
     </div>
     <div class="f-base"><span>© 2026 Leadership Mavericks</span><span>Executive search. Independent thinking.</span></div>
