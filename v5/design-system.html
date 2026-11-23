@@ -51,6 +51,10 @@ a{color:#1B181A}a:hover{color:#C93617}
   .ds-cardrow>div:first-child{width:auto!important}
   .ds-cardrow>div:last-child{width:100%!important;max-width:320px}
   .ds-card a{min-height:48px!important}
+  .ds-cardrow>.ds-wide{max-width:none!important}
+  .ds-svcdemo{grid-template-columns:1fr!important}
+  .ds-pagelist li{grid-template-columns:28px minmax(0,1fr)!important;gap:4px 12px!important}
+  .ds-pagelist li>span:last-child{grid-column:2}
   .ds-illus{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px 12px!important}
   .ds-illus>div>div:first-child{height:150px!important}
   .ds-illus svg{max-width:80%;height:auto}
@@ -66,7 +70,7 @@ a{color:#1B181A}a:hover{color:#C93617}
 <div class="ds-hero" style="background: #1B181A; color: #FFFFF4; padding: 56px 120px 88px; display: flex; flex-direction: column; gap: 120px">
   <div class="ds-hero-top" style="display: flex; justify-content: space-between; align-items: center">
     <img class="ds-logo" src="./assets/logo.png" alt="Leadership Mavericks" style="height: 48px; width: auto">
-    <span style="font-size: 14px; font-weight: 500; color: #A9A497">Brand system, version 2.0</span>
+    <span style="font-size: 14px; font-weight: 500; color: #A9A497">Brand system, version 2.1</span>
   </div>
   <div class="ds-hero-row" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 80px">
     <div style="display: flex; flex-direction: column; gap: 24px; max-width: 640px">
@@ -257,20 +261,28 @@ a{color:#1B181A}a:hover{color:#C93617}
     </div>
 
     <div class="ds-card ds-cardrow" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 32px; align-items: flex-start">
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Service card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Tint surface, image flush on top, title with a link arrow. Whole card is the link.</span><span style="display: flex; align-items: center; gap: 8px; margin-top: 8px"><span style="width: 28px; height: 20px; border-radius: 4px; background: #FFE4D9"></span><svg width="16" height="8" viewBox="0 0 40 12" fill="none" stroke="#6B6B70" stroke-width="2" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg><span style="width: 28px; height: 20px; border-radius: 4px; background: #FFD3C2"></span></span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">Hover and press</span>&nbsp; Surface deepens Tint to Blush; the arrow nudges 2px up and right.</span></div>
-      <div style="flex: 1; border-radius: 8px; overflow: hidden; background: #FFE4D9">
-        <div style="aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; background: #E6E1D8; color: #5E5953; font-size: 13px">Service image, 16:10</div>
-        <div style="padding: 18px 20px 20px; display: flex; justify-content: space-between; align-items: center; color: #1B181A"><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.015em">Executive Search</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></div>
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Services index</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Large names on the left between Ink hairlines; the active one turns Ink and gains its orange icon. Its detail sits on the right: Tint art panel 4:3, description, then “Best when…”. No link inside the detail.</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">Hover and press</span>&nbsp; On desktop, resting on a name for 90ms opens it and one service is always open. Under 900px it becomes an accordion: + rotates to ×, and tapping the open row closes it.</span></div>
+      <div class="ds-wide ds-svcdemo" style="flex: 1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; align-items: start">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; min-height: 52px; border-top: 1px solid #1B181A; font-size: 19px; font-weight: 450; letter-spacing: -0.03em; color: #1B181A"><span style="width: 16px; height: 16px; border-radius: 4px; background: #FC4E2B; flex: none"></span>Executive Search</div>
+          <div style="display: flex; align-items: center; min-height: 52px; border-top: 1px solid #1B181A; font-size: 19px; font-weight: 450; letter-spacing: -0.03em; color: #8A8378">Market Mapping</div>
+          <div style="display: flex; align-items: center; min-height: 52px; border-top: 1px solid #1B181A; border-bottom: 1px solid #1B181A; font-size: 19px; font-weight: 450; letter-spacing: -0.03em; color: #8A8378">Bespoke Consulting</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="aspect-ratio: 4 / 3; border-radius: 8px; background: #FFD9C7; display: flex; align-items: center; justify-content: center; color: #5E5953; font-size: 12px">Illustration, 4:3</div>
+          <span style="font-size: 15px; line-height: 21px; font-weight: 450; color: #1B181A">CXO and senior leadership hires.</span>
+          <span style="font-size: 13px; line-height: 19px; color: #3A3A3F">Best when you know the role.</span>
+        </div>
       </div>
     </div>
     <div class="ds-card ds-cardrow" style="border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 32px; align-items: flex-start">
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Team card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Portrait 4:5. Name, role, then email under a tinted hairline.</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">Hover and press</span>&nbsp; The card lifts 4px and the portrait scales to 1.04 inside its frame; the email arrow nudges up-right.</span></div>
-      <div style="width: 240px; border-radius: 8px; overflow: hidden; background: #FFE4D9">
-        <div style="height: 150px; display: flex; align-items: center; justify-content: center; background: #E6E1D8; color: #5E5953; font-size: 13px">Portrait, 4:5</div>
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 200px"><span style="font-size: 15px; font-weight: 600">Team card</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Charcoal card. Photo 4:5, then name (links to the partner page), LinkedIn icon, role, and email under a cream hairline at 14%. On phones the email shortens to “Email [name]”.</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">Hover and press</span>&nbsp; The card lifts 4px and turns white with Ink text; the photo cross-fades to the partner’s illustration on Paper. Keyboard focus shows the same swap.</span></div>
+      <div style="width: 240px; border-radius: 8px; overflow: hidden; background: #1B181A">
+        <div style="height: 150px; display: flex; align-items: center; justify-content: center; background: #FFE0D2; color: #5E5953; font-size: 13px">Photo, 4:5</div>
         <div style="padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 4px">
-          <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 18px; font-weight: 500; color: #1B181A">Name Surname</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B181A" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></div>
-          <span style="font-size: 14px; color: #3A3A3F">Role title</span>
-          <span style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(27,24,26,.18); font-size: 13px; color: #3A3A3F">name@leadershipmavericks.com</span>
+          <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 18px; font-weight: 500; color: #FFFFF4">Name Surname</span><svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFF4" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"></path></svg></div>
+          <span style="font-size: 14px; color: #D8D5C9">Founding Partner</span>
+          <span style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,244,.14); font-size: 13px; color: #D8D5C9">name@leadershipmavericks.com</span>
         </div>
       </div>
     </div>
@@ -296,6 +308,31 @@ a{color:#1B181A}a:hover{color:#C93617}
       </label>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 380px; border-top: 1px solid #D9D3C9; border-left: 1px solid #D9D3C9"><div style="height: 88px; border-right: 1px solid #D9D3C9; border-bottom: 1px solid #D9D3C9; background: transparent; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box"><div style="width: 100%; max-width: 120px; height: 36px; border-radius: 4px; background: #E6E1D8; color: #5E5953; display: flex; align-items: center; justify-content: center; font-size: 12px">Logo</div></div><div style="height: 88px; border-right: 1px solid #D9D3C9; border-bottom: 1px solid #D9D3C9; background: #FFF1EA; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box"><div style="width: 100%; max-width: 120px; height: 36px; border-radius: 4px; background: #E6E1D8; color: #5E5953; display: flex; align-items: center; justify-content: center; font-size: 12px; transform: translateY(-2px)">Logo</div></div></div>
       <span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">Hover and press</span>&nbsp; Nav links turn Orange Ink and underline. A client logo cell tints to Wash and its logo lifts 2px (right).</span>
+    </div>
+
+    <div class="ds-card" style="grid-column: 1 / -1; border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
+      <div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span style="font-size: 15px; font-weight: 600">Section CTA</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">Closes each content section on the home page and points to the contact form (#contact). One line tied to what the section just showed, 20 / 28, 450, then the primary pill in a 15px, 52px-high size. Text left and button right; centred and stacked in centred sections; the button goes full width on phones. Skip it where the form is next anyway.</span></div>
+      <div class="ds-stack" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+        <div style="border-radius: 8px; background: #FFFFF4; box-shadow: inset 0 0 0 1px #D9D3C9; padding: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px">
+          <span style="font-size: 20px; line-height: 28px; font-weight: 450; letter-spacing: -0.015em; color: #1B181A">Not sure which search fits?</span>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 28px; min-height: 52px; padding: 0 22px 0 26px; border-radius: 999px; background: #FFFFF4; color: #FC4E2B; box-shadow: inset 0 0 0 1px #FC4E2B; text-decoration: none; font-size: 15px; font-weight: 600">Talk to a partner <svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+        </div>
+        <div style="border-radius: 8px; background: #1B181A; padding: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px">
+          <span style="font-size: 20px; line-height: 28px; font-weight: 450; letter-spacing: -0.015em; color: #FFFFF4">See how this would run for you.</span>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 28px; min-height: 52px; padding: 0 22px 0 26px; border-radius: 999px; background: #FFFFF4; color: #FC4E2B; text-decoration: none; font-size: 15px; font-weight: 600">Share your brief <svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+        </div>
+      </div>
+      <span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">On charcoal</span>&nbsp; Text turns Paper and the pill drops its orange outline, solid cream. Hover and press follow the primary button.</span>
+    </div>
+
+    <div class="ds-card ds-cardrow" style="grid-column: 1 / -1; border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; gap: 40px; align-items: flex-start">
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 280px"><span style="font-size: 15px; font-weight: 600">Partner page</span><span style="font-size: 14px; line-height: 21px; color: #6B6B70">One page per partner, reached from the team card name. Sections run top to bottom in this order.</span><span style="font-size: 13px; line-height: 19px; color: #3A3A3F; border-top: 1px solid #D9D3C9; padding-top: 12px"><span style="font-weight: 600; color: #C93617">Summary card</span>&nbsp; A Wash panel (role, focus chips, previous firms, education) above a charcoal contact list. On desktop it sits left of the bio and stays in view while scrolling; under 900px it comes first, above the bio.</span></div>
+      <ol class="ds-wide ds-pagelist" style="flex: 1; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid #1B181A">
+        <li style="display: grid; grid-template-columns: 32px 200px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid #D9D3C9; font-size: 14px; line-height: 21px"><span style="color: #C93617; font-weight: 600">01</span><span style="font-weight: 600">Header</span><span style="color: #3A3A3F">Breadcrumb, round photo with the illustration badge, role and name, quote, Email and LinkedIn buttons.</span></li>
+        <li style="display: grid; grid-template-columns: 32px 200px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid #D9D3C9; font-size: 14px; line-height: 21px"><span style="color: #C93617; font-weight: 600">02</span><span style="font-weight: 600">Summary card + About</span><span style="color: #3A3A3F">Two columns, 1 : 1.55. Bio opens with a lead paragraph and ends with outlined sector tags.</span></li>
+        <li style="display: grid; grid-template-columns: 32px 200px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid #D9D3C9; font-size: 14px; line-height: 21px"><span style="color: #C93617; font-weight: 600">03</span><span style="font-weight: 600">CTA</span><span style="color: #3A3A3F">“Ready To Look Beyond The Obvious?” with Email and Call buttons. Sits close under the bio: 16px top padding, 0 on phones.</span></li>
+        <li style="display: grid; grid-template-columns: 32px 200px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid #D9D3C9; font-size: 14px; line-height: 21px"><span style="color: #C93617; font-weight: 600">04</span><span style="font-weight: 600">The Other Mavericks</span><span style="color: #3A3A3F">Wash band with the three other partners as Tint cards; each card is the link.</span></li>
+      </ol>
     </div>
 
     <div class="ds-card" style="grid-column: 1 / -1; border: 1px solid #D9D3C9; border-radius: 8px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
@@ -381,7 +418,7 @@ a{color:#1B181A}a:hover{color:#C93617}
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
       <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600"><svg width="40" height="40" viewBox="-2 -2 52 52" fill="none" aria-hidden="true" style="flex: none; border: 1px solid #D9D3C9; border-radius: 4px"><path d="M0 48 C15.4 13.4, 0 0, 48 0" stroke="#FC4E2B" stroke-width="2.5" stroke-linecap="round"></path></svg>Drawer</span>
       <span style="font-size: 14px; line-height: 21px; color: #C93617; font-variant-numeric: tabular-nums">cubic-bezier(.32, .72, 0, 1)<br>--ease-drawer</span>
-      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The services carousel track sliding between cards.</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The sticky bar sliding down once the hero scrolls away.</span>
     </div>
   </div>
 
@@ -398,9 +435,9 @@ a{color:#1B181A}a:hover{color:#C93617}
       <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Link and button colour, card surfaces, field focus. Movement on hover runs 250–400ms.</span>
     </div>
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
-      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Carousel</span>
-      <span style="font-size: 14px; line-height: 21px; color: #C93617; font-variant-numeric: tabular-nums">500ms</span>
-      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Services track, with the drawer curve.</span>
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Sticky bar</span>
+      <span style="font-size: 14px; line-height: 21px; color: #C93617; font-variant-numeric: tabular-nums">400ms</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Slides in on the drawer curve; its fade runs 250ms.</span>
     </div>
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
       <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Reveals</span>
@@ -427,9 +464,9 @@ a{color:#1B181A}a:hover{color:#C93617}
       <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">Headings and cards fade up 20px once as they enter the viewport. Never replayed.</span>
     </div>
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
-      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Services carousel</span>
-      <span style="font-size: 14px; line-height: 21px; color: #C93617; font-variant-numeric: tabular-nums">500ms</span>
-      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">New cards slide in from the right (40px); the track moves on the drawer curve.</span>
+      <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Services index</span>
+      <span style="font-size: 14px; line-height: 21px; color: #C93617; font-variant-numeric: tabular-nums">200ms out, 300ms in</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">The old detail fades out as the new one fades in; its art settles from 96% scale and 6px down over 450ms. The active name’s icon slides in from the left.</span>
     </div>
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
       <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Process route</span>
@@ -449,7 +486,7 @@ a{color:#1B181A}a:hover{color:#C93617}
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
       <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Accordion and menu</span>
       <span style="font-size: 14px; line-height: 21px; color: #C93617; font-variant-numeric: tabular-nums">250ms / 200ms</span>
-      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">A step’s detail fades in sliding 6px down. The mobile menu slides down 8px; its links follow, staggered.</span>
+      <span style="font-size: 14px; line-height: 21px; color: #3A3A3F">A step’s detail fades in sliding 6px down. On phones the services + rotates to × over 200ms. The mobile menu slides down 8px; its links follow, staggered.</span>
     </div>
     <div class="ds-motion-row" style="display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 40px; align-items: center; padding: 24px 0; border-bottom: 1px solid #D9D3C9">
       <span style="display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600">Form success</span>
@@ -467,7 +504,7 @@ a{color:#1B181A}a:hover{color:#C93617}
 </section>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8800}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":9800}}'>
 class Component extends DCLogic {
   renderVals() {
     return {};

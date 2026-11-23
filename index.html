@@ -16,7 +16,7 @@
   .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
   h1{font:500 clamp(32px,5vw,48px)/1.1 "Source Serif 4",Georgia,serif;margin:0 0 12px;letter-spacing:-.01em}
   header p{margin:0;color:var(--muted);max-width:560px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:520px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
   .swatch{height:140px;display:flex;align-items:flex-end;padding:20px 24px;gap:8px}
   .swatch span{width:28px;height:28px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
@@ -47,11 +47,11 @@
   <header>
     <p class="eyebrow">Design review</p>
     <h1>Leadership Mavericks</h1>
-    <p>Version 4 is the working copy of version 3. Version 5 pairs the version 4 layout with the version 3 copy. Versions 1 and 2 are archived for reference.</p>
+    <p>The current design: the version 4 layout with the version 3 copy.</p>
   </header>
 
   <main class="grid">
-    <section class="card v1">
+    <section class="card v1" hidden>
       <div class="swatch" aria-hidden="true">
         <span style="background:#4F1F3B"></span>
         <span style="background:#A86A92"></span>
@@ -70,7 +70,7 @@
       </div>
     </section>
 
-    <section class="card v2">
+    <section class="card v2" hidden>
       <div class="swatch" aria-hidden="true">
         <span style="background:#1446C2"></span>
         <span style="background:#DCE5FB"></span>
@@ -89,7 +89,7 @@
       </div>
     </section>
 
-    <section class="card v3">
+    <section class="card v3" hidden>
       <div class="swatch" aria-hidden="true">
         <span style="background:#FC4E2B"></span>
         <span style="background:#1B181A"></span>
@@ -107,7 +107,7 @@
         </nav>
       </div>
     </section>
-    <section class="card v4">
+    <section class="card v4" hidden>
       <div class="swatch" aria-hidden="true">
         <span style="background:#FC4E2B"></span>
         <span style="background:#1B181A"></span>
