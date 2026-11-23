@@ -129,8 +129,8 @@ html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scale
 /* team: photo by default, the illustrated avatar crossfades in on hover or keyboard focus */
 .lm-team-illo{opacity:0;transform:scale(.96)}
 .lm-team-photo,.lm-team-illo{transition:opacity 300ms var(--ease-out),transform 400ms var(--ease-out)!important}
-.lm-team>article:focus-within .lm-team-photo{opacity:0}
-.lm-team>article:focus-within .lm-team-illo{opacity:1;transform:none}
+.lm-team>article:focus-within .lm-team-photo,.lm-team>article.lm-swap .lm-team-photo{opacity:0}
+.lm-team>article:focus-within .lm-team-illo,.lm-team>article.lm-swap .lm-team-illo{opacity:1;transform:none}
 @media (hover:hover) and (pointer:fine){
   .lm-team>article:hover .lm-team-photo{opacity:0;transform:scale(1.04)}
   .lm-team>article:hover .lm-team-illo{opacity:1;transform:none}
@@ -142,9 +142,9 @@ html.lm-js [data-reveal=timeline]:not([data-in])>span:last-child{transform:scale
 .lm-team-info a[aria-label],.lm-email{position:relative;z-index:2}
 /* dark cards turn white on hover (or keyboard focus); text flips to ink */
 .lm-team>article,.lm-team-info,.lm-team-info *{transition:background-color 250ms ease,color 200ms ease,border-color 200ms ease}
-.lm-team>article:focus-within{background:#FFFFFF!important}
-.lm-team>article:focus-within .lm-team-info :is(h3,a,p){color:#1B181A!important}
-.lm-team>article:focus-within .lm-email{border-top-color:rgba(27,24,26,.12)!important}
+.lm-team>article:focus-within,.lm-team>article.lm-swap{background:#FFFFFF!important}
+.lm-team>article:focus-within .lm-team-info :is(h3,a,p),.lm-team>article.lm-swap .lm-team-info :is(h3,a,p){color:#1B181A!important}
+.lm-team>article:focus-within .lm-email,.lm-team>article.lm-swap .lm-email{border-top-color:rgba(27,24,26,.12)!important}
 @media (hover:hover) and (pointer:fine){
   .lm-team>article:hover{background:#FFFFFF!important}
   .lm-team>article:hover .lm-team-info :is(h3,a,p){color:#1B181A!important}
@@ -886,6 +886,7 @@ class Component extends DCLogic {
 })(q, $, mark, head); } catch (err) { if (window.console) console.warn('motion setup', err); }
     try { stickyBar(); } catch (err) { if (window.console) console.warn('sticky bar', err); }
     try { servicesHover(); } catch (err) { if (window.console) console.warn('services hover', err); }
+    try { teamAutoSwap(); } catch (err) { if (window.console) console.warn('team auto swap', err); }
     try { sectors(); } catch (err) { if (window.console) console.warn('sector rotator', err); }
   }
 
@@ -952,6 +953,47 @@ class Component extends DCLogic {
     }, { passive: true });
     // keep it visible while someone is tabbing through it
     bar.addEventListener('focusin', function () { apply(true); });
+  }
+
+  /* Team cards on touch screens: hover never fires, so while the grid is on screen the cards
+     take turns showing their illustration, one person at a time, going clockwise round the grid
+     (row 1 left to right, row 2 right to left). Off for reduced motion. */
+  function teamAutoSwap() {
+    if (!window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var grid = q('#team .lm-team');
+    if (!grid || grid.__lmSwap) return;
+    grid.__lmSwap = true;
+    var cards = $('article', grid), step = -1, timer = 0, visible = false;
+
+    function clockwise() {
+      var rows = [];
+      cards.forEach(function (c) {
+        var top = Math.round(c.offsetTop), row = rows.filter(function (r) { return Math.abs(r.top - top) < 8; })[0];
+        if (!row) rows.push(row = { top: top, items: [] });
+        row.items.push(c);
+      });
+      rows.sort(function (a, b) { return a.top - b.top; });
+      return rows.reduce(function (out, r, i) {
+        r.items.sort(function (a, b) { return a.offsetLeft - b.offsetLeft; });
+        return out.concat(i % 2 ? r.items.reverse() : r.items);
+      }, []);
+    }
+    function tick() {
+      var order = clockwise();
+      cards.forEach(function (c) { c.classList.remove('lm-swap'); });
+      step = (step + 1) % order.length;
+      order[step].classList.add('lm-swap');
+      timer = setTimeout(tick, 1800);
+    }
+    function stop() { clearTimeout(timer); timer = 0; cards.forEach(function (c) { c.classList.remove('lm-swap'); }); }
+    function start() { if (!timer && visible && !document.hidden) timer = setTimeout(tick, 600); }
+
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) start(); else { stop(); step = -1; }
+    }, { threshold: 0.4 }).observe(grid);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
   }
 
   /* Services index: on desktop, resting the pointer on a name for 90ms opens it (clicks and keys work everywhere). */
