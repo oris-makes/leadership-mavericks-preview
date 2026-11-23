@@ -252,11 +252,8 @@ footer address br{display:none}
 .lm-svc-d[data-s=off] .lm-svc-art img{transform:scale(.96) translateY(6px)}
 .lm-svc-desc{margin:0;font-size:22px;line-height:31px;font-weight:450;letter-spacing:-0.012em;color:#1B181A;text-wrap:pretty;max-width:34ch}
 .lm-svc-best{margin:0;font-size:16px;line-height:25px;color:#3A3A3F;max-width:44ch}
-.lm-svc-link{align-self:flex-start;margin-top:8px;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:16px;font-weight:600;color:#C93617;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
-.lm-svc-link svg{transition:transform 200ms var(--ease-out)}
 @media (hover:hover) and (pointer:fine){
 .lm-svc-btn:hover{color:#1B181A}
-.lm-svc-link:hover svg{transform:translate(2px,-2px)}
 }
 .lm-svc-btn:focus-visible{outline:2px solid #1B181A;outline-offset:4px}
 @media (max-width: 900px){
@@ -271,6 +268,13 @@ footer address br{display:none}
 .lm-svc-desc{font-size:19px;line-height:28px}
 }
 @media (prefers-reduced-motion: reduce){.lm-svc-mark,.lm-svc-mark img,.lm-svc-art img{transition:none}.lm-svc-d[data-s=off] .lm-svc-art img{transform:none}}
+/* contextual CTA closing each section; every one points at the contact form */
+.lm-cta-row{width:100%;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px}
+.lm-cta-row p{margin:0;font-size:20px;line-height:28px;font-weight:450;letter-spacing:-0.015em;color:#1B181A;text-wrap:balance}
+.lm-cta-row.lm-cta-c{flex-direction:column;justify-content:center;text-align:center;gap:20px}
+.lm-cta-btn{display:inline-flex;align-items:center;gap:28px;min-height:52px;padding:0 22px 0 26px;border-radius:999px;background:#FFFFF4;color:#FC4E2B;box-shadow:inset 0 0 0 1px #FC4E2B;text-decoration:none;font-size:15px;font-weight:600;transition:background-color 200ms ease,transform 160ms var(--ease-out)}
+.lm-cta-d p{color:#FFFFF4}
+.lm-cta-d .lm-cta-btn{box-shadow:none}
 
 
 /* signal: focus words in headings. Darker signal on the beige sections keeps large-text contrast above 3:1 */
@@ -412,10 +416,14 @@ section[id]{scroll-margin-top:72px}
             </div>
             <p class="lm-svc-desc">{{s.desc}}</p>
             <p class="lm-svc-best">{{s.best}}</p>
-            <a class="lm-svc-link" href="{{s.href}}">{{s.cta}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
         </div>
       </sc-for>
+    </div>
+
+    <div class="lm-cta-row">
+      <p>Not sure which kind of search fits your role?</p>
+      <a class="lm-cta-btn lm-primary lm-full" href="#contact">Talk it through with a partner<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
     </div>
   </div>
 </section>
@@ -439,6 +447,11 @@ section[id]{scroll-margin-top:72px}
           <div style="width: 100%; max-width: 160px; display: flex; align-items: center; justify-content: center"><img src="{{l.src}}" alt="{{l.name}}" width="160" height="44" loading="lazy" style="width: 100%; height: auto; display: block"></div>
         </div>
       </sc-for>
+    </div>
+
+    <div class="lm-cta-row lm-cta-c">
+      <p>Want leadership hires like theirs?</p>
+      <a class="lm-cta-btn lm-primary lm-full" href="#contact">Start your search<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
     </div>
   </div>
 </section>
@@ -486,6 +499,10 @@ section[id]{scroll-margin-top:72px}
       </sc-for>
     </div>
 
+    <div class="lm-cta-row lm-cta-d">
+      <p>See how this process would run for your role.</p>
+      <a class="lm-cta-btn lm-primary lm-full" href="#contact">Share your brief<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+    </div>
   </div>
 </section>
 
@@ -493,6 +510,10 @@ section[id]{scroll-margin-top:72px}
 <section id="capabilities" class="lm-sec" aria-labelledby="lm-cap-h" style="padding: 128px 0">
   <div style="max-width: 1248px; margin: 0 auto; padding: 0 24px; box-sizing: border-box">
     <h2 id="lm-cap-h" class="lm-h2" style="margin: 0 auto; text-align: center; max-width: 980px; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.12; font-weight: 450; letter-spacing: -0.03em; text-wrap: balance">Four partners. <span class="lm-sig">25+ years</span> of combined search experience. <span class="lm-sig">89 CXO placements</span> across <span class="lm-rot" aria-hidden="true"><span class="lm-rot-in"><span>Technology.</span><span>Financial Services.</span><span>Healthcare.</span><span>Pharma &amp; Life Sciences.</span><span>Manufacturing.</span><span>Consumer &amp; Retail.</span><span>Energy &amp; Infrastructure.</span><span>Private Equity.</span><span>Technology.</span></span></span><span class="lm-sr">technology, financial services, healthcare, pharma and life sciences, manufacturing, consumer and retail, energy and infrastructure, and private equity.</span></h2>
+    <div class="lm-cta-row lm-cta-c" style="margin-top: 56px">
+      <p>Hiring a leader in one of these sectors?</p>
+      <a class="lm-cta-btn lm-primary lm-full" href="#contact">Tell us about the role<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+    </div>
   </div>
 </section>
 
@@ -561,6 +582,11 @@ section[id]{scroll-margin-top:72px}
         </div>
       </article>
     </div>
+
+    <div class="lm-cta-row">
+      <p>The partner you speak to is the partner who runs your search.</p>
+      <a class="lm-cta-btn lm-primary lm-full" href="#contact">Speak to a partner<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+    </div>
   </div>
 </section>
 
@@ -606,6 +632,11 @@ section[id]{scroll-margin-top:72px}
         </div>
       </li>
     </ol>
+
+    <div class="lm-cta-row">
+      <p>Ready to be our next chapter?</p>
+      <a class="lm-cta-btn lm-primary lm-full" href="#contact">Start the conversation<svg width="36" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></a>
+    </div>
   </div>
 </section>
 
@@ -685,7 +716,11 @@ class Component extends DCLogic {
       rowStyle: 'grid-row:' + (i + 1),
       state: i === svcI ? 'on' : 'off',
       expanded: i === svcI ? 'true' : 'false',
-      pick: () => { if (this.state.svc !== i) this.setState({ svc: i }); }
+      pick: () => {
+        const accordion = window.matchMedia('(max-width: 900px)').matches;
+        if (this.state.svc !== i) this.setState({ svc: i });
+        else if (accordion) this.setState({ svc: -1 });
+      }
     }));
     const stepData = [
       { title: 'First, the right questions', body: 'Before anyone is approached, your partner agrees with you what this leader must deliver in their first [18 months], not just what the job description lists.' },

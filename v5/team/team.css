@@ -124,7 +124,7 @@ img{display:block;max-width:100%}
 }
 
 /* ---------- CTA + footer ---------- */
-.p-cta{padding:136px 24px 128px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px}
+.p-cta{padding:16px 24px 128px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px}
 .p-cta h2{margin:0;font-size:clamp(40px,5vw,72px);line-height:1.04;font-weight:450;letter-spacing:-.035em;max-width:900px;text-wrap:balance}
 .p-cta p{margin:0;font-size:19px;line-height:30px;color:var(--muted);max-width:560px;text-wrap:balance}
 .p-cta .p-actions{justify-content:center}
@@ -158,7 +158,7 @@ html.js [data-reveal]:not([data-in]){opacity:0;transform:translateY(20px)}
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .p-grid{grid-template-columns:minmax(0,1fr)}
-  .p-side{position:static;order:2}
+  .p-side{position:static}
   .p-cards{grid-template-columns:minmax(0,1fr)}
   .p-card{flex-direction:row}
   .p-card-media{aspect-ratio:auto;width:132px;flex:none}
@@ -176,7 +176,7 @@ html.js [data-reveal]:not([data-in]){opacity:0;transform:translateY(20px)}
   .p-actions .btn{flex:1 1 100%;justify-content:space-between}
   .p-body,.p-others{padding:80px 0}
   .p-bio p{font-size:17px;line-height:28px}
-  .p-cta{padding:80px 20px}
+  .p-cta{padding:0 20px 80px}
   .p-cta h2{font-size:40px}
   .f-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
   .f-nav a{display:flex;align-items:center;min-height:44px}
